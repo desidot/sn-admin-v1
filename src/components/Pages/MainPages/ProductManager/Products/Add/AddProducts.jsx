@@ -40,8 +40,6 @@ const subcategoryOptions = [
 ];
 
 const AddProducts = () => {
-
-
   const navigate = useNavigate();
   const [brandOptions, setBrandOptions] = useState([]);
   const [categoryOptions, setCategoryOptions] = useState([]);
@@ -83,7 +81,7 @@ const AddProducts = () => {
   // Fetch brand options from the API using Axios on component mount
   useEffect(() => {
     axios
-    
+
       .get(`${APIBASE}admin/get-active-brand`)
       .then((response) => {
         setBrandOptions(response.data.data);
@@ -105,7 +103,6 @@ const AddProducts = () => {
   };
 
   // Fetch category options from the API using Axios on component mount
-
 
   useEffect(() => {
     axios
@@ -514,35 +511,37 @@ const AddProducts = () => {
 
     // Send the data to the server using Axios POST request
     //console.log(formDataToSend);
-if(formData.product_name && formData.category_id){
+    if (formData.product_name && formData.category_id) {
+      try {
+        await axios.post(`${APIBASE}admin/products`, formDataToSend, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Accept: "application/json",
+          },
+        });
 
+        toast.success("Product added successfully", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 2000,
+        });
 
-    try {
-      await axios.post(`${APIBASE}admin/products`, formDataToSend, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Accept: "application/json",
-        },
-      });
-
-      toast.success("Product added successfully", {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 2000,
-      });
-
-      navigate("/admin/ProductManager/Products/list-products");
-    } catch (error) {
-      //console.error("Error updating product:", error);
-      toast.error("Failed to upload product. Please try again.", {
-        position: toast.POSITION.TOP_RIGHT, 
-        autoClose: 2000,
-        error,
-      });
-    }} else {
-      toast.warn("Make sure Category Name and Product Name should not be Empty.", {
-        position: "top-center",
-        autoClose: 2000,
-      });
+        navigate("/admin/ProductManager/Products/list-products");
+      } catch (error) {
+        //console.error("Error updating product:", error);
+        toast.error("Failed to upload product. Please try again.", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 2000,
+          error,
+        });
+      }
+    } else {
+      toast.warn(
+        "Make sure Category Name and Product Name should not be Empty.",
+        {
+          position: "top-center",
+          autoClose: 2000,
+        }
+      );
     }
   };
 
@@ -578,7 +577,7 @@ if(formData.product_name && formData.category_id){
           </div>
           <div className="filter-container">
             <Grid container spacing={2}>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={4}>
                 <InputLabel>
                   Brand :
                   {/* <span style={{ color: "red", fontWeight: "800" }}>*</span> */}
@@ -606,7 +605,7 @@ if(formData.product_name && formData.category_id){
                 </div>
               </Grid>
 
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={4}>
                 <InputLabel>
                   Supplier :
                   {/* <span style={{ color: "red", fontWeight: "800" }}>*</span> */}
@@ -633,7 +632,7 @@ if(formData.product_name && formData.category_id){
                 </div>
               </Grid>
 
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={4}>
                 <InputLabel>
                   Category :
                   <span style={{ color: "red", fontWeight: "800" }}>*</span>
@@ -660,11 +659,8 @@ if(formData.product_name && formData.category_id){
                 </div>
               </Grid>
 
-              <Grid item xs={12} md={6}>
-                <InputLabel>
-                  Subcategory :
-                  {/* <span style={{ color: "red", fontWeight: "800" }}>*</span> */}
-                </InputLabel>
+              <Grid item xs={12} md={4}>
+                <InputLabel>Subcategory :</InputLabel>
                 <FormControl fullWidth>
                   <Autocomplete
                     options={subcategoryOptions}
@@ -677,7 +673,8 @@ if(formData.product_name && formData.category_id){
                   />
                 </FormControl>
               </Grid>
-              <Grid item xs={12} md={6}>
+
+              <Grid item xs={12} md={4}>
                 <InputLabel htmlFor="">
                   Product Name :
                   <span style={{ color: "red", fontWeight: "800" }}>*</span>
@@ -696,7 +693,7 @@ if(formData.product_name && formData.category_id){
                 </FormControl>
               </Grid>
 
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={4}>
                 <InputLabel htmlFor="">Barcode :</InputLabel>
                 <FormControl fullWidth>
                   <TextField
@@ -766,7 +763,7 @@ if(formData.product_name && formData.category_id){
                   />
                 </FormControl>
               </Grid>
-              <Grid item xs={12} md={6} className="ref-toggle">
+              <Grid item xs={12} md={6} className="ref-toggle mt-2">
                 <FormControlLabel
                   label="Refundable:"
                   labelPlacement="start"
@@ -791,7 +788,12 @@ if(formData.product_name && formData.category_id){
         <Modal
           open={modalOpen}
           onClose={closeModal}
-          style={{ height: "auto", width: "auto" ,overflowY:"scroll",paddingBottom:"60px"}}
+          style={{
+            height: "auto",
+            width: "auto",
+            overflowY: "scroll",
+            paddingBottom: "60px",
+          }}
         >
           <div className="modal-wrapper">
             <div className="modal-content">

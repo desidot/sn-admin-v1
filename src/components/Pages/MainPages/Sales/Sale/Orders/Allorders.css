@@ -12,18 +12,28 @@
   font-family: "Poppins", sans-serif;
 }
 
-.css-mhc70k-MuiGrid-root>.MuiGrid-item {
-  padding-top:0px !important;
+.css-mhc70k-MuiGrid-root > .MuiGrid-item {
+  padding-top: 0px !important;
 }
 
 /* .css-1ex1afd-MuiTableCell-root{
   padding:5px 14px !important;
 } */
 
-.default-user-image{
-  display:flex;
-  gap:10px;
-  align-items:center;
+.input-labels-options {
+  font-family: "Poppins", sans-serif;
+  font-size: 10px;
+  margin-top: -6px;
+}
+
+/* TextField ::placeholder{
+  font-size: 18px;
+} */
+
+.default-user-image {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 svg.MuiSvgIcon-root {
@@ -32,14 +42,15 @@ svg.MuiSvgIcon-root {
 }
 
 .font-14 {
-  font-size:14px !important;
-  color:#333 !important;
-  font-weight:500;
+  font-size: 14px !important;
+  color: #333 !important;
+  font-weight: 500;
 }
 
 label {
   display: inline-block;
-  margin-bottom: 0.5rem;
+  /* margin-bottom: 0.5rem; */
+  margin-top: 0.6rem;
   font-size: 14px;
 }
 .active-status span {

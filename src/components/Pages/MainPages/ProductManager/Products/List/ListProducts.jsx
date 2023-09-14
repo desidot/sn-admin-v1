@@ -584,11 +584,12 @@ const ListOfProducts = () => {
       </div>
       <br />
       <div className="download-sample">
-        <InputLabel htmlFor="">
-          <Link to="">
+        <InputLabel htmlFor="" className="input-labels-options">
+          {/* <Link to=""> */}
             <span>Import Products </span>
-          </Link>
+          {/* </Link> */}
         </InputLabel>
+        <br />
         <Grid container spacing={2}>
           <Grid item xs={12} md={10}>
             <div className="input-field">

@@ -404,7 +404,7 @@ const AllOrder = () => {
         }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
-          <HomeIcon /> - <h6 className="mb-0"> Sales - All Orders</h6>
+          <HomeIcon />{" "}- <h6 className="mb-0">{" "} Sales - All Orders</h6>
         </div>
 
         <button
@@ -427,7 +427,7 @@ const AllOrder = () => {
                 <Grid item xs={12} md={3}>
                   <label htmlFor="shipping">Shipping Status:</label>
                   <FormControl fullWidth>
-                    <InputLabel htmlFor="shipping">All</InputLabel>
+                    <InputLabel htmlFor="shipping" className="input-labels-options">All</InputLabel>
                     <Select
                       id="shipping"
                       name="shipping"
@@ -449,7 +449,7 @@ const AllOrder = () => {
                 <Grid item xs={12} md={3}>
                   <label htmlFor="payment">Payment Status:</label>
                   <FormControl fullWidth>
-                    <InputLabel htmlFor="shipping">All</InputLabel>
+                    <InputLabel htmlFor="payment" className="input-labels-options">All</InputLabel>
                     <Select
                       id="payment"
                       name="payment"
@@ -496,7 +496,7 @@ const AllOrder = () => {
                 <Grid item xs={12} md={3}>
                   <label htmlFor="source">Sources:</label>
                   <FormControl fullWidth>
-                    <InputLabel htmlFor="shipping">All</InputLabel>
+                    <InputLabel htmlFor="source" className="input-labels-options">All</InputLabel>
                     <Select
                       id="source"
                       name="source"

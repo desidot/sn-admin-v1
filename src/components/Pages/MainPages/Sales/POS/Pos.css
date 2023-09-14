@@ -1,5 +1,3 @@
-
-
 .MuiInputBase-root {
   color: #666666;
   height: 2.5rem;
@@ -59,7 +57,7 @@
 
 .search-cabin1,
 .search-cabin {
-  padding:1rem;
+  padding: 1rem;
   gap: 1rem;
   justify-content: flex-start;
   display: flex;
@@ -67,8 +65,8 @@
   align-items: center;
 }
 
-.MuiTypography-root{
-  font-size:14px !important;
+.MuiTypography-root {
+  font-size: 16px !important;
 }
 
 .brand-dropdown {
@@ -215,7 +213,7 @@
   border-radius: 5px;
   border: 1px solid lightgray;
 }
-.noItemsInCart{
+.noItemsInCart {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -261,18 +259,18 @@
   font-size: 14px;
   flex-wrap: wrap;
   justify-content: space-between;
-  color:#777;
+  color: #777;
 }
 
 .pro-name {
   width: 100%;
   display: flex;
   font-size: 13px;
-  padding:0 0.5rem;
+  padding: 0 0.5rem;
 }
-.blc .blc-info{
+.blc .blc-info {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 }
 .blc-info p ~ .blc p {
   line-height: auto;
@@ -305,7 +303,7 @@
 
 .total-discount label {
   font-size: 14px;
-  color:#666 !important;
+  color: #666 !important;
 }
 
 .total-discount input {
@@ -325,7 +323,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-around;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
 .d-form {
@@ -333,14 +331,15 @@
   height: 2.42rem;
   border: 1px solid rgb(196, 196, 196);
   border-radius: 5px;
-  color:#666 !important;
+  color: #666 !important;
 }
 
-.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
   color: #777 !important;
 }
 
-.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input , .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input,
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   font-size: 14px !important;
 }
 
@@ -442,6 +441,13 @@
   .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
   max-width: 100%;
 }
+
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input,
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  font-size: 16px !important;
+  color: #232222 !important;
+}
+
 .shipp-option .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
   width: 100%;
 }
@@ -598,30 +604,30 @@
   font-size: 14px;
 }
 
-
-.input-field{
+.input-field {
   position: relative;
 }
-.input-field-results{
+.input-field-results {
   height: max-content; /* Set the height of the container to 300 pixels */
   max-height: 300px;
   width: 100%;
   border-radius: 4px; /* Set the maximum height of the container to 500 pixels */
   overflow-y: auto; /* Add vertical scrollbar when content exceeds the maximum height */
   position: absolute;
-  top:60px;
+  top: 60px;
   background-color: white;
   border: 0.5px solid lightgray;
   z-index: 1;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
-.input-field-0result{
+.input-field-0result {
   height: 45px;
   width: 100%;
   border-radius: 4px; /* Set the maximum height of the container to 500 pixels */
   overflow-y: auto; /* Add vertical scrollbar when content exceeds the maximum height */
   position: absolute;
-  top:60px;
+  top: 60px;
   background-color: white;
   border: 0.5px solid lightgray;
   display: flex;
@@ -629,21 +635,22 @@
   align-items: center;
   cursor: pointer;
 
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
-.input-field-results>div{
-  padding-left :10px;
+.input-field-results > div {
+  padding-left: 10px;
   border-bottom: 0.5px solid lightgray;
-  height:45px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   cursor: pointer;
 }
 
-.css-j204z7-MuiFormControlLabel-root{
-  margin-left: 0px !important;; 
-margin-right: 0px !important;
+.css-j204z7-MuiFormControlLabel-root {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
 
 /* radio buttons */
@@ -664,9 +671,10 @@ margin-right: 0px !important;
   margin-right: 5px;
 }
 
-.MuiFormLabel-root{
-  top:-5px !important;
-}
+/* .MuiFormLabel-root {
+  top: -15px !important;
+  font-size: 18px;
+} */
 
 @media only screen and (max-width: 1200px) {
 }
@@ -814,108 +822,107 @@ margin-right: 0px !important;
   height: var(--uib-size);
   width: var(--uib-size);
   animation: spin78236 calc(var(--uib-speed) * 2.5) infinite linear;
- }
- 
- .three-body__dot {
+}
+
+.three-body__dot {
   position: absolute;
   height: 100%;
   width: 30%;
- }
- 
- .three-body__dot:after {
-  content: '';
+}
+
+.three-body__dot:after {
+  content: "";
   position: absolute;
   height: 0%;
   width: 100%;
   padding-bottom: 100%;
   background-color: var(--uib-color);
   border-radius: 50%;
- }
- 
- .three-body__dot:nth-child(1) {
+}
+
+.three-body__dot:nth-child(1) {
   bottom: 5%;
   left: 0;
   transform: rotate(60deg);
   transform-origin: 50% 85%;
- }
- 
- .three-body__dot:nth-child(1)::after {
+}
+
+.three-body__dot:nth-child(1)::after {
   bottom: 0;
   left: 0;
   animation: wobble1 var(--uib-speed) infinite ease-in-out;
   animation-delay: calc(var(--uib-speed) * -0.3);
- }
- 
- .three-body__dot:nth-child(2) {
+}
+
+.three-body__dot:nth-child(2) {
   bottom: 5%;
   right: 0;
   transform: rotate(-60deg);
   transform-origin: 50% 85%;
- }
- 
- .three-body__dot:nth-child(2)::after {
+}
+
+.three-body__dot:nth-child(2)::after {
   bottom: 0;
   left: 0;
-  animation: wobble1 var(--uib-speed) infinite
-     calc(var(--uib-speed) * -0.15) ease-in-out;
- }
- 
- .three-body__dot:nth-child(3) {
+  animation: wobble1 var(--uib-speed) infinite calc(var(--uib-speed) * -0.15)
+    ease-in-out;
+}
+
+.three-body__dot:nth-child(3) {
   bottom: -5%;
   left: 0;
   transform: translateX(116.666%);
- }
- 
- .three-body__dot:nth-child(3)::after {
+}
+
+.three-body__dot:nth-child(3)::after {
   top: 0;
   left: 0;
   animation: wobble2 var(--uib-speed) infinite ease-in-out;
- }
- 
- @keyframes spin78236 {
+}
+
+@keyframes spin78236 {
   0% {
-   transform: rotate(0deg);
+    transform: rotate(0deg);
   }
- 
+
   100% {
-   transform: rotate(360deg);
+    transform: rotate(360deg);
   }
- }
- 
- @keyframes wobble1 {
+}
+
+@keyframes wobble1 {
   0%,
-   100% {
-   transform: translateY(0%) scale(1);
-   opacity: 1;
+  100% {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
   }
- 
+
   50% {
-   transform: translateY(-66%) scale(0.65);
-   opacity: 0.8;
+    transform: translateY(-66%) scale(0.65);
+    opacity: 0.8;
   }
- }
- 
- @keyframes wobble2 {
+}
+
+@keyframes wobble2 {
   0%,
-   100% {
-   transform: translateY(0%) scale(1);
-   opacity: 1;
+  100% {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
   }
- 
+
   50% {
-   transform: translateY(66%) scale(0.65);
-   opacity: 0.8;
+    transform: translateY(66%) scale(0.65);
+    opacity: 0.8;
   }
- }
- .scroll-container {
+}
+.scroll-container {
   /* Set a fixed height and width for the container */
   height: 350px; /* Adjust this to your desired height */
-  width: 100%;   /* Adjust this to your desired width */
-  
+  width: 100%; /* Adjust this to your desired width */
+
   /* Enable scrolling for the container */
   overflow: auto;
   padding-right: 15px;
   /* Hide the scroll bar */
- /* For Internet Explorer and Edge */
+  /* For Internet Explorer and Edge */
 }
-

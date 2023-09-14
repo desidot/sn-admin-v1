@@ -47,7 +47,7 @@ const ProductInventory = () => {
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [pageCount, setPageCount] = useState(1);
   const [currPage, setCurrPage] = useState(1);
-  const [totalItems,setTotalItems]=useState(0)
+  const [totalItems, setTotalItems] = useState(0);
   // Inside the handleMenuClose function, set the selectedProductId and open the popup
   const handleMenuClose = () => {
     setOpenMenuId(null);
@@ -86,7 +86,7 @@ const ProductInventory = () => {
           setInventoryData(response.data.data);
           setLoading(false);
           setPageCount(Math.ceil(response.data.total / response.data.per_page));
-          setTotalItems(response.data.total)
+          setTotalItems(response.data.total);
           setCurrPage(response.data.current_page);
         })
         .catch((error) => {
@@ -210,7 +210,7 @@ const ProductInventory = () => {
       <div>
         <div className="card">
           <div className="card-header">
-            <h3>Product Inventory</h3>
+            <h3 className="card-title">Product Inventory</h3>
             {/* Buttons */}
             <div className="tabs-butons">
               <Button variant="contained">All</Button>
@@ -233,10 +233,7 @@ const ProductInventory = () => {
           <div className="main-body2">
             {/* Search and Nos */}
             <div className="searchAndNosBlogs">
-              <div className="nos">
-             Total:-{totalItems}
-            
-              </div>
+              <div className="nos">Total:-{totalItems}</div>
               <div className="search-inventory">
                 <div className="search-in-table">
                   <OutlinedInput
