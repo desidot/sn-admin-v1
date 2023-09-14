@@ -1,0 +1,25 @@
+.mt-20 {
+    margin-top: 20px;
+}
+
+fieldset:not(:first-of-type) {
+    display: none;
+}
+
+.print-invoice  {
+    padding: 10px 40px;
+    border: 2px solid #d6d6d6;
+    border-radius: 4px;
+    color: #fff;
+    background: #666;
+    font-family: 'Poppins';
+    font-size: 18px;
+    transition: all 0.3s linear;
+    outline: none;
+    cursor: pointer;
+}
+
+.print-invoice:hover {
+    color: #fff;
+    background: #333;
+}

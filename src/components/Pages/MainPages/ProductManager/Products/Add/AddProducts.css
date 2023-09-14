@@ -1,0 +1,224 @@
+.add-products-body {
+  padding: 1rem;
+}
+
+.add-products-main {
+  color: black;
+  font-family: "Poppins", sans-serif;
+}
+
+/* .auto-com-border
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border: 1px solid lightgray;
+} */
+
+.auto-com-border .MuiInputLabel-shrink {
+  display: none;
+}
+
+.filter-head-products {
+  padding: 1rem;
+  border-bottom: 1px solid rgb(201, 201, 201);
+}
+
+.filter-head-products h1 {
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+.save-btn {
+  display: flex;
+}
+
+.add-pop-flex {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.save-btn button {
+  align-self: end;
+}
+
+.add-products-main .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
+  display: none;
+}
+
+.filter-section .css-mhc70k-MuiGrid-root > .MuiGrid-item {
+  padding-left: 1rem;
+  height: auto;
+}
+
+.filter-section .ref-toggle {
+  .css-1f2kvjf-MuiFormControlLabel-root {
+    margin-left: auto;
+    padding: 0;
+    margin: 0;
+    color: gray;
+  }
+}
+
+.add-products-main .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  font-family: "Poppins", sans-serif;
+}
+
+.input-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+}
+
+.add-products-main {
+  font-family: "Poppins", sans-serif;
+}
+
+.input-field-pdf {
+  margin-top: 1.5rem;
+}
+
+.low-quantity .css-j204z7-MuiFormControlLabel-root .MuiFormControlLabel-label,
+.css-ahj2mt-MuiTypography-root {
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  color: gray;
+}
+
+.inp-seo-meta3,
+.inp-seo-meta2 {
+  width: 100%;
+  gap: 1rem;
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+.inp-meta {
+  width: 100%;
+  gap: 1rem;
+  display: flex;
+}
+
+.add-products-body .css-9npbnl-MuiFormLabel-root-MuiInputLabel-root {
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+}
+
+.input-field textarea {
+  overflow: auto;
+  resize: vertical;
+  border-color: #c4c4c4;
+  border-radius: 4px;
+  padding: 0.34rem 0.75rem 0 0.75rem;
+  height: 55px;
+}
+
+.add-product-save-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-product-save-btn button {
+  height: 3rem;
+  width: 7rem;
+  background-color: #7356b2;
+  text-transform: capitalize;
+}
+
+.plus-buttons-add-pro button {
+  background-color: #7356b2;
+  height: 50px;
+  width: 50px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.add-products-main button {
+  /* display: flex; */
+  /* background-color: #7356b2; */
+  font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
+}
+
+/* .modal-content {
+  max-height: 80vh;
+  max-width: 60vw;
+  height: auto;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 20vw;
+  margin-top: 10vh;
+} */
+
+.modal-content {
+  max-width: 65vw;
+  height: auto;
+  width: auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  margin-left: 20vw;
+  margin-top: 10vh;
+  padding: 1rem;
+}
+
+/* .modal-content */
+.my-breadcrum {
+  display: none;
+}
+
+.close-button-modal {
+  background: none;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.close-button-modal h1 {
+  font-size: 22px;
+}
+
+@media only screen and (max-width: 768px) {
+  .inp-meta {
+    width: 100%;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .inp-meta {
+    width: 100%;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .low-quantity .css-1f2kvjf-MuiFormControlLabel-root {
+    margin-left: 0px;
+  }
+
+  .inp-seo-meta3,
+  .inp-seo-meta2 {
+    width: 100%;
+    gap: 1rem;
+    display: flex;
+    margin-bottom: 1rem;
+    flex-direction: column;
+  }
+
+  .modal-content {
+    max-height: 80vh;
+    max-width: 80vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 10vw;
+    margin-top: 10vh;
+  }
+}
