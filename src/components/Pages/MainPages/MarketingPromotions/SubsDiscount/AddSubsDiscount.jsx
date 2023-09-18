@@ -247,7 +247,7 @@ const AddSubscriptionDiscount = () => {
                   <span style={{ fontWeight: "bold", color: "red" }}>*</span>
                 </InputLabel>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor="">Please Select</InputLabel>
+                  <InputLabel htmlFor="" className="custom-inputlabel">Please Select</InputLabel>
                   <Select
                     id="supplier"
                     name="supplier"
@@ -270,7 +270,7 @@ const AddSubscriptionDiscount = () => {
                   style={{ display: "block" }}
                   id="demo-multiple-name-label"
                 >
-                  Select Categories :
+                   Categories :
                   {/* <span style={{ fontWeight: "bold", color: "red" }}>*</span>{" "}
                   {products?.length > 0 && (
                     <span>
@@ -294,8 +294,9 @@ const AddSubscriptionDiscount = () => {
                   <InputLabel
                     style={{ display: "block" }}
                     id="demo-multiple-name-label"
+                    className="custom-inputlabel"
                   >
-                    Categories
+                    Select Categories (multiple)
                   </InputLabel>
                   <Select
                     labelId="demo-multiple-name-label"

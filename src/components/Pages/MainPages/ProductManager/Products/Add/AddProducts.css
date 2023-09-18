@@ -111,7 +111,7 @@
   border-color: #c4c4c4;
   border-radius: 4px;
   padding: 0.34rem 0.75rem 0 0.75rem;
-  height: 55px;
+  height: 2.5rem;
 }
 
 .add-product-save-btn {
@@ -180,6 +180,12 @@
 
 .close-button-modal h1 {
   font-size: 22px;
+}
+
+.css-1h51icj-MuiAutocomplete-root 
+  .MuiOutlinedInput-root
+  .MuiAutocomplete-input {
+  padding: 0px 4px 7.5px 5px !important;
 }
 
 @media only screen and (max-width: 768px) {

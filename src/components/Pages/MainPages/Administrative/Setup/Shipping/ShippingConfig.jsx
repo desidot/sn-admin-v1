@@ -391,12 +391,12 @@ const ShippingConfiguration = () => {
       <br />
       <div className="card">
         <div className="card-header">
-          <h3>Shipping Detail</h3>
+        <h3 className="card-title">Shipping Detail</h3>
         </div>
         <div className="main-body2">
           {/* Search and Nos */}
-          <div className="searchAndNosBlogs">
-            <div className="nos"></div>
+          {/* <div className="searchAndNosBlogs"> */}
+            {/* <div className="nos"></div> */}
             {/* <div className="search-inventory">
               <div className="search-in-table">
                 <OutlinedInput
@@ -414,7 +414,7 @@ const ShippingConfiguration = () => {
               </div> 
           
             </div>    */}
-          </div>
+          {/* </div> */}
           {/* Search and Nos END */}
 
           {/* Table */}

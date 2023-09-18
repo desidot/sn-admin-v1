@@ -96,10 +96,10 @@ const AllCustomers = () => {
       setIsLoading(false);
     }
   };
-  const handleSearchClick=()=>{
-    setPage(1)
-    getAllCustomers()
-  }
+  const handleSearchClick = () => {
+    setPage(1);
+    getAllCustomers();
+  };
 
   const [listItems, setListItems] = useState([]);
   useEffect(() => {
@@ -166,12 +166,10 @@ const AllCustomers = () => {
   };
 
   useEffect(() => {
-   
-    const arr=data.filter((elem)=>elem["Patient Email"]==undefined)
+    const arr = data.filter((elem) => elem["Patient Email"] == undefined);
     setNewData(arr);
-
   }, [data]);
-  console.log(newData)
+  console.log(newData);
 
   const IOSSwitch = styled((props) => (
     <Switch
@@ -251,7 +249,6 @@ const AllCustomers = () => {
     const blob = new Blob([csvString], { type: "text/csv;charset=utf-8" });
     saveAs(blob, "customers.csv");
   };
-
 
   useEffect(() => {
     if (isPopupOpen) {
@@ -361,7 +358,7 @@ const AllCustomers = () => {
   //       XLSX.writeFile(wb, "my filter list 001.xlsx");
 
   //   }
- 
+
   // useEffect(()=>{
 
   // if(newData.length>4000){
@@ -396,11 +393,12 @@ const AllCustomers = () => {
       </div>
       <br />
       <div className="download-sample">
-        <InputLabel htmlFor="">
-          <Link to="">
-            <span>Import Customers (Max 500)</span>
-          </Link>
+        <InputLabel htmlFor="" className="input-labels-options">
+          {/* <Link to=""> */}
+          <span>Import Customers (Max 500)</span>
+          {/* </Link> */}
         </InputLabel>
+        <br />
         <Grid container spacing={2}>
           <Grid item xs={12} md={10}>
             <div className="input-field">
@@ -412,7 +410,7 @@ const AllCustomers = () => {
             </div>
           </Grid>
           <Grid item xs={12} md={2}>
-            <div className="adjust-button">
+            <div className="adjust-button mt-0">
               <Button
                 className="import-btn"
                 variant="contained"
@@ -441,7 +439,7 @@ const AllCustomers = () => {
       <br />
       <div className="card">
         <div className="card-header">
-          <h3>All Customers</h3>
+          <h3 className="card-title">All Customers</h3>
           {/* Buttons */}
           <div className="tabs-butons">
             {/* <Button variant="contained">All</Button> */}
@@ -462,9 +460,22 @@ const AllCustomers = () => {
               <input
                 onChange={(e) => setSearchText(e.target.value)}
                 placeholder="search by first name,email,phone..."
-                style={{ height: "2rem", marginRight: "15px",paddingLeft:"6px",borderRadius:"6px",border:"0.5px solid lightgray",outline:"none" }}
+                style={{
+                  height: "2rem",
+                  marginRight: "15px",
+                  paddingLeft: "6px",
+                  borderRadius: "6px",
+                  border: "0.5px solid lightgray",
+                  outline: "none",
+                }}
               />
-              <Button variant="contained" style={{height:"2rem"}} onClick={()=>handleSearchClick()} >Search</Button>
+              <Button
+                variant="contained"
+                style={{ height: "2rem" }}
+                onClick={() => handleSearchClick()}
+              >
+                Search
+              </Button>
             </div>
           </div>
           {/* Search and Nos END */}

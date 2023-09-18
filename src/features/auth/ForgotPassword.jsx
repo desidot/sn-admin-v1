@@ -44,7 +44,7 @@ const ForgotPasswordForm = () => {
       toast.success("Otp sent successfully");
       setShowTab(2);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error("Error!");
     }
   };
@@ -81,7 +81,7 @@ const ForgotPasswordForm = () => {
       setIsWrong(false);
       setIsRight(true);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setIsWrong(true);
       setIsRight(false);
       setIsChecking(false);
@@ -137,7 +137,7 @@ const ForgotPasswordForm = () => {
       toast.success("Otp resent successfully");
       setShowTab(2);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error("Error!");
     }
   };

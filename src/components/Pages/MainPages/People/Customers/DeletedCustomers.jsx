@@ -217,7 +217,7 @@ const DeletedCustomers = () => {
       <br />
       <div className="card">
         <div className="card-header">
-          <h3>Deleted Customers</h3>
+          <h3 className="card-title">Deleted Customers</h3>
         </div>
         {/* Buttons End*/}
         <div className="main-body2">

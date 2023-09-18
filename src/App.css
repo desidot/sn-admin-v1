@@ -53,6 +53,49 @@ body {
   border: none;
 }
 
+/* .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  height: 0.5em;
+}
+
+.css-1h51icj-MuiAutocomplete-root
+  .MuiOutlinedInput-root
+  .MuiAutocomplete-input {
+  padding: 0;
+} */
+
+/* 
+.css-1h51icj-MuiAutocomplete-root .MuiOutlinedInput-root .MuiAutocomplete-input {
+  padding: 0px 4px 7.5px 5px;
+} */
+
+/* .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input{
+  height: 0.5em;
+} */
+
+/* .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input{
+  padding: 0px 4px 7.5px 5px;
+} */
+/* .css-1h51icj-MuiAutocomplete-root .MuiOutlinedInput-root {
+  padding: 0px 5px;
+} */
+/* .css-1h51icj-MuiAutocomplete-root .MuiOutlinedInput-root  */
+/* .MuiAutocomplete-input {
+  padding: 0px;
+} */
+
+/* .MuiInputBase-input
+  .MuiOutlinedInput-input
+  .MuiInputBase-inputAdornedEnd
+  .MuiAutocomplete-input
+  .MuiAutocomplete-inputFocused */
+/* .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 1px 4px 7.5px 5px;
+} */
+
+.MuiInputBase-root .MuiAutocomplete-input .MuiAutocomplete-inputFocused{
+  padding: 1px 4px 7.5px 5px;
+}
+
 @media only screen and (max-width: 500px) {
   .main-container {
     border-radius: 10px 10px;

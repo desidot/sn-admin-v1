@@ -170,7 +170,7 @@ const Units = () => {
 
       <div className="card">
         <div className="card-header">
-          <h3 className="card-name">All your units</h3>
+          <h3 className="card-title">All units</h3>
           {/* Buttons */}
           <div className="tabs-butons">
             <Link to="/admin/ProductManager/Products/add-unit">

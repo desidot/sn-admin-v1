@@ -236,8 +236,9 @@ const AddPeriodicDiscount = () => {
                   <InputLabel
                     style={{ display: "block" }}
                     id="demo-multiple-name-label"
+                    className="custom-inputlabel"
                   >
-                    Products
+                    All Products
                   </InputLabel>
                   <Select
                     labelId="demo-multiple-name-label"

@@ -339,7 +339,7 @@ const ListEmployees = () => {
                       <TableCell align="left">{row.employee_code}</TableCell>
                       <TableCell align="left">{row.name}</TableCell>
                       <TableCell align="left">{row.email}</TableCell>
-                      <TableCell align="left">
+                      <TableCell align="left" style={{width:"150px"}}>
                         <span className="user-role">{row.roles[0].name}</span>
                       </TableCell>{" "}
                       <TableCell align="left">

@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import reportWebVitals from "./reportWebVitals";
+import "./index.css"
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -20,7 +21,8 @@ root.render(
         </BrowserRouter>
       </PersistGate>
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

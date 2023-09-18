@@ -40,7 +40,7 @@ const AddSuppliers = () => {
     }));
   };
 
-  console.log(supplierData);
+  // console.log(supplierData);
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (supplierData.name) {
@@ -63,8 +63,8 @@ const AddSuppliers = () => {
             },
           }
         );
-        console.log("Response from backend:", response.data);
-        console.log(supplierData);
+        // console.log("Response from backend:", response.data);
+        // console.log(supplierData);
 
         // Show success toast
         toast.success("Supplier added successfully", {

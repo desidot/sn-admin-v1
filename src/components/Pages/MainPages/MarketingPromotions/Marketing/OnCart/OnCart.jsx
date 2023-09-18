@@ -310,7 +310,7 @@ const OnCart = () => {
       <div>
         <div className="card">
           <div className="card-header">
-            <h3>On Cart </h3>
+            <h3 className="card-title">On Cart </h3>
             {/* Buttons */}
             <div className="tabs-butons">
               <Button variant="contained">All</Button>
@@ -331,7 +331,7 @@ const OnCart = () => {
           {/* Buttons End*/}
           <div className="main-body2">
             {/* Search and Nos */}
-            <div className="searchAndNosBlogs">
+            <div className="searchAndNosBlogs mt-2">
               <div className="nos">
                 Show <span className="spaces"></span>
                 <Select

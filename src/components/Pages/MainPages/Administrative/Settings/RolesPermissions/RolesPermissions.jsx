@@ -301,7 +301,7 @@ const RolesPermissions = () => {
       <br />
 
       <div>
-        <h3
+        <h5
           style={{
             color: "rgba(47, 43, 61, 0.78)",
             fontWeight: "500",
@@ -309,8 +309,8 @@ const RolesPermissions = () => {
           }}
         >
           Roles{" "}
-        </h3>
-        <div className="roles-list">
+        </h5>
+        <div className="roles-list" style={{ paddingTop: "10px" }}>
           {allRoles?.map((row, index) => (
             <div>
               <div
@@ -321,7 +321,11 @@ const RolesPermissions = () => {
                 }}
               >
                 {" "}
-                <span style={{ color: "rgba(47, 43, 61, 0.68)" }}>
+                <span
+                  style={{
+                    color: "rgba(47, 43, 61, 0.68)",                  
+                  }}
+                >
                   Total{" "}
                   {
                     displayedRows?.filter(
@@ -394,9 +398,9 @@ const RolesPermissions = () => {
             className="searchAndNosBlogs"
             style={{ backgroundColor: "white" }}
           >
-            <div className="nos">Total:- {totalItems}</div>
+            <h3 className="card-title">Total:- {totalItems}</h3>
             <div className="search-inventory">
-              <div className="search-in-table">
+              <div className="search-in-table m-3">
                 <OutlinedInput
                   sx={{
                     "& legend": { display: "none" },

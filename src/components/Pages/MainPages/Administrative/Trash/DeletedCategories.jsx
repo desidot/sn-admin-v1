@@ -108,7 +108,7 @@ const DeletedCategories = () => {
 
   const handleSelectAll = (event) => {
     if (event.target.checked) {
-      setSelectedRows(filteredRows.map((row) => row.srNo));
+      setSelectedRows(filteredRows?.map((row) => row.srNo));
     } else {
       setSelectedRows([]);
     }
@@ -128,9 +128,9 @@ const DeletedCategories = () => {
 
   const startIndex = (page - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
-  const displayedRows = filteredRows.slice(startIndex, endIndex);
+  const displayedRows = filteredRows?.slice(startIndex, endIndex);
 
-  const pageCount = Math.ceil(filteredRows.length / rowsPerPage);
+  const pageCount = Math.ceil(filteredRows?.length / rowsPerPage);
 
   const handleGoBack = () => {
     // Go back to the previous page in the history
@@ -186,7 +186,7 @@ const DeletedCategories = () => {
           <div className="searchAndNosBlogs">
             <div className="nos"></div>
             <div className="search-inventory">
-              <div className="search-in-table">
+              <div className="search-in-table mt-2 mb-2">
                 <OutlinedInput
                   sx={{
                     "& legend": { display: "none" },
@@ -215,7 +215,7 @@ const DeletedCategories = () => {
                 <TableRow>
                   <TableCell align="left" style={{ fontWeight: "bold" }}>
                     <Checkbox
-                      checked={selectedRows.length === displayedRows.length}
+                      checked={selectedRows?.length === displayedRows?.length}
                       onChange={handleSelectAll}
                     />
                   </TableCell>
@@ -238,7 +238,7 @@ const DeletedCategories = () => {
                 {isLoading ? (
                   <span>Loading...</span>
                 ) : (
-                  displayedRows.map((row) => (
+                  displayedRows?.map((row) => (
                     <TableRow key={row.id}>
                       <TableCell align="left">
                         <Checkbox

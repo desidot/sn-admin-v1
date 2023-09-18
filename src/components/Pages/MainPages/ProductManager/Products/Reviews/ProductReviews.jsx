@@ -48,11 +48,11 @@ const ProductReiews = () => {
 
   // Function to handle showing the popup with selected review
   const handleShowReview = (review) => {
-    console.log(review);
+    // console.log(review);
     setSelectedReview(review);
     handleMenuClose();
   };
-  console.log(selectedReview);
+  // console.log(selectedReview);
   const handleSearchChange = (event) => {
     const searchText = event.target.value;
     setSearchText(searchText);
@@ -147,8 +147,8 @@ const ProductReiews = () => {
       console.error("Error fetching data:", error);
     }
   };
-  console.log(reviewsData);
-  console.log(totalCount);
+  // console.log(reviewsData);
+  // console.log(totalCount);
 
   const handlePageChange = (event, value) => {
     setPage(value);

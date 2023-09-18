@@ -106,7 +106,7 @@ const AddCategories = () => {
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     // Perform the upload logic here
-    console.log(file);
+    // console.log(file);
   };
 
   return (

@@ -118,9 +118,9 @@ const UserSubscriptions = () => {
   const handleShowCancelSubs = (row) => {
     setShowShowSubsCancel(row.id);
     handleMenuClose();
-    console.log("myId", row);
+    // console.log("myId", row);
     setCurrentRow(row);
-    console.log("current row", currentRow);
+    // console.log("current row", currentRow);
   };
 
   const token = useSelector((state) => state.auth.user._token);
@@ -419,8 +419,8 @@ const UserSubscriptions = () => {
   };
 
   const handleCancelSubscription = async (event, subscriptionId, user_id) => {
-    console.log("cancel subs id", subscriptionId);
-    console.log("USER_ID", user_id);
+    // console.log("cancel subs id", subscriptionId);
+    // console.log("USER_ID", user_id);
     try {
       const payload = {
         subscription_id: subscriptionId,
@@ -430,7 +430,7 @@ const UserSubscriptions = () => {
         `${APIBASE}admin/cancel-user-subscription`,
         payload
       );
-      console.log(response);
+      // console.log(response);
       // setSelectedMenuItem({});
       getFilteredOrders();
       setShowShowSubsCancel();

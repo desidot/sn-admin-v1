@@ -342,7 +342,9 @@ const AddEmployees = () => {
               <Grid item xs={12} md={6}>
                 <InputLabel>Designation :</InputLabel>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor="shipping">Select Designation</InputLabel>
+                  <InputLabel htmlFor="shipping" className="custom-inputlabel">
+                    Select Designation
+                  </InputLabel>
                   <Select
                     id="designation"
                     name="designation"
@@ -364,7 +366,9 @@ const AddEmployees = () => {
               <Grid item xs={12} md={6}>
                 <InputLabel htmlFor="">Department :</InputLabel>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor="">Select Department</InputLabel>
+                  <InputLabel htmlFor="" className="custom-inputlabel">
+                    Select Department
+                  </InputLabel>
                   <Select
                     id="department"
                     name="department"
@@ -386,11 +390,14 @@ const AddEmployees = () => {
                 </FormControl>
               </Grid>
               <Grid item xs={12} md={6}>
-                <InputLabel htmlFor="select-country">
+                <InputLabel htmlFor="">
                   Country :
                   <span style={{ fontWeight: "bold", color: "red" }}>*</span>
                 </InputLabel>
-                <FormControl fullWidth required>
+                <FormControl fullWidth>
+                  <InputLabel htmlFor="" className="custom-inputlabel">
+                    Select Country
+                  </InputLabel>
                   <Select
                     value={state.country}
                     onChange={(e) => {
@@ -432,7 +439,9 @@ const AddEmployees = () => {
               <Grid item xs={12} md={6}>
                 <InputLabel htmlFor="">Select Gender :</InputLabel>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor="">Select Gender</InputLabel>
+                  <InputLabel htmlFor="" className="custom-inputlabel">
+                    Select Gender
+                  </InputLabel>
                   <Select
                     id="gender"
                     name="gender"
@@ -491,7 +500,9 @@ const AddEmployees = () => {
                   <span style={{ fontWeight: "bold", color: "red" }}>*</span>
                 </InputLabel>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor="">Select Role</InputLabel>
+                  <InputLabel htmlFor="" className="custom-inputlabel">
+                    Select Role
+                  </InputLabel>
                   <Select
                     id="role"
                     name="role"
@@ -526,7 +537,7 @@ const AddEmployees = () => {
                   )}
                 </FormControl>
               </Grid>
-              <Grid item xs={12} md={6}></Grid>
+              {/* <Grid item xs={12} md={6}></Grid> */}
               <Grid item xs={12} md={6}>
                 <InputLabel htmlFor="date">
                   {" "}
@@ -539,7 +550,8 @@ const AddEmployees = () => {
                     id="date"
                     type="date"
                     style={{
-                      padding: "4px 11px 0px",
+                      lineHeight: "1",
+                      padding: "8px 11px 0px",
                       fontSize: "16px",
                       borderRadius: "4px",
                     }}
@@ -687,7 +699,9 @@ const AddEmployees = () => {
               <Grid item xs={12} md={6}>
                 <InputLabel htmlFor="date">Employment Type :</InputLabel>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor="emptype">Employment Type</InputLabel>
+                  <InputLabel htmlFor="emptype" className="custom-inputlabel">
+                    Employment Type
+                  </InputLabel>
                   <Select
                     id=""
                     name="emptype"
@@ -715,7 +729,9 @@ const AddEmployees = () => {
               <Grid item xs={12} md={6}>
                 <InputLabel htmlFor="">Maritial Status :</InputLabel>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor="">Maritial Status</InputLabel>
+                  <InputLabel htmlFor="" className="custom-inputlabel">
+                    Maritial Status
+                  </InputLabel>
                   <Select
                     id="marital"
                     name="marital"

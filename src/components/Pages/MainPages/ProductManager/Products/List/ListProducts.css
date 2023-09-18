@@ -26,6 +26,14 @@
   box-shadow: 50px solid red;
 } */
 
+/* .custom-autoinput {
+  padding-top: 0;
+} */
+
+.custom-autoinput {
+  padding-top: 1px;
+}
+
 /* All orders copy */
 
 .filter-section,

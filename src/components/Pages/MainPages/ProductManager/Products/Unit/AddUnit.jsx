@@ -54,7 +54,7 @@ const AddUnit = () => {
     }
   };
 
-  console.log(handleInputChange.allowDecimalValue);
+  // console.log(handleInputChange.allowDecimalValue);
 
   const handleSave = async () => {
   if(newUnit.name){

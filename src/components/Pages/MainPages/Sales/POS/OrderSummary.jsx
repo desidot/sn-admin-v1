@@ -12,7 +12,7 @@ import {
   Select,
   FormControl,
 } from "@mui/material";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from "@mui/material/useMediaQuery";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import "./OrderSummary.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,7 +29,7 @@ import {
   setInStoreInCart,
   setLazyNote,
 } from "../../../../../redux/cartSlice";
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from "@mui/material/styles";
 import { APIBASE, IMAGEURL } from "../../../../auth/apiConfig";
 const initialCard = {
   card_number: "",
@@ -67,7 +67,7 @@ const OrderSummaryPopup = ({ onClose }) => {
   const [note, setNote] = useState(initialNote);
 
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   useEffect(() => {
     setNote({ ...note, added_by: added_by });
@@ -175,7 +175,7 @@ const OrderSummaryPopup = ({ onClose }) => {
       if (res.data.data) {
         setIsloading1(false);
         toast.success("Order Placed Successfully.");
-        if(note.note && note.title){
+        if (note.note && note.title) {
           saveNote({ ...note, order_id: res.data.data.id });
         }
         navigate(`/admin/Sales/pos-thankyou/${res.data.data.id}`);
@@ -183,7 +183,7 @@ const OrderSummaryPopup = ({ onClose }) => {
         dispatch(makeCartItemsEmpty([]));
         dispatch(selectCustomer({}));
         dispatch(addAddress({ address: {} }));
-        dispatch(setInStoreInCart({value:0}))
+        dispatch(setInStoreInCart({ value: 0 }));
         dispatch(addAgent(""));
         dispatch(addDiscount({ discount: 0 }));
       } else {
@@ -193,7 +193,7 @@ const OrderSummaryPopup = ({ onClose }) => {
     } catch (error) {
       setIsloading1(false);
       toast.error(error.response.data.message);
-      console.log("Error is", error);
+      // console.log("Error is", error);
     }
   };
   const [age, setAge] = React.useState("");
@@ -228,7 +228,7 @@ const OrderSummaryPopup = ({ onClose }) => {
       if (res.data.data) {
         setIsloading2(false);
         toast.success("Order Placed Successfully.");
-        if(note.note && note.title){
+        if (note.note && note.title) {
           saveNote({ ...note, order_id: res.data.data.id });
         }
         navigate(`/admin/Sales/pos-thankyou/${res.data.data.id}`);
@@ -236,7 +236,7 @@ const OrderSummaryPopup = ({ onClose }) => {
         dispatch(makeCartItemsEmpty([]));
         dispatch(selectCustomer({}));
         dispatch(addAddress({ address: {} }));
-        dispatch(setInStoreInCart({value:0}))
+        dispatch(setInStoreInCart({ value: 0 }));
         dispatch(addAgent(""));
         dispatch(addDiscount({ discount: 0 }));
       } else {
@@ -244,7 +244,7 @@ const OrderSummaryPopup = ({ onClose }) => {
         toast.error(res.data.error);
       }
     } catch (error) {
-      console.log("Error is", error);
+      // console.log("Error is", error);
       setIsloading2(false);
       toast.error(error.response.data.message);
     }
@@ -258,14 +258,14 @@ const OrderSummaryPopup = ({ onClose }) => {
       if (res.data.data) {
         setIsloading3(false);
         toast.success("Order Placed Successfully.");
-        if(note.note && note.title){
+        if (note.note && note.title) {
           saveNote({ ...note, order_id: res.data.data.id });
         }
 
         navigate(`/admin/Sales/pos-thankyou/${res.data.data.id}`);
         dispatch(makeCartItemsEmpty([]));
         dispatch(selectCustomer({}));
-        dispatch(setInStoreInCart({value:0}))
+        dispatch(setInStoreInCart({ value: 0 }));
         dispatch(addAddress({ address: {} }));
         dispatch(addAgent(""));
         dispatch(addDiscount({ discount: 0 }));
@@ -274,12 +274,12 @@ const OrderSummaryPopup = ({ onClose }) => {
         toast.error(res.data.error);
       }
     } catch (error) {
-      console.log("Error is", error);
+      // console.log("Error is", error);
       setIsloading3(false);
       toast.error(error.response.data.message);
     }
   };
-  console.log("cd", cart);
+  // console.log("cd", cart);
   const handleConfirmWithCashClick = () => {
     const obj = {
       user_id: "",
@@ -651,10 +651,10 @@ const OrderSummaryPopup = ({ onClose }) => {
           fPrice =
             +product.selling_price -
             +product.selling_price * (+subsDisInfo?.discount / 100);
-          console.log("fprice 1", fPrice);
+          // console.log("fprice 1", fPrice);
         } else {
           fPrice = +product.selling_price;
-          console.log("fprice 2", fPrice);
+          // console.log("fprice 2", fPrice);
         }
 
         return fPrice.toFixed(2);
@@ -941,7 +941,7 @@ const OrderSummaryPopup = ({ onClose }) => {
 
       {/* Payment Console */}
       <div className="payment-console">
-        <div style={{ width: "20%", display: "flex", alignItems: "center" }}>
+        <div style={{ width: "40%", display: "flex", alignItems: "center" }}>
           <Button
             variant="contained"
             style={{ background: "#6041A1" }}
@@ -1173,18 +1173,22 @@ const OrderSummaryPopup = ({ onClose }) => {
         // style={{ padding: "1rem", gap: "0.5rem" }}
       >
         <DialogTitle id="order-summ-head">Add Note</DialogTitle>
-        <DialogContent >
+        <DialogContent>
           <div
             style={{
               display: "flex",
               justifyContent: "space-between",
-              padding: "1rem",
+              padding: "1rem 0 1rem 0",
             }}
           >
-          
             <input
-            style={{width:"100%",border:"0.5px solid lightgray",borderRadius:"4px"}}
-            placeholder="Title"
+              style={{
+                width: "100%",
+                border: "0.5px solid lightgray",
+                borderRadius: "4px",
+                padding: "5px"
+              }}
+              placeholder="Title"
               onChange={(e) => setNote({ ...note, title: e.target.value })}
             />
           </div>
@@ -1192,13 +1196,12 @@ const OrderSummaryPopup = ({ onClose }) => {
             style={{
               display: "flex",
               justifyContent: "space-between",
-              padding: "1rem",
+              // padding: "1rem",
             }}
           >
-         
             <textarea
-              style={{width:"100%"}}
-            placeholder="make note..."
+              style={{ width: "400px", height: "250px", padding: "5px" }}
+              placeholder="Make note..."
               onChange={(e) => setNote({ ...note, note: e.target.value })}
             />
           </div>
@@ -1209,6 +1212,7 @@ const OrderSummaryPopup = ({ onClose }) => {
             variant="contained"
             color="primary"
             onClick={() => handleNoteSaveClick()}
+            className="m-0"
           >
             Add
           </Button>

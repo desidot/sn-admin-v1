@@ -100,7 +100,7 @@ const ListOfProducts = () => {
   // Function to handle adding quantity to the product
   const handleAddQuantity = async (product) => {
     if (quantityToAdd > 0) {
-      console.log("quantity to add", quantityToAdd);
+      // console.log("quantity to add", quantityToAdd);
       try {
         const response = await axios.post(`${APIBASE}admin/inventories`, {
           product_id: product.id,
@@ -139,9 +139,9 @@ const ListOfProducts = () => {
       [rowId]: !prevExpandedRows[rowId],
     }));
   };
-  useEffect(() => {
-    fetchData();
-  }, [params, page]);
+  // useEffect(() => {
+  //   fetchData();
+  // }, [params, page]);
 
   const fetchData = async () => {
     try {
@@ -188,7 +188,8 @@ const ListOfProducts = () => {
     // Fetch data for the initial page (page 1)
 
     fetchData();
-  }, [page, searchIt]); // Fetch data whenever the page changes
+  }, [searchIt, params]);
+  // [page, searchIt]); // Fetch data whenever the page changes
 
   const handleGoBack = () => {
     // Go back to the previous page in the history
@@ -353,7 +354,7 @@ const ListOfProducts = () => {
       ...prevData,
       brand: newValue ? newValue?.name : "", // Set the brand in formData
     }));
-    console.log(newValue);
+    // console.log(newValue);
   };
 
   // Fetch category options from the API using Axios on component mount
@@ -409,9 +410,9 @@ const ListOfProducts = () => {
   const handleShowFunctions = (product) => {
     setShowFunctions(product.id);
     handleMenuClose();
-    console.log("myId", product);
+    // console.log("myId", product);
     setCurrentRow(product);
-    console.log("current row", currentRow);
+    // console.log("current row", currentRow);
   };
 
   const handleDeleteProduct = async (productId) => {
@@ -494,7 +495,7 @@ const ListOfProducts = () => {
   };
 
   const handleExport = (data) => {
-    console.log("data", data);
+    // console.log("data", data);
     const exportIt = data?.map((elem) => ({
       name: elem.product_name,
       brand: elem.brand ? elem.brand : "-",
@@ -538,7 +539,7 @@ const ListOfProducts = () => {
         header: true,
         skipEmptyLines: true,
         complete: function (results) {
-          console.log(results.data);
+          // console.log(results.data);
           setData(results.data);
         },
       });
@@ -586,7 +587,7 @@ const ListOfProducts = () => {
       <div className="download-sample">
         <InputLabel htmlFor="" className="input-labels-options">
           {/* <Link to=""> */}
-            <span>Import Products </span>
+          <span>Import Products </span>
           {/* </Link> */}
         </InputLabel>
         <br />
@@ -601,7 +602,7 @@ const ListOfProducts = () => {
             </div>
           </Grid>
           <Grid item xs={12} md={2}>
-            <div className="adjust-button">
+            <div className="adjust-button mt-0">
               <Button className="import-btn" variant="contained">
                 Import
               </Button>
@@ -649,6 +650,7 @@ const ListOfProducts = () => {
                   </Grid>
                   <Grid item xs={12} md={3}>
                     <InputLabel>Category :</InputLabel>
+
                     <FormControl fullWidth>
                       <Autocomplete
                         options={categoryOptions}
@@ -705,9 +707,7 @@ const ListOfProducts = () => {
           <section className="orders-section">
             {/* Orders Start*/}
             <div className="order-head">
-              <Typography variant="h1">
-                All Products (Total:-{totalItems})
-              </Typography>
+              <h3 className="card-title">All Products (Total:-{totalItems})</h3>
 
               {isExcelLoading ? (
                 <>
@@ -725,9 +725,7 @@ const ListOfProducts = () => {
               <div className="order-entries">
                 <TableContainer>
                   {isLoading ? (
-                    <Typography variant="h5" align="center">
-                      Loading...
-                    </Typography>
+                    <spacing className="text-center">Loading...</spacing>
                   ) : (
                     <Table>
                       <TableHead>
@@ -754,10 +752,7 @@ const ListOfProducts = () => {
                             productId={selectedProductId}
                             onSave={(updatedProductData) => {
                               // Perform any necessary action with the updated product data
-                              console.log(
-                                "Updated Product Data:",
-                                updatedProductData
-                              );
+                              // console.log("Updated Product Data:",updatedProductData);
                               // Hide the popup
                               setShowStockEditPopup(false);
                             }}
@@ -778,10 +773,10 @@ const ListOfProducts = () => {
                                   productId={selectedProductId}
                                 >
                                   <div>
+                                    {" "}
                                     <span style={{ marginRight: "4rem" }}>
                                       Today's deal
                                     </span>
-
                                     <FormControlLabel
                                       control={
                                         <IOSSwitch
@@ -800,10 +795,10 @@ const ListOfProducts = () => {
                                   </div>
 
                                   <div>
+                                    {" "}
                                     <span style={{ marginRight: "6.4rem" }}>
                                       Popular
                                     </span>
-
                                     <FormControlLabel
                                       control={
                                         <IOSSwitch
@@ -843,10 +838,10 @@ const ListOfProducts = () => {
                                   />
                                 </div> */}
                                   <div>
+                                    {" "}
                                     <span style={{ marginRight: "6.2rem" }}>
                                       Is Home
                                     </span>
-
                                     <FormControlLabel
                                       control={
                                         <IOSSwitch
@@ -918,46 +913,42 @@ const ListOfProducts = () => {
                                 </TableCell>
 
                                 <TableCell>
-                                  <Typography variant="body1">
-                                    <span>{product.product_name}</span>
-                                  </Typography>
+                                  <div style={{ width: "150px" }}>
+                                    <p>{product.product_name}</p>
+                                  </div>
                                 </TableCell>
                                 <TableCell>
-                                  <Typography variant="body1">
+                                  <div style={{ width: "100px" }}>
                                     <b>Unit:</b> {product.unit?.name}
                                     <br />
                                     <b>Weight:</b> {product.weight}
-                                  </Typography>
+                                  </div>
                                 </TableCell>
                                 <TableCell>
-                                  <Typography variant="body1">
+                                  <div style={{ width: "150px" }}>
                                     <b>COG Price:</b> ${product.cog_price}
                                     <br />
                                     <b>Sale Price:</b> ${product.selling_price}
-                                  </Typography>
+                                  </div>
                                 </TableCell>
-                                <TableCell>
-                                  <Typography variant="body1">
-                                    Num of Sale: 0
-                                  </Typography>
-                                  <Typography variant="body1">
-                                    Rating: 0{" "}
+                                <TableCell style={{ width: "120px" }}>
+                                  <p>Num of Sale: {product?.quantity_used}</p>
+                                  <div>
+                                    Rating: {product?.star}{" "}
                                     <i style={{ color: "#F59012" }}>
                                       <AiFillStar />
                                     </i>
-                                  </Typography>
+                                  </div>
                                 </TableCell>
                                 <TableCell>
-                                  <Typography variant="body1">
+                                  <div style={{ width: "150px" }}>
                                     <b>Brand -</b> {product.brand?.name}
                                     <br />
                                     <b>Category -</b> {product.category?.name}
-                                  </Typography>
+                                  </div>
                                 </TableCell>
                                 <TableCell>
-                                  <Typography variant="body1">
-                                    {product.supplier?.name}
-                                  </Typography>
+                                  <div>{product.supplier?.name}</div>
                                 </TableCell>
                                 <TableCell style={{ textAlign: "center" }}>
                                   <FormControlLabel
@@ -990,7 +981,7 @@ const ListOfProducts = () => {
                                     placeholder="1"
                                     style={{
                                       maxWidth: "100%",
-                                      paddingTop: "0.8rem",
+                                      // paddingTop: "2rem",
                                     }}
                                     id={`input${product.id}`}
                                     //  value={quantityToAdd}
@@ -1000,12 +991,12 @@ const ListOfProducts = () => {
                                   />
                                   <button
                                     style={{
-                                      height: "3.5rem",
+                                      height: "2.5rem",
                                       width: "4rem",
                                       borderRadius: "5px",
                                       fontSize: "26px",
                                       marginLeft: "0.5rem",
-                                      marginTop: "0.8rem",
+                                      // marginTop: "2rem",
                                       outline: "none",
                                       cursor: "pointer",
                                     }}
@@ -1016,12 +1007,15 @@ const ListOfProducts = () => {
                                 </TableCell>
 
                                 <TableCell>
-                                  {product.quantity} <br /> <br />
-                                  Stock Out:
+                                  <div style={{ width: "60px" }}>
+                                    {product?.quantity - product?.quantity_used}
+                                    <br /> <br />
+                                    Stock <br /> Out : {product.quantity}
+                                  </div>
                                 </TableCell>
 
                                 <TableCell>
-                                  <Typography variant="body1">
+                                  <div>
                                     {product.expiry_date ? (
                                       <Moment format="MM/DD/YYYY">
                                         {product.expiry_date}
@@ -1038,7 +1032,7 @@ const ListOfProducts = () => {
                                     ) : (
                                       "-"
                                     )}
-                                  </Typography>
+                                  </div>
                                 </TableCell>
                                 <TableCell>
                                   <IconButton
@@ -1154,7 +1148,7 @@ const ListOfProducts = () => {
                                     unmountOnExit
                                   >
                                     <div className="accordian-body" id="order">
-                                      <Typography variant="h4">
+                                      <div variant="h4">
                                         <p
                                           style={{
                                             padding: "1rem",
@@ -1163,7 +1157,7 @@ const ListOfProducts = () => {
                                         >
                                           Product Details
                                         </p>
-                                      </Typography>
+                                      </div>
                                       <TableContainer>
                                         <Table>
                                           <TableHead className="orders-table-head-row">
@@ -1214,9 +1208,7 @@ const ListOfProducts = () => {
                             </React.Fragment>
                           ))
                         ) : (
-                          <Typography variant="body1">
-                            Loading products...
-                          </Typography>
+                          <Typography>Loading products...</Typography>
                         )}
                       </TableBody>
                     </Table>

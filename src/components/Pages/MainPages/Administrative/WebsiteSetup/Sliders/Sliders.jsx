@@ -184,12 +184,12 @@ const Sliders = () => {
   const handleStatusChange = async (e, row) => {
     const payload = { status: e.target.checked ? 1 : 0 };
     try {
-      await axios.post( 
+      await axios.post(
         `${APIBASE}admin/update-slider-status/${row.id}?_method=PUT`,
         payload
       );
       dispatch(getAllSliders());
-      toast.success("Status updated successfully.")
+      toast.success("Status updated successfully.");
     } catch (err) {
       toast.error("Error!");
     }
@@ -222,7 +222,7 @@ const Sliders = () => {
       <div>
         <div className="card">
           <div className="card-header">
-            <h3>All Sliders</h3>
+            <h3 className="card-title">All Sliders</h3>
             {/* Buttons */}
             <div className="tabs-butons">
               <Button variant="contained">All</Button>
@@ -234,7 +234,7 @@ const Sliders = () => {
           {/* Buttons End*/}
           <div className="main-body2">
             {/* Search and Nos */}
-            <div className="searchAndNosBlogs">
+            <div className="searchAndNosBlogs mt-2 mb-2">
               <div className="nos">
                 Show <span className="spaces"></span>
                 <Select

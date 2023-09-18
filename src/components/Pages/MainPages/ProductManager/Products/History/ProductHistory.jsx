@@ -168,7 +168,7 @@ const ProductHistory = () => {
       });
   }, [id]);
 
-  console.log(rows);
+  // console.log(rows);
 
   const filteredRows = Array.isArray(rows)
     ? rows.filter((row) => {

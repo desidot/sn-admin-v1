@@ -149,7 +149,7 @@ const ProductReiews = () => {
             <div className="BrandsTable">
               {/* Search and Nos */}
               <div className="searchAndNosBrands">
-                <div className="nos">
+                <div style={{ marginTop: "-5px" }}>
                   Show <span className="spaces"></span>
                   <Select
                     value={rowsPerPage}
@@ -162,7 +162,7 @@ const ProductReiews = () => {
                   </Select>
                   <span className="spaces"></span> entries
                 </div>
-                <div className="search-in-table-del-products">
+                <div className="search-in-table-del-products mt-2 mb-2 pt-0">
                   <OutlinedInput
                     sx={{
                       "& legend": { display: "none" },

@@ -243,7 +243,7 @@ const PaymentReport = () => {
   const [cType, setCType] = useState("");
 
   const getAllSalesReport = async () => {
-    console.log(cType, from_date, to_date);
+    // console.log(cType, from_date, to_date);
 
     if (from_date && to_date && cType) {
       try {
@@ -449,7 +449,7 @@ const PaymentReport = () => {
       alert("Please select some items.");
     }
   };
-  console.log(listItems);
+  // console.log(listItems);
   return (
     <>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -542,7 +542,7 @@ const PaymentReport = () => {
       <br />
       <div className="card">
         <div className="card-header">
-          <h3>Payment Report</h3>
+          <h3 className="card-title">Payment Report</h3>
           {/* Buttons */}
           <div className="tabs-butons">
             {/* <Button variant="contained">All</Button> */}
@@ -558,7 +558,7 @@ const PaymentReport = () => {
           <div className="searchAndNosBlogs">
             <div className="nos">{/* */}</div>
             <div className="search-inventory">
-              <div className="search-in-table">
+              <div className="search-in-table m-2">
                 <OutlinedInput
                   sx={{
                     "& legend": { display: "none" },

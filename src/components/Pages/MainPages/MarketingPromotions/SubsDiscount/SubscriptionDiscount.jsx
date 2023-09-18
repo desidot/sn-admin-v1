@@ -390,18 +390,18 @@ const SubscriptionDiscount = () => {
       <div>
         <div className="card">
           <div className="card-header">
-            <h3>Subscription Discount</h3>
+            <h3 className="card-title">Subscription Discount</h3>
             {/* Buttons */}
             <div className="tabs-buttons">
-              <Grid container spacing={2}>
-                <Grid item>
+              <Grid container spacing={2} className="m-0">
+                <Grid item className="m-1">
                   <Link to="/admin/Marketing-Promotions/add-subscription-discount">
                     <Button variant="contained">
                       Add New Subscription Discount
                     </Button>
                   </Link>
                 </Grid>
-                <Grid item>
+                <Grid item className="m-1">
                   <Button
                     variant="contained"
                     onClick={() => setListItems(data)}
@@ -409,7 +409,7 @@ const SubscriptionDiscount = () => {
                     All
                   </Button>
                 </Grid>
-                <Grid item>
+                <Grid item className="m-1">
                   <Button
                     variant="contained"
                     onClick={() =>
@@ -419,7 +419,7 @@ const SubscriptionDiscount = () => {
                     Active
                   </Button>
                 </Grid>
-                <Grid item>
+                <Grid item className="m-1">
                   <Button
                     variant="contained"
                     onClick={() =>

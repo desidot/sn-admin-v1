@@ -303,7 +303,7 @@ const BackOrderReport = () => {
       <br />
       <div className="card">
         <div className="card-header">
-          <h3>Back Orders Report</h3>
+        <h3 className="card-title">Back Orders Report</h3>
           {/* Buttons */}
           <div className="tabs-butons">
             <Button variant="contained" onClick={handleExport}>
@@ -317,7 +317,7 @@ const BackOrderReport = () => {
           <div className="searchAndNosBlogs">
             <div className="nos">{/* */}</div>
             <div className="search-inventory">
-              <div className="search-in-table">
+              <div className="search-in-table m-2">
                 <OutlinedInput
                   sx={{
                     "& legend": { display: "none" },

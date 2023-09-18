@@ -465,12 +465,12 @@ const FailedOrders = () => {
                                 </IconButton>
                               </TableCell>
                               <TableCell>
-                                <Typography variant="body1">
+                                <div variant="body1">
                                   <Link to="">{row.invoice_no}</Link>
-                                </Typography>
+                                </div>
                               </TableCell>
                               <TableCell>
-                                <Typography variant="body1">
+                                <div style={{ width: "80px" }} variant="body1">
                                   {
                                     getNormalDateAndTime(row.created_at)
                                       .normalDate
@@ -480,17 +480,21 @@ const FailedOrders = () => {
                                     getNormalDateAndTime(row.created_at)
                                       .normalTime
                                   }
-                                </Typography>
+                                </div>
                               </TableCell>
                               <TableCell>
-                                <Typography variant="body1">
-                                  {row.order_no}
-                                </Typography>
+                                <div
+                                  style={{
+                                    width: "150px",
+                                    textAlign: "center",
+                                  }}
+                                  className="mt-2"
+                                >
+                                  <p>{row?.order_no}</p>
+                                </div>
                               </TableCell>
                               <TableCell>
-                                <Typography variant="body1">
-                                  {row.items.length}
-                                </Typography>
+                                <div variant="body1">{row?.items.length}</div>
                               </TableCell>
                               <TableCell>
                                 {JSON.parse(row?.shipping_address).phone ? (
@@ -531,17 +535,17 @@ const FailedOrders = () => {
                                 )}
                               </TableCell>
                               <TableCell>
-                                <Typography variant="body1">
-                                  ${row?.grand_total}
-                                </Typography>
+                                <b variant="body1">${row?.grand_total}</b>
                               </TableCell>
                               <TableCell>
-                                <Typography variant="body1">
-                                  <b>Coupon:</b>$
-                                  {row.coupon ? row?.coupon_discount : 0}
+                                <div variant="body1" style={{ width: "140px" }}>
+                                  <b>
+                                    Coupon: $
+                                    {row.coupon ? row?.coupon_discount : 0}
+                                  </b>
                                   <br />
-                                  <b>Discounted:</b> ${row.grand_total}
-                                </Typography>
+                                  <b>Discounted: $ {row.grand_total}</b>
+                                </div>
                               </TableCell>
                               <TableCell>
                                 <span
@@ -556,20 +560,25 @@ const FailedOrders = () => {
                                 </span>
                               </TableCell>
                               <TableCell>
-                                <span
-                                  className={
-                                    row?.payment_status == "Un-Paid"
-                                      ? "pending"
-                                      : "success"
-                                  }
-                                >
-                                  {" "}
-                                  {row?.payment_status}
-                                </span>
+                                <div variant="body1" style={{ width: "80px" }}>
+                                  <span
+                                    style={{ width: "120px" }}
+                                    className={
+                                      row?.payment_status === "Un-Paid"
+                                        ? "pending"
+                                        : "success"
+                                    }
+                                  >
+                                    {" "}
+                                    {row?.payment_status}
+                                  </span>
+                                </div>
                               </TableCell>
                               <TableCell>
-                                {row?.payment_method} <br /> <br />{" "}
-                                {row?.transaction_id ?? ""}
+                                <div style={{ width: "100px" }}>
+                                  {row?.payment_method} <br /> <br />{" "}
+                                  {row?.transaction_id ?? ""}
+                                </div>
                               </TableCell>
                               {/* <TableCell>NO</TableCell> */}
                               <TableCell>

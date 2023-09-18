@@ -168,12 +168,14 @@ const AddAgent = () => {
               </Grid>
 
               <Grid item xs={12} md={6}></Grid>
-
-              <div className="partition"></div>
             </Grid>
+            {/* <div className="partition"></div> */}
           </div>
           {/* Submit button */}
-          <div className="add-product-save-btn" style={{ padding: "1rem" }}>
+          <div
+            className="add-product-save-btn"
+            style={{ padding: "1rem", borderTop: "1px solid lightgray" }}
+          >
             <Button
               className="save-btn"
               variant="contained"

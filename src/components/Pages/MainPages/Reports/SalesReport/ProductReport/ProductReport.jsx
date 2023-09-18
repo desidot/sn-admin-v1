@@ -175,7 +175,7 @@ const ProductReport = () => {
       <br />
       <div className="card">
         <div className="card-header">
-          <h3>All Products Report</h3>
+        <h3 className="card-title">All Products Report</h3>
           {/* Buttons */}
           <div className="tabs-butons">
             {/* <Button variant="contained">All</Button> */}
@@ -191,7 +191,7 @@ const ProductReport = () => {
           <div className="searchAndNosBlogs">
             <div className="nos">{/* */}</div>
             <div className="search-inventory">
-              <div className="search-in-table">
+              <div className="search-in-table m-2">
                 <OutlinedInput
                   sx={{
                     "& legend": { display: "none" },

@@ -130,8 +130,8 @@ const Categories = () => {
     setCurrentRow(row);
     setCatId(currentRow.id);
   };
-  console.log("currentRow id", currentRow.id);
-  console.log("catId", catId);
+  // console.log("currentRow id", currentRow.id);
+  // console.log("catId", catId);
   const currRowId = currentRow.id;
 
   const handleToggleChange = async (event, catId) => {

@@ -464,7 +464,7 @@
 .close-confirm {
   display: flex;
   gap: 1rem;
-  border-top: 1px solid rgb(191, 191, 191);
+  /* border-top: 1px solid rgb(191, 191, 191); */
   padding: 1rem;
   width: 100%;
   justify-content: flex-end;

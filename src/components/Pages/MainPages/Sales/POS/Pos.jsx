@@ -1083,7 +1083,7 @@ const PoS = () => {
                                 key={index}
                                 onClick={() => handleCustomeClick(elem)}
                               >
-                                {elem?.first_name} {elem?.last_name}
+                                {elem?.first_name} {elem?.last_name} {"-"} {elem?.phone}
                               </div>
                             ))}
                           </div>

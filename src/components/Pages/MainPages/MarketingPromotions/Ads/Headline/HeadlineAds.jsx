@@ -103,7 +103,7 @@ const HeadlineAds = () => {
       <div>
         <div className="card">
           <div className="card-header">
-            <h3>All Headline Ads</h3>
+            <h3 className="card-title">All Headline Ads</h3>
             {/* Buttons */}
             <div className="tabs-butons">
               <Button variant="contained">All</Button>
@@ -112,7 +112,7 @@ const HeadlineAds = () => {
           {/* Buttons End*/}
           <div className="main-body2">
             {/* Search and Nos */}
-            <div className="searchAndNosBlogs">
+            <div className="searchAndNosBlogs mt-2">
               <div className="nos">
                 Show <span className="spaces"></span>
                 <Select

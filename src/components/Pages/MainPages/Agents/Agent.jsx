@@ -280,6 +280,9 @@ const Agents = () => {
                   </TableCell>
 
                   <TableCell align="left" style={{ fontWeight: "bold" }}>
+                    Change Status
+                  </TableCell>
+                  <TableCell align="left" style={{ fontWeight: "bold" }}>
                     Status
                   </TableCell>
                   <TableCell align="left" style={{ fontWeight: "bold" }}>

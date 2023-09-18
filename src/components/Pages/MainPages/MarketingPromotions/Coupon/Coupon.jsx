@@ -119,7 +119,7 @@ const Coupons = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenuId, setOpenMenuId] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [isLoading,setIsLoading]=useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   // const [linesCopied, setLinesCopied] = useState(0);
 
   const handleSearchChange = (event) => {
@@ -128,9 +128,13 @@ const Coupons = () => {
     setPage(1);
   };
 
-  useEffect(()=>{
-setListItems(allCoupons?.filter((elem)=> elem.name.toLowerCase().includes(searchText.toLowerCase())))
-  },[searchText,allCoupons])
+  useEffect(() => {
+    setListItems(
+      allCoupons?.filter((elem) =>
+        elem.name.toLowerCase().includes(searchText.toLowerCase())
+      )
+    );
+  }, [searchText, allCoupons]);
 
   const handleRowsPerPageChange = (event) => {
     setRowsPerPage(event.target.value);
@@ -138,16 +142,14 @@ setListItems(allCoupons?.filter((elem)=> elem.name.toLowerCase().includes(search
   };
 
   const handleMenuOpen = (event, id) => {
-     
     setOpenMenuId(id);
     setAnchorEl(event.currentTarget);
   };
 
   const handleMenuClose = (row) => {
-    dispatch(deleteCoupon(row.id))
+    dispatch(deleteCoupon(row.id));
     setOpenMenuId(null);
     setAnchorEl(null);
-   
   };
 
   // const IOSSwitch = styled((props) => (
@@ -327,7 +329,6 @@ setListItems(allCoupons?.filter((elem)=> elem.name.toLowerCase().includes(search
     return `${year}-${month}-${day}`;
   }
 
-
   return (
     <>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -353,11 +354,11 @@ setListItems(allCoupons?.filter((elem)=> elem.name.toLowerCase().includes(search
       <div>
         <div className="card">
           <div className="card-header">
-            <h3>Coupons</h3>
+            <h3 className="card-title">Coupons</h3>
             {/* Buttons */}
             <div className="tabs-buttons">
-              <Grid container spacing={2}>
-                <Grid item>
+              <Grid container spacing={2} className="m-0">
+                <Grid item className="mr-3">
                   <Link to="/admin/Marketing-Promotions/add-coupons">
                     <Button variant="contained">Add New Coupons</Button>
                   </Link>
@@ -374,7 +375,7 @@ setListItems(allCoupons?.filter((elem)=> elem.name.toLowerCase().includes(search
           {/* Buttons End*/}
           <div className="main-body2">
             {/* Search and Nos */}
-            <div className="searchAndNosBlogs">
+            <div className="searchAndNosBlogs mt-3 mr-1">
               <div className="nos">
                 Show <span className="spaces"></span>
                 <Select
@@ -438,50 +439,52 @@ setListItems(allCoupons?.filter((elem)=> elem.name.toLowerCase().includes(search
                 </TableHead>
                 <TableBody align="left">
                   {listItems?.map((row, index) => (
-                  <TableRow key={index}>
-                  <TableCell component="th" scope="row" align="left">
-                    {index+1}
-                  </TableCell>
-                  <TableCell>
-                    <span className="product-type">{row.code}</span>
-                  </TableCell>
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell>{row.mode} </TableCell>
-                  <TableCell>{row.amount} </TableCell>
-                  <TableCell>{getNormalDate(row.valid_from)}</TableCell>
-                  <TableCell>{getNormalDate(row.valid_to)}</TableCell>
-          
-                  <TableCell>
-                    <span className="status-active">{row.status? "Active":"Inactive"}</span>
-                  </TableCell>
-                  {/* <TableCell align="left">
+                    <TableRow key={index}>
+                      <TableCell component="th" scope="row" align="left">
+                        {index + 1}
+                      </TableCell>
+                      <TableCell>
+                        <span className="product-type">{row.code}</span>
+                      </TableCell>
+                      <TableCell>{row.name}</TableCell>
+                      <TableCell>{row.mode} </TableCell>
+                      <TableCell>{row.amount} </TableCell>
+                      <TableCell>{getNormalDate(row.valid_from)}</TableCell>
+                      <TableCell>{getNormalDate(row.valid_to)}</TableCell>
+
+                      <TableCell>
+                        <span className="status-active">
+                          {row.status ? "Active" : "Inactive"}
+                        </span>
+                      </TableCell>
+                      {/* <TableCell align="left">
                     <FormControlLabel
                       control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
                     />
                   </TableCell> */}
-                  <TableCell>
-                    <IconButton 
-                      onClick={(event) => handleMenuOpen(event, row.id)}
-                      size="small"
-                    >
-                      <MoreVertOutlined />
-                    </IconButton>
-                    <Menu
-                      anchorEl={anchorEl}
-                      open={openMenuId === row.id}
-                      onClose={handleMenuClose}
-                      PaperProps={{
-                        style: {
-                          maxHeight: 120,
-                        },
-                      }}
-                    >
-                      <MenuItem onClick={()=>handleMenuClose(row)}  >
-                        <DeleteOutlined fontSize="small" /> Delete
-                      </MenuItem>
-                    </Menu>
-                  </TableCell>
-                </TableRow>
+                      <TableCell>
+                        <IconButton
+                          onClick={(event) => handleMenuOpen(event, row.id)}
+                          size="small"
+                        >
+                          <MoreVertOutlined />
+                        </IconButton>
+                        <Menu
+                          anchorEl={anchorEl}
+                          open={openMenuId === row.id}
+                          onClose={handleMenuClose}
+                          PaperProps={{
+                            style: {
+                              maxHeight: 120,
+                            },
+                          }}
+                        >
+                          <MenuItem onClick={() => handleMenuClose(row)}>
+                            <DeleteOutlined fontSize="small" /> Delete
+                          </MenuItem>
+                        </Menu>
+                      </TableCell>
+                    </TableRow>
                   ))}
                 </TableBody>
               </Table>
@@ -511,7 +514,7 @@ setListItems(allCoupons?.filter((elem)=> elem.name.toLowerCase().includes(search
         <Dialog open={isPopupOpen} onClose={() => setIsPopupOpen(false)}>
           <DialogTitle>Copied to Clipboard</DialogTitle>
           <DialogContent>
-            <p> lines copied to clipboard.</p> 
+            <p> lines copied to clipboard.</p>
           </DialogContent>
         </Dialog>
       )}

@@ -150,7 +150,9 @@ const AddCoupons = () => {
               <Grid item xs={12} md={3}>
                 <InputLabel htmlFor="">Amount / Percent :</InputLabel>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor="">Select Mode</InputLabel>
+                  <InputLabel htmlFor="" className="custom-inputlabel">
+                    Select Mode
+                  </InputLabel>
                   <Select
                     id="supplier"
                     name="supplier"

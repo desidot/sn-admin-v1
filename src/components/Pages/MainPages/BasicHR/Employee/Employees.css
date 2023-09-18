@@ -7,6 +7,10 @@
   font-weight: 500;
 }
 
+.custom-inputlabel{
+  margin-top: -0.5rem;
+}
+
 /* Add Employees 2*/
 .partition {
   position: static;

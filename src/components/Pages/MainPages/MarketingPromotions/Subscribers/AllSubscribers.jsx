@@ -259,7 +259,7 @@ const AllSubscribers = () => {
       <div>
         <div className="card">
           <div className="card-header">
-            <h3>All Subscriber</h3>
+            <h3 className="card-title">All Subscriber</h3>
             {/* Buttons */}
             <div className="tabs-butons">
               <Link to="/admin/Marketing-Promotions/product-wishlist/add-to-products">
@@ -274,7 +274,7 @@ const AllSubscribers = () => {
           {/* Buttons End*/}
           <div className="main-body2">
             {/* Search and Nos */}
-            <div className="searchAndNosBlogs">
+            <div className="searchAndNosBlogs mt-3">
               <div className="nos">
                 Show <span className="spaces"></span>
                 <Select

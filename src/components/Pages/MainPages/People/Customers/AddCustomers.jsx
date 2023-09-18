@@ -96,7 +96,7 @@ const CustomerForm = () => {
 
   return (
     <>
-      {" "} 
+      {" "}
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ display: "flex" }}>
           <i>
@@ -256,7 +256,12 @@ const CustomerForm = () => {
                 <InputLabel>Gender:</InputLabel>
                 <FormControl>
                   <select
-                  style={{height:"3.43rem",outline:"none",border:"0.5px solid lightgray",borderRadius:"4px"}}
+                    style={{
+                      height: "2.5rem",
+                      outline: "none",
+                      border: "0.5px solid lightgray",
+                      borderRadius: "4px",
+                    }}
                     value={state.gender}
                     onChange={(e) =>
                       setState({ ...state, gender: e.target.value })
@@ -269,7 +274,7 @@ const CustomerForm = () => {
                 </FormControl>
               </div>
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={4}>
               <div className="input-field">
                 <InputLabel>
                   Address:
@@ -277,7 +282,7 @@ const CustomerForm = () => {
                 </InputLabel>
                 <TextArea
                   required
-                  style={{ color: "black" }}
+                  style={{ color: "black", height: "2.5rem" }}
                   placeholder="Address Line 1"
                   value={state.address}
                   onChange={(e) =>
@@ -329,7 +334,7 @@ const CustomerForm = () => {
               </div>
             </Grid>
 
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={4}>
               <div className="input-field">
                 <InputLabel>
                   Country:
@@ -343,7 +348,7 @@ const CustomerForm = () => {
                   style={{
                     border: "1px solid lightgray",
                     padding: "5px 10px",
-                    height: "2rem",
+                    height: "2.5rem",
                   }}
                   required=""
                   value={state?.country || ""}

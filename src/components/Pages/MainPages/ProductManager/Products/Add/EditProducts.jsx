@@ -122,7 +122,7 @@ const EditProducts = () => {
     try {
       const response = await axios.get(`${APIBASE}admin/get-product/${id}`);
       const dataFromBackend = response.data.data[0];
-      console.log(dataFromBackend);
+      // console.log(dataFromBackend);
       //console.log("single product to edit", response.data.data[0]);
       // Convert the category_id to the corresponding category object
       const selectedCategory = categoryOptions.find(
@@ -196,7 +196,7 @@ const EditProducts = () => {
   useEffect(() => {
     if (id) {
       fetchCategoryData();
-      console.log("in useEffect");
+      // console.log("in useEffect");
     }
   }, [id]);
 

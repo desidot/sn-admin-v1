@@ -334,11 +334,11 @@ const Deals = () => {
       <div>
         <div className="card">
           <div className="card-header">
-            <h3>Deals</h3>
+            <h3 className="card-title">Deals</h3>
             {/* Buttons */}
             <div className="tabs-buttons">
-              <Grid container spacing={2}>
-                <Grid item>
+              <Grid container spacing={2} className="m-0">
+                <Grid item className="mr-2">
                   <Link to="/admin/Marketing-Promotions/add-deals">
                     <Button variant="contained">Add New Deal</Button>
                   </Link>
@@ -355,7 +355,7 @@ const Deals = () => {
           {/* Buttons End*/}
           <div className="main-body2">
             {/* Search and Nos */}
-            <div className="searchAndNosBlogs">
+            <div className="searchAndNosBlogs mt-3">
               <div className="nos">
                 Show <span className="spaces"></span>
                 <Select

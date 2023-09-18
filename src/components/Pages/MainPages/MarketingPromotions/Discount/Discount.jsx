@@ -109,44 +109,6 @@ const Discount = () => {
     };
   }
 
-  const rows = [
-    createData(
-      1,
-      "Jul 13 2023",
-      "Sample ProcutDesc description 180 caps",
-      "Health & Wellness",
-      "Test Blog Tes",
-      "Protocol For Life Balance",
-      "emerson ecologics (Bermuda)",
-      "44.29",
-      "Total Stock: 1"
-    ),
-    createData(
-      2,
-      "Jul 13 2023",
-      "Sample ProcutDesc description 180 caps",
-      "Health & Wellness",
-      "Test Blog Tes",
-      "Protocol For Life Balance",
-      "emerson ecologics (Bermuda)",
-      "44.29",
-      "Total Stock: 1"
-    ),
-    createData(
-      3,
-      "Jul 13 2023",
-      "Sample ProcutDesc description 180 caps",
-      "Health & Wellness",
-      "Test Blog Tes",
-      "Protocol For Life Balance",
-      "emerson ecologics (Bermuda)",
-      "44.29",
-      "Total Stock: 1"
-    ),
-
-    // Add more dummy data as needed
-  ];
-
   const [searchText, setSearchText] = useState("");
   // const [statusFilter, setStatusFilter] = useState("all");
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -412,16 +374,16 @@ const Discount = () => {
       <div>
         <div className="card">
           <div className="card-header">
-            <h3>Periodic Discount</h3>
+            <h3 className="card-title">Periodic Discount</h3>
             {/* Buttons */}
-            <div className="tabs-buttons">
-              <Grid container spacing={2}>
-                <Grid item>
+            <div className="tabs-butons">
+              <Grid container spacing={2} className="m-0">
+                <Grid item className="m-1">
                   <Link to="/admin/Marketing-Promotions/add-periodic-discount">
                     <Button variant="contained">Add New Discount</Button>
                   </Link>
                 </Grid>
-                <Grid item>
+                <Grid item className="m-1">
                   <Button
                     variant="contained"
                     onClick={() => setListItems(data)}
@@ -429,7 +391,7 @@ const Discount = () => {
                     All
                   </Button>
                 </Grid>
-                <Grid item>
+                <Grid item className="m-1">
                   <Button
                     variant="contained"
                     onClick={() =>
@@ -439,7 +401,7 @@ const Discount = () => {
                     Active
                   </Button>
                 </Grid>
-                <Grid item>
+                <Grid item className="m-1">
                   <Button
                     variant="contained"
                     onClick={() =>
@@ -479,7 +441,7 @@ const Discount = () => {
                     </TableCell>
                     {/* <TableCell style={{ fontWeight: "bold" }}>Status</TableCell> */}
                     <TableCell style={{ fontWeight: "bold" }}>
-                      Activate/Deactivate
+                      Activate / Deactivate
                     </TableCell>
                     <TableCell style={{ fontWeight: "bold" }}>Action</TableCell>
                   </TableRow>

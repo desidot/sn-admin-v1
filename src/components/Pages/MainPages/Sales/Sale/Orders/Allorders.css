@@ -36,8 +36,8 @@
   align-items: center;
 }
 
-svg.MuiSvgIcon-root {
-  color: #666;
+svg .MuiSvgIcon-root {
+  color: #f6f6f6;
   font-size: 18px;
 }
 

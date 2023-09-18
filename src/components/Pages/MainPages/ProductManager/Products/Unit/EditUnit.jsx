@@ -60,7 +60,7 @@ const EditUnit = () => {
       time_base_unit: event.target.checked ? prevUnit.time_base_unit : null,
       base_unit: event.target.checked ? prevUnit.base_unit : null,
     }));
-    console.log(editedUnit);
+    // console.log(editedUnit);
   };
 
   const handleInputChange = (event) => {
@@ -80,7 +80,7 @@ const EditUnit = () => {
       }));
     }
 
-    console.log(editedUnit);
+    // console.log(editedUnit);
   };
 
   const handleSave = async () => {
@@ -94,7 +94,7 @@ const EditUnit = () => {
 
       // Update the unit data in the database using the unit ID
       const res = await axios.put(`${APIBASE}admin/units/${id}`, dataToSend);
-      console.log("response", res.data);
+      // console.log("response", res.data);
 
       // Show toast for successful update
       toast.success("Updated successfully", { autoClose: 2000 });

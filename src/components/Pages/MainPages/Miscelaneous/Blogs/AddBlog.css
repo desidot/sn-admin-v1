@@ -26,14 +26,14 @@
 .input-field input[type="file"] {
   display: block;
   width: 100%;
-  padding: 0.5rem 0.2rem 0.2rem 0.4rem;
+  padding: 0.2rem;
   font-size: 1rem;
   font-weight: 400;
   color: #333;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 0.25rem;
-  height: 3.5rem;
+  height: 2.5rem;
 }
 
 .input-field input[type="file"]::placeholder {
@@ -53,7 +53,7 @@
 .input-field input[type="file"]::before {
   content: "Choose file";
   display: inline-block;
-  padding: 0.5rem 0.5rem;
+  padding: 0.25rem;
   background-color: #7356b2;
   color: #fff;
   border-radius: 0.25rem;
