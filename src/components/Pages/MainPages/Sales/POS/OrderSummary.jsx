@@ -27,7 +27,7 @@ import {
   makeCartItemsEmpty,
   selectCustomer,
   setInStoreInCart,
-  setLazyNote,
+  // setLazyNote,
 } from "../../../../../redux/cartSlice";
 import { useTheme } from "@mui/material/styles";
 import { APIBASE, IMAGEURL } from "../../../../auth/apiConfig";
@@ -71,6 +71,7 @@ const OrderSummaryPopup = ({ onClose }) => {
 
   useEffect(() => {
     setNote({ ...note, added_by: added_by });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [added_by]);
 
   const handleOpenDialog = () => {
@@ -99,13 +100,13 @@ const OrderSummaryPopup = ({ onClose }) => {
 
     cart?.cartItems?.forEach((product) => {
       const subsDisInfo = product.subscriptions?.filter(
-        (elem) => elem.months == cart?.cartType?.duration?.split(" ")[0]
+        (elem) => elem.months === cart?.cartType?.duration?.split(" ")[0]
       )[0];
 
       let fPrice = 0;
 
       if (subsDisInfo?.discount) {
-        if (subsDisInfo?.discount_type == "Percent") {
+        if (subsDisInfo?.discount_type === "Percent") {
           // console.log("fprice in p",fPrice)
 
           fPrice =
@@ -119,7 +120,7 @@ const OrderSummaryPopup = ({ onClose }) => {
       }
 
       const sellingPrice =
-        cart.cartType.type == "Subscribe"
+        cart.cartType.type === "Subscribe"
           ? +fPrice ?? 0
           : +product.discounted_price ?? 0;
 
@@ -138,9 +139,11 @@ const OrderSummaryPopup = ({ onClose }) => {
 
   useEffect(() => {
     calculateDiscount();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     calculateDiscount();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [
@@ -196,8 +199,10 @@ const OrderSummaryPopup = ({ onClose }) => {
       // console.log("Error is", error);
     }
   };
+  // eslint-disable-next-line no-unused-vars
   const [age, setAge] = React.useState("");
 
+  // eslint-disable-next-line no-unused-vars
   const handleChange = (event) => {
     setAge(event.target.value);
   };
@@ -213,11 +218,12 @@ const OrderSummaryPopup = ({ onClose }) => {
           setShipCharge(res.data.shipping_rate);
         }
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
 
     getShippingCharge();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
   const confirmOrderWithCard = async (data) => {
@@ -324,20 +330,20 @@ const OrderSummaryPopup = ({ onClose }) => {
 
       pickup_address: cart?.shippingAddress?.first_name
         ? ""
-        : cart?.inStore == 1
+        : cart?.inStore === 1
         ? ""
         : cart?.pickupAddress?.location,
 
       pickup_order: cart?.shippingAddress?.first_name
         ? false
-        : cart?.inStore == 1
+        : cart?.inStore === 1
         ? false
         : true,
 
       order_items: [],
       coupon: null,
       coupon_discount:
-        cart.discountType == "Fixed"
+        cart.discountType === "Fixed"
           ? +cart.discount
           : ((+cart.discount * +totalPrice) / 100).toFixed(2),
       shipping_charge: +shipCharge,
@@ -413,19 +419,19 @@ const OrderSummaryPopup = ({ onClose }) => {
       added_by: "",
       pickup_address: cart?.shippingAddress?.first_name
         ? ""
-        : cart?.inStore == 1
+        : cart?.inStore === 1
         ? ""
         : cart?.pickupAddress?.location,
 
       pickup_order: cart?.shippingAddress?.first_name
         ? false
-        : cart?.inStore == 1
+        : cart?.inStore === 1
         ? false
         : true,
       order_items: [],
       coupon: null,
       coupon_discount:
-        cart.discountType == "Fixed"
+        cart.discountType === "Fixed"
           ? +cart.discount
           : ((+cart.discount * +totalPrice) / 100).toFixed(2),
       shipping_charge: +shipCharge,
@@ -478,13 +484,13 @@ const OrderSummaryPopup = ({ onClose }) => {
             interval: cart.cartType.duration.split(" ")[0],
             type: "month",
             discount: elem?.subscriptions?.filter(
-              (elem) => elem.months == cart.cartType.duration.split(" ")[0]
+              (elem) => elem.months === cart.cartType.duration.split(" ")[0]
             )[0],
           },
         };
 
         const filteredSubscriptions = elem?.subscriptions?.filter(
-          (elem) => elem.months == cart.cartType.duration.split(" ")[0]
+          (elem) => elem.months === cart.cartType.duration.split(" ")[0]
         );
 
         if (filteredSubscriptions[0]) {
@@ -555,19 +561,19 @@ const OrderSummaryPopup = ({ onClose }) => {
       added_by: "",
       pickup_address: cart?.shippingAddress?.first_name
         ? ""
-        : cart?.inStore == 1
+        : cart?.inStore === 1
         ? ""
         : cart?.pickupAddress?.location,
 
       pickup_order: cart?.shippingAddress?.first_name
         ? false
-        : cart?.inStore == 1
+        : cart?.inStore === 1
         ? false
         : true,
       order_items: [],
       coupon: null,
       coupon_discount:
-        cart.discountType == "Fixed"
+        cart.discountType === "Fixed"
           ? +cart.discount
           : ((+cart.discount * +totalPrice) / 100).toFixed(2),
       shipping_charge: +shipCharge,
@@ -640,13 +646,13 @@ const OrderSummaryPopup = ({ onClose }) => {
 
   const getOriginalPrice = (product) => {
     const subsDisInfo = product.subscriptions?.filter(
-      (elem) => elem.months == cart?.cartType?.duration?.split(" ")[0]
+      (elem) => elem.months === cart?.cartType?.duration?.split(" ")[0]
     )[0];
 
     let fPrice = 0;
 
-    if (cart.cartType.type == "Subscribe") {
-      if (subsDisInfo?.discount_type == "Percent") {
+    if (cart.cartType.type === "Subscribe") {
+      if (subsDisInfo?.discount_type === "Percent") {
         if (+subsDisInfo?.discount > 0) {
           fPrice =
             +product.selling_price -
@@ -832,7 +838,7 @@ const OrderSummaryPopup = ({ onClose }) => {
                       paddingRight: "15px",
                     }}
                   >
-                    {cart.inStore == 1 ? (
+                    {cart.inStore === 1 ? (
                       <span className="customer-info-head">In Store</span>
                     ) : (
                       <span className="customer-info-head">Pickup Store</span>
@@ -884,7 +890,7 @@ const OrderSummaryPopup = ({ onClose }) => {
                         ? "," + cart.selectedCustomer?.country
                         : ""}{" "}
                     </p>
-                    {cart.inStore == 0 && (
+                    {cart.inStore === 0 && (
                       <p>
                         <span>Pickup Location:</span>{" "}
                         {cart?.pickupAddress?.location}
@@ -960,7 +966,7 @@ const OrderSummaryPopup = ({ onClose }) => {
             Close
           </Button>
 
-          {cart.cartType.type == "One Time Order" ? (
+          {cart.cartType.type === "One Time Order" ? (
             <>
               <Button
                 variant="contained"
@@ -1091,8 +1097,8 @@ const OrderSummaryPopup = ({ onClose }) => {
             disabled={
               card.cvv.length !== 3 ||
               card.card_number.length !== 16 ||
-              card.expiry_month == "" ||
-              card.expiry_year == ""
+              card.expiry_month === "" ||
+              card.expiry_year === ""
             }
             onClick={() => handleCardConfirmClick()}
           >
@@ -1158,7 +1164,7 @@ const OrderSummaryPopup = ({ onClose }) => {
           <Button
             variant="contained"
             color="primary"
-            disabled={off.transaction_id == "" || off.card_type == ""}
+            disabled={off.transaction_id === "" || off.card_type === ""}
             onClick={() => handleOfflinePayment()}
           >
             Confirm

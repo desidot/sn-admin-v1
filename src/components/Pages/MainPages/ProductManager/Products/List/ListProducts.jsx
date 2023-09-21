@@ -119,7 +119,7 @@ const ListOfProducts = () => {
         fetchData();
         setQuantityToAdd(1);
       } catch (error) {
-        console.error("Error updating product:", error);
+        // console.error("Error updating product:", error);
         toast.error("Error updating product. Please try again later.", {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 2000,
@@ -154,7 +154,7 @@ const ListOfProducts = () => {
       setIsLoading(false);
       // const initialToggleState = response.data.data.status;
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
     }
   };
 
@@ -218,7 +218,7 @@ const ListOfProducts = () => {
         (product) => product.id === id
       );
       if (!productToUpdate) {
-        console.error("Product not found for the given ID:", id);
+        // console.error("Product not found for the given ID:", id);
         return;
       }
       const payload = {
@@ -239,7 +239,7 @@ const ListOfProducts = () => {
 
       setShowFunctions();
     } catch (error) {
-      console.error("Error updating product:", error);
+      // console.error("Error updating product:", error);
       toast.error("Error updating product. Please try again later.", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
@@ -343,7 +343,7 @@ const ListOfProducts = () => {
         // console.log(response.data.data);
       })
       .catch((error) => {
-        console.error("Error fetching brands:", error);
+        // console.error("Error fetching brands:", error);
       });
   }, []);
 
@@ -366,7 +366,7 @@ const ListOfProducts = () => {
         // console.log(response.data.data);
       })
       .catch((error) => {
-        console.error("Error fetching categories:", error);
+        // console.error("Error fetching categories:", error);
       });
   }, []);
 
@@ -388,7 +388,7 @@ const ListOfProducts = () => {
         // console.log(response.data.data);
       })
       .catch((error) => {
-        console.error("Error fetching brands:", error);
+        // console.error("Error fetching brands:", error);
       });
   }, []);
 
@@ -725,7 +725,7 @@ const ListOfProducts = () => {
               <div className="order-entries">
                 <TableContainer>
                   {isLoading ? (
-                    <spacing className="text-center">Loading...</spacing>
+                    <Typography className="text-center">Loading...</Typography>
                   ) : (
                     <Table>
                       <TableHead>
@@ -921,7 +921,7 @@ const ListOfProducts = () => {
                                   <div style={{ width: "100px" }}>
                                     <b>Unit:</b> {product.unit?.name}
                                     <br />
-                                    <b>Weight:</b> {product.weight}
+                                    <b>Weight:</b> {product?.weight}
                                   </div>
                                 </TableCell>
                                 <TableCell>
@@ -1216,7 +1216,6 @@ const ListOfProducts = () => {
                 </TableContainer>
               </div>
             </div>
-            <br />
             {/* Orders End */}
             <Pagination
               count={Math.ceil(totalCount / 10)} // Assuming 15 items per page, adjust this as needed

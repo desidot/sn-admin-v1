@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./Thankyou.css";
 import { useEffect } from "react";
 import axios from "axios";
@@ -19,11 +19,12 @@ const POSManager = () => {
         );
         setOrder(res.data.data);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
 
     getOrderDetail();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const generatePrint = () => {
     if (order.invoice_pdf) {

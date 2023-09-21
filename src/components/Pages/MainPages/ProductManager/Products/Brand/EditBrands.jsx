@@ -85,9 +85,9 @@ const EditBrand = () => {
           setThumbnailFileDataUrl(dataFromBackend.thumbnail);
         }
 
-        console.log(dataFromBackend);
-        console.log(dataFromBackend.thumbnail);
-        console.log(dataFromBackend.banner);
+        // console.log(dataFromBackend);
+        // console.log(dataFromBackend.thumbnail);
+        // console.log(dataFromBackend.banner);
 
         setEditedBrand(dataFromBackend);
       } catch (error) {
@@ -99,7 +99,7 @@ const EditBrand = () => {
       fetchBrandData();
     }
   }, [id]);
-console.log(editedBrand)
+// console.log(editedBrand)
   const handleSubmit = async () => {
     if(editedBrand.name){
     try {

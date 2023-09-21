@@ -10,7 +10,7 @@
   background-color: #ffffff;
   background-clip: padding-box;
   border-radius: 5px;
-  
+
   border: 1px solid #ddd;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -36,6 +36,10 @@
   flex-wrap: wrap;
 }
 
+.style-heading {
+  font-family: "Poppins", sans-serif;
+}
+
 .login-text {
   text-align: center;
   width: 80%;
@@ -46,7 +50,7 @@
   font-family: "Poppins", sans-serif;
   margin: auto;
 }
-.anche-text{
+.anche-text {
   font-size: 18px;
   text-decoration: none;
 }
@@ -62,9 +66,9 @@
   height: 3.5rem;
   font-size: 20px;
   width: 90%;
-background-color: #03A9F4;
-color:white;
-margin-top: 20px;
+  background-color: #03a9f4;
+  color: white;
+  margin-top: 20px;
 }
 @media only screen and (max-width: 1200px) {
   .bg-gary {

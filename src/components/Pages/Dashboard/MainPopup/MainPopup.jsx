@@ -28,14 +28,7 @@ const MainPopup = ({ onSave, onCancel }) => {
   const [lowStockProducts, setLowStockProducts] = useState([]);
   const [backOrders, setBackOrders] = useState([]);
   const [stockOutProducts, setStockOutProducts] = useState([]);
-  const data = [
-    { name: "Product 1", quantity: 10 },
-    { name: "Product 2", quantity: 20 },
-    { name: "Product 3", quantity: 15 },
-    { name: "Product 1", quantity: 10 },
-    { name: "Product 2", quantity: 20 },
-    // Add more data as needed
-  ];
+  
   useEffect(() => {
     getReminders();
     getExpiringSoon();
@@ -100,7 +93,7 @@ const MainPopup = ({ onSave, onCancel }) => {
       );
       setExpiringSoon(res.data.data);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Employees.css";
-import { APIBASE, IMAGEURL } from "../../../../auth/apiConfig";
+import { APIBASE } from "../../../../auth/apiConfig";
 import {
   Table,
   TableBody,
@@ -10,7 +10,7 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Select,
+  // Select,
   MenuItem,
   OutlinedInput,
   InputAdornment,
@@ -33,7 +33,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 const ListEmployees = () => {
   const [allEmp, setAllEmp] = useState([]);
-  const [totalItems,setTotalItems]=useState(0)
+  const [totalItems, setTotalItems] = useState(0);
 
   const getAllEmp = async () => {
     setIsLoading(true);
@@ -41,7 +41,7 @@ const ListEmployees = () => {
       const res = await axios.get(`${APIBASE}admin/admins`);
       setAllEmp(res.data.data);
       setIsLoading(false);
-      setTotalItems(res.data.data.length)
+      setTotalItems(res.data.data.length);
     } catch (error) {
       setIsLoading(false);
       //console.log(error);
@@ -55,27 +55,6 @@ const ListEmployees = () => {
   function createData(srNo, name, expdate, Supplier) {
     return { srNo, name, expdate, Supplier };
   }
-
-  const rows = [
-    createData(
-      1,
-      "Sample Product Description 180 caps",
-      "Jul 13 2023",
-      "Product Name Here"
-    ),
-    createData(
-      2,
-      "Sample Product Description 180 caps",
-      "Jul 13 2023",
-      "Product Name Here"
-    ),
-    createData(
-      3,
-      "Sample Product Description 180 caps",
-      "Jul 13 2023",
-      "Product Name Here"
-    ),
-  ];
 
   const [searchText, setSearchText] = useState("");
   const [selectedRows, setSelectedRows] = useState([]);
@@ -262,11 +241,9 @@ const ListEmployees = () => {
         <div className="main-body2">
           {/* Search and Nos */}
           <div className="searchAndNosBlogs">
-            <div className="nos">
-              Total:- {totalItems}
-            </div>
+            <div className="nos">Total:- {totalItems}</div>
             <div className="search-inventory">
-              <div className="search-in-table">
+              <div className="search-in-table mt-2 mb-2">
                 <OutlinedInput
                   sx={{
                     "& legend": { display: "none" },
@@ -324,7 +301,11 @@ const ListEmployees = () => {
               </TableHead>
               <TableBody align="left">
                 {isLoading ? (
-                  <span>Loading...</span>
+                  <TableRow>
+                    <TableCell colSpan={12} align="center">
+                      Loading...
+                    </TableCell>
+                  </TableRow>
                 ) : (
                   displayedRows?.map((row, index) => (
                     <TableRow key={index}>
@@ -339,7 +320,7 @@ const ListEmployees = () => {
                       <TableCell align="left">{row.employee_code}</TableCell>
                       <TableCell align="left">{row.name}</TableCell>
                       <TableCell align="left">{row.email}</TableCell>
-                      <TableCell align="left" style={{width:"150px"}}>
+                      <TableCell align="left" style={{ width: "150px" }}>
                         <span className="user-role">{row.roles[0].name}</span>
                       </TableCell>{" "}
                       <TableCell align="left">

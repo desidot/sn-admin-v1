@@ -163,7 +163,7 @@ const AddBlog = () => {
     }
   };
 
-  console.log(state)
+  // console.log(state)
 
   return (
     <>

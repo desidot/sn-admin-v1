@@ -254,7 +254,7 @@ const PaymentReport = () => {
         );
         setData(res.data);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     } else {
       toast.error("Select both dates!");

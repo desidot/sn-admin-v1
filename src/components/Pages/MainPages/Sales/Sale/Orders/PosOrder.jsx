@@ -423,7 +423,12 @@ const PosOrder = () => {
                 <Grid item xs={12} md={3}>
                   <label htmlFor="payment">Payment Status:</label>
                   <FormControl fullWidth>
-                  <InputLabel htmlFor="payment" className="input-labels-options">All</InputLabel>
+                    <InputLabel
+                      htmlFor="payment"
+                      className="input-labels-options"
+                    >
+                      All
+                    </InputLabel>
                     <Select
                       id="payment"
                       name="payment"
@@ -485,7 +490,12 @@ const PosOrder = () => {
                 <Grid item xs={12} md={3}>
                   <label htmlFor="source">Sources:</label>
                   <FormControl fullWidth>
-                  <InputLabel htmlFor="sources" className="input-labels-options">All</InputLabel>
+                    <InputLabel
+                      htmlFor="sources"
+                      className="input-labels-options"
+                    >
+                      All
+                    </InputLabel>
                     <Select
                       id="source"
                       name="source"
@@ -582,10 +592,12 @@ const PosOrder = () => {
                     </TableHead>
                     <TableBody>
                       {isLoading ? (
-                        <span>Loading...</span>
+                        <TableRow>
+                          <TableCell>Loading...</TableCell>
+                        </TableRow>
                       ) : (
                         listItems?.map((row, index) => (
-                          <>
+                          <React.Fragment key={index}>
                             <TableRow>
                               <TableCell>
                                 <IconButton
@@ -937,7 +949,7 @@ const PosOrder = () => {
                                               <TableCell>
                                                 <img
                                                   alt="user"
-                                                  src={`${IMAGEURL}${elem.product.thumbnail}`}
+                                                  src={`${IMAGEURL}${elem.product?.thumbnail}`}
                                                   style={{
                                                     width: "40px",
                                                     height: "auto",
@@ -948,14 +960,14 @@ const PosOrder = () => {
                                                 {elem?.product?.product_name}
                                               </TableCell>
                                               <TableCell>
-                                                {elem.unit ? elem.unit : "-"}
+                                                {elem?.unit ? elem?.unit : "-"}
                                               </TableCell>
                                               <TableCell>
-                                                {elem.quantity}
+                                                {elem?.quantity}
                                               </TableCell>
 
                                               <TableCell>
-                                                ${elem.product.selling_price}
+                                                ${elem?.product?.selling_price}
                                               </TableCell>
                                               <TableCell>
                                                 {!row.pickup_order ? (
@@ -1006,7 +1018,7 @@ const PosOrder = () => {
                                 </Collapse>
                               </TableCell>
                             </TableRow>
-                          </>
+                          </React.Fragment>
                         ))
                       )}
                     </TableBody>

@@ -286,7 +286,7 @@ const ExpiringSoon = () => {
           <div className="searchAndNosBlogs">
             <div className="nos"></div>
             <div className="search-inventory">
-              <div className="search-in-table">
+              <div className="search-in-table mt-2 mb-2">
                 <OutlinedInput
                   sx={{
                     "& legend": { display: "none" },

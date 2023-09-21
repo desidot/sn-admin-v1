@@ -1,6 +1,6 @@
 {
   "name": "dashboard",
-  "homepage": "https://shopnmac.com/admin",
+  "homepage": "https://sn.quicsy.com/admin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

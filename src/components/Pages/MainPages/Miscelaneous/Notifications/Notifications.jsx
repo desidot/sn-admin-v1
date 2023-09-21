@@ -235,7 +235,7 @@ const Notifications = () => {
     setPage(value);
   };
 
-  console.log(expiredNotif, stockOutNotif, lowStockNotif);
+  // console.log(expiredNotif, stockOutNotif, lowStockNotif);
 
   function formatDate(inputDateTime) {
     try {

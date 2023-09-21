@@ -236,7 +236,7 @@ const ShippingConfiguration = () => {
   };
 
   const handleSaveClick = async () => {
-    console.log("clicked");
+    // console.log("clicked");
     if (state.amount && state.max_amount && state.min_amount && state.country) {
       try {
         await axios.post(`${APIBASE}admin/shippings`, state);

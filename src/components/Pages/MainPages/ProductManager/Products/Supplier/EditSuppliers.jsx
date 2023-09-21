@@ -40,9 +40,9 @@ const EditSuppliers = () => {
         const dataFromBackend = response.data.data;
         // Update banner and thumbnail URLs with the base URL
 
-        console.log(dataFromBackend);
-        console.log(dataFromBackend.thumbnail);
-        console.log(dataFromBackend.banner);
+        // console.log(dataFromBackend);
+        // console.log(dataFromBackend.thumbnail);
+        // console.log(dataFromBackend.banner);
 
         setSupplierData(dataFromBackend);
       } catch (error) {
@@ -83,7 +83,7 @@ const EditSuppliers = () => {
           Accept: "application/json", // Important for file uploads
         },
       });
-      console.log(formData);
+      // console.log(formData);
 
       toast.success("Suppliers updated successfully", {
         position: toast.POSITION.TOP_RIGHT,

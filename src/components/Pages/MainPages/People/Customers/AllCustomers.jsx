@@ -169,7 +169,7 @@ const AllCustomers = () => {
     const arr = data.filter((elem) => elem["Patient Email"] == undefined);
     setNewData(arr);
   }, [data]);
-  console.log(newData);
+  // console.log(newData);
 
   const IOSSwitch = styled((props) => (
     <Switch
@@ -517,7 +517,11 @@ const AllCustomers = () => {
               </TableHead>
               <TableBody align="left">
                 {isLoading ? (
-                  <span>Loading...</span>
+                  <TableRow>
+                    <TableCell colSpan={12} align="center">
+                      Loading...
+                    </TableCell>
+                  </TableRow>
                 ) : (
                   listItems?.map((row, index) => (
                     <TableRow key={index}>

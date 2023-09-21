@@ -8,40 +8,28 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Select,
-  MenuItem,
   OutlinedInput,
   InputAdornment,
-  Pagination,
-  // Checkbox,
   Button,
-  // Button,
   IconButton,
   Menu,
-  // Dialog,
-  // DialogTitle,
-  // DialogContent,
+  MenuItem,
 } from "@mui/material";
 import { saveAs } from "file-saver";
-// import jsPDF from "jspdf";
-// import html2canvas from "html2canvas";
-// import copy from "copy-to-clipboard";
-// import * as XLSX from "xlsx";
 import HomeIcon from "@mui/icons-material/Home";
 import Moment from "react-moment";
 import AddEditStockPopup from "../../ProductInventoryPopup/AddEditStockPopup";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { MoreVertOutlined, EditOutlined } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-
 import { APIBASE, IMAGEURL } from "../../../../../auth/apiConfig";
+import Pagination from "@mui/material/Pagination";
 
 const LowStock = () => {
   const [searchText, setSearchText] = useState("");
   const [selectedRows, setSelectedRows] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(1);
-  // const [linesCopied, setLinesCopied] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
   const [pageCount, setPageCount] = useState(1);
   const [inventoryData, setInventoryData] = useState([]);
@@ -67,7 +55,8 @@ const LowStock = () => {
       );
       setCurrPage(response.data.products.current_page);
     } catch (error) {
-      //console.error("Error fetching data:", error);
+      // Handle error here
+      console.error("Error fetching data:", error);
       setLoading(false);
     }
   };
@@ -77,12 +66,8 @@ const LowStock = () => {
     getData();
   }, [page]);
 
-  // ,
-  // [page]);
-  // //console.log(pageCount, page);
   const handleSearchChange = (event) => {
     setSearchText(event.target.value);
-    // setPage(1);
   };
 
   const handleCheckboxChange = (event, id) => {
@@ -119,49 +104,7 @@ const LowStock = () => {
   const handleMenuClose = () => {
     setOpenMenuId(null);
     setAnchorEl(null);
-    // setShowStockEditPopup(false); // Close the popup
   };
-
-  // const exportExcel = () => {
-  //   const workbook = XLSX.utils.book_new();
-  //   const worksheet = XLSX.utils.json_to_sheet(displayedRows);
-  //   XLSX.utils.book_append_sheet(workbook, worksheet, "Expired Stocks");
-  //   const excelBuffer = XLSX.write(workbook, {
-  //     bookType: "xlsx",
-  //     type: "array",
-  //   });
-  //   const data = new Blob([excelBuffer], { type: "application/octet-stream" });
-  //   saveAs(data, "expired_stocks.xlsx");
-  // };
-
-  // const exportCSV = () => {
-  //   const csvHeaders = ["Sr No", "Name", "Exp Date", "Supplier"];
-  //   const csvRows = selectedRows.map((rowId) => {
-  //     const row = inventoryData.find((item) => item.id === rowId);
-  //     return [row.id, row.product_name, row.expiry_date, row.supplier];
-  //   });
-
-  //   const csvData = [csvHeaders, ...csvRows];
-
-  //   const csvContent = csvData
-  //     .map((row) => row.map((cell) => `"${cell}"`).join(","))
-  //     .join("\n");
-
-  //   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
-  //   saveAs(blob, "expired_stocks.csv");
-  // };
-
-  // const exportPDF = () => {
-  //   html2canvas(document.getElementById("tableContainer")).then((canvas) => {
-  //     const imgData = canvas.toDataURL("image/png");
-  //     const pdf = new jsPDF("p", "mm", "a4");
-  //     const imgProps = pdf.getImageProperties(imgData);
-  //     const pdfWidth = pdf.internal.pageSize.getWidth();
-  //     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-  //     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-  //     pdf.save("expired_stocks.pdf");
-  //   });
-  // };
 
   useEffect(() => {
     if (showPopup) {
@@ -170,26 +113,6 @@ const LowStock = () => {
       }, 1000);
     }
   }, [showPopup]);
-
-  // const copyToClipboard = () => {
-  //   const textToCopy = selectedRows
-  //     .map((rowId) => {
-  //       const row = inventoryData.find((item) => item.id === rowId);
-  //       return row.product_name;
-  //     })
-  //     .join("\n");
-  //   copy(textToCopy);
-  //   setLinesCopied(selectedRows.length);
-  //   setShowPopup(true);
-  // };
-
-  // const handleSelectAll = (event) => {
-  //   if (event.target.checked) {
-  //     setSelectedRows(displayedRows.map((row) => row.srNo));
-  //   } else {
-  //     setSelectedRows([]);
-  //   }
-  // };
 
   const exportCSV = () => {
     const csvHeaders = [
@@ -233,8 +156,6 @@ const LowStock = () => {
   const endIndex = startIndex + rowsPerPage;
   const displayedRows = filteredRows.slice(startIndex, endIndex);
 
-  //const pageCount = Math.ceil(filteredRows.length / rowsPerPage);;
-
   const handleGoBack = () => {
     // Go back to the previous page in the history
     window.history.go(-1);
@@ -268,28 +189,11 @@ const LowStock = () => {
         <div className="card-header">
           <h3 className="card-title">Low Stocks</h3>
           <div className="copy-button">
-            {/* <Button variant="contained" onClick={copyToClipboard}>
-              Copy
-            </Button> */}
-            {/* <Button variant="contained" onClick={exportExcel}>
-              Excel
-            </Button> */}
             <Button variant="contained" onClick={exportCSV}>
               CSV
             </Button>
-            {/* <Button variant="contained" onClick={exportPDF}>
-              PDF
-            </Button> */}
           </div>
           {/* Popup */}
-          {/* {showPopup && (
-            <Dialog open={showPopup} onClose={() => setShowPopup(false)}>
-              <DialogTitle>Copied to Clipboard</DialogTitle>
-              <DialogContent>
-                <p>{linesCopied} line(s) copied to clipboard.</p>
-              </DialogContent>
-            </Dialog>
-          )} */}
           {/* Popup END */}
         </div>
         <div className="main-body2">
@@ -297,7 +201,7 @@ const LowStock = () => {
           <div className="searchAndNosBlogs">
             <div className="nos"></div>
             <div className="search-inventory">
-              <div className="search-in-table">
+              <div className="search-in-table mt-2 mb-2">
                 <OutlinedInput
                   sx={{
                     "& legend": { display: "none" },
@@ -314,57 +218,44 @@ const LowStock = () => {
             </div>
           </div>
           {/* Search and Nos END */}
-
           {/* Table */}
           {/* Render the table using the fetched data */}
-          {loading ? (
-            <p>Loading...</p>
-          ) : (
-            <TableContainer
-              component={Paper}
-              style={{ boxShadow: "gray" }}
-              id="tableContainer"
-            >
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
+          <TableContainer
+            component={Paper}
+            style={{ boxShadow: "gray" }}
+            id="tableContainer"
+          >
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="left" style={{ fontWeight: "bold" }}>
+                    Name
+                  </TableCell>
+                  <TableCell align="left" style={{ fontWeight: "bold" }}>
+                    Quantity
+                  </TableCell>
+                  <TableCell align="left" style={{ fontWeight: "bold" }}>
+                    Image
+                  </TableCell>
+                  <TableCell align="left" style={{ fontWeight: "bold" }}>
+                    Expired On
+                  </TableCell>
+                  <TableCell align="left" style={{ fontWeight: "bold" }}>
+                    Supplier
+                  </TableCell>
+                  <TableCell align="left" style={{ fontWeight: "bold" }}>
+                    Action
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody align="left">
+                {loading ? (
                   <TableRow>
-                    {/* <TableCell align="left" style={{ fontWeight: "bold" }}>
-                      <Checkbox
-                        checked={selectedRows.length === displayedRows.length}
-                        onChange={handleSelectAll}
-                      />
-                    </TableCell> */}
-                    <TableCell align="left" style={{ fontWeight: "bold" }}>
-                      Name
-                    </TableCell>
-                    <TableCell align="left" style={{ fontWeight: "bold" }}>
-                      Quantity
-                    </TableCell>
-                    <TableCell align="left" style={{ fontWeight: "bold" }}>
-                      Image
-                    </TableCell>
-                    <TableCell align="left" style={{ fontWeight: "bold" }}>
-                      Expired On
-                    </TableCell>
-                    <TableCell align="left" style={{ fontWeight: "bold" }}>
-                      Supplier
-                    </TableCell>
-                    <TableCell align="left" style={{ fontWeight: "bold" }}>
-                      Action
-                    </TableCell>
+                    <TableCell>Loading...</TableCell>
                   </TableRow>
-                </TableHead>
-                <TableBody align="left">
-                  {inventoryData.map((row) => (
-                    <TableRow key={row.srNo}>
-                      {/* <TableCell align="left">
-                        <Checkbox
-                          checked={selectedRows.includes(row.srNo)}
-                          onChange={(event) =>
-                            handleCheckboxChange(event, row.srNo)
-                          }
-                        />
-                      </TableCell> */}
+                ) : (
+                  inventoryData.map((row, index) => (
+                    <TableRow key={index}>
                       <TableCell align="left" style={{ maxWidth: "200px" }}>
                         {row.product_name}
                       </TableCell>
@@ -373,10 +264,6 @@ const LowStock = () => {
                       </TableCell>
                       <TableCell align="left">
                         <div className="blog-img">
-                          {/* <img
-                            src={`${IMAGEURL}${row.thumbnail}`}
-                            alt="ProductImage"
-                          /> */}
                           {row?.thumbnail_name ? (
                             <img
                               src={`${IMAGEURL}upload/product/thumbnail/100/${row.thumbnail_name}`}
@@ -419,16 +306,12 @@ const LowStock = () => {
                         >
                           <MenuItem
                             onClick={() => {
-                              // //console.log("my click", row.id);
-                              setSelectedProductId(row.id); // Set the selected product ID
+                              setSelectedProductId(row.id);
                               setShowStockEditPopup(true);
                               handleMenuClose();
                             }}
                           >
-                            <EditOutlined
-                              fontSize="small"
-                              sx={{ marginRight: 1 }}
-                            />{" "}
+                            <EditOutlined fontSize="small" sx={{ marginRight: 1 }} />
                             Stock Adjustment
                           </MenuItem>
                           <MenuItem aria-label="View order details">
@@ -446,26 +329,22 @@ const LowStock = () => {
                         </Menu>
                       </TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-              {showStockEditPopup && (
-                <AddEditStockPopup
-                  productId={selectedProductId}
-                  getData={getData}
-                  onSave={(updatedProductData) => {
-                    // Perform any necessary action with the updated product data
-                    //console.log("Updated Product Data:", updatedProductData);
-                    // Hide the popup
-                    setShowStockEditPopup(false);
-                  }}
-                  onCancel={() => setShowStockEditPopup(false)}
-                />
-              )}
-            </TableContainer>
+                  ))
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          {showStockEditPopup && (
+            <AddEditStockPopup
+              productId={selectedProductId}
+              getData={getData}
+              onSave={(updatedProductData) => {
+                setShowStockEditPopup(false);
+              }}
+              onCancel={() => setShowStockEditPopup(false)}
+            />
           )}
           {/* Table End */}
-
           {/* Pagination */}
           <div>
             <Pagination
@@ -488,6 +367,8 @@ const LowStock = () => {
 };
 
 export default LowStock;
+
+
 
 // import React, { useState, useEffect } from "react";
 // import "../ProductInventory.css";

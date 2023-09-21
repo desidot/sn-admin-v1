@@ -292,7 +292,11 @@ const Agents = () => {
               </TableHead>
               <TableBody align="left">
                 {isLoading ? (
-                  <span>Loading...</span>
+                  <TableRow>
+                    <TableCell colSpan={12} align="center">
+                      Loading...
+                    </TableCell>
+                  </TableRow>
                 ) : (
                   displayedRows?.map((row, index) => (
                     <TableRow key={index}>

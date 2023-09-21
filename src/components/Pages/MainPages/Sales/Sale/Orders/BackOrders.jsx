@@ -638,10 +638,12 @@ const BackOrder = () => {
                       )} */}
 
                       {isLoading ? (
-                        <span>Loading...</span>
+                        <TableRow>
+                          <TableCell>Loading...</TableCell>
+                        </TableRow>
                       ) : (
                         listItems?.map((row, index) => (
-                          <>
+                          <React.Fragment key={index}>
                             <TableRow>
                               <TableCell>
                                 <IconButton
@@ -1050,7 +1052,7 @@ const BackOrder = () => {
                                 </Collapse>
                               </TableCell>
                             </TableRow>
-                          </>
+                          </React.Fragment>
                         ))
                       )}
                     </TableBody>

@@ -136,7 +136,7 @@ const Categories = () => {
 
   const handleToggleChange = async (event, catId) => {
     let cId = currentRow.id;
-    console.log(cId);
+    // console.log(cId);
     const fieldName = "is_home"; // Change this if needed
     const fieldValue = event.target.checked ? 1 : 0;
 

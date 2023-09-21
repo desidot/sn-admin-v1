@@ -21,8 +21,8 @@ import NewOrder from "./TableData/NewOrders";
 import LastDeliverd from "./TableData/LastDeliverd";
 import { useEffect } from "react";
 import axios from "axios";
-import { APIBASE, IMAGEURL } from "../../auth/apiConfig";
-import { Link } from "react-router-dom";
+import { APIBASE } from "../../auth/apiConfig";
+// import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [isPopupVisible, setPopupVisible] = useState(true);
@@ -36,8 +36,11 @@ const Dashboard = () => {
   const [recentInvoice, setRecentInvoice] = useState([]);
   const [lastDelivered, setLastDelivered] = useState([]);
   const [topClients, setTopClients] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [reminders, setReminders] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [expiringSoon, setExpiringSoon] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [expiredStock, setExpiredStock] = useState([]);
   const [totalLowStock, setTotalLowStock] = useState(0);
   const [totalPendingOrders, setTotalPendingOrders] = useState(0);
@@ -516,6 +519,7 @@ const Dashboard = () => {
               className="iconsize"
               value={totalPendingOrders}
               icon={AiOutlineDollarCircle}
+              link="/admin/Sales/all-orders"
               color="#fff"
               iconColor="#ffffff80"
             />
@@ -544,6 +548,7 @@ const Dashboard = () => {
               title="Instore Orders"
               className="iconsize"
               value={totalInStore}
+              link="/admin/Sales/all-orders"
               icon={AiOutlineDollarCircle}
               color="#fff"
               iconColor="#ffffff80"

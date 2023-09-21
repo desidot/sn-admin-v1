@@ -650,7 +650,9 @@ const SubscriptionOrders = () => {
                       )} */}
 
                       {isLoading ? (
-                        <span>Loading...</span>
+                        <TableRow>
+                          <TableCell>Loading...</TableCell>
+                        </TableRow>
                       ) : (
                         listItems?.map((row, index) => (
                           <>

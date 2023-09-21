@@ -13,49 +13,36 @@ import {
 import UserImg from "../../../../assets/products/spray-product.jpg";
 import { Link } from "react-router-dom";
 
-const LastDeliverd = ({lastDelivered}) => {
+const LastDeliverd = ({ lastDelivered }) => {
   //   const columns = ["Last Delivered"];
 
- 
   function formatDateToDayMonthYear(dateString) {
     const dateObject = new Date(dateString);
-  
+
     const day = dateObject.getDate();
-    const month = dateObject.toLocaleString('default', { month: 'long' });
+    const month = dateObject.toLocaleString("default", { month: "long" });
     const year = dateObject.getFullYear();
-  
+
     return `${day} ${month} ${year}`;
   }
-  
-  const mapped=lastDelivered?.map((elem)=>({name:JSON.parse(elem.shipping_address).first_name?(JSON.parse(elem.shipping_address).first_name+" "+JSON.parse(elem.shipping_address).last_name):(JSON.parse(elem.shipping_address).name),Date:formatDateToDayMonthYear(elem.invoice_date) ,Phone:JSON.parse(elem.shipping_address).phone,id:elem.id }))
 
-  const data = [
-    {
-      image: UserImg,
-      name: "Users Name",
-      Date: "Jul 25 2023",
-      Phone: "1984949984",
-    },
-    {
-      image: UserImg,
-      name: "Users Name",
-      Date: "Jul 25 2023",
-      Phone: "1984949984",
-    },
-    {
-      image: UserImg,
-      name: "Users Name",
-      Date: "Jul 25 2023",
-      Phone: "1984949984",
-    },
-    {
-      image: UserImg,
-      name: "Users Name",
-      Date: "Jul 25 2023",
-      Phone: "1984949984",
-    },
-    // Add more data rows here
-  ];
+  const mapped = lastDelivered?.map((elem) => {
+    const shippingAddress = JSON.parse(elem.shipping_address);
+    const billingAddress = JSON.parse(elem.billing_address);
+
+    const name = shippingAddress?.first_name
+      ? shippingAddress.first_name + " " + shippingAddress.last_name
+      : billingAddress.first_name + " " + billingAddress.last_name || "";
+
+    const phone = shippingAddress?.phone || billingAddress?.phone || "";
+
+    return {
+      name,
+      Date: formatDateToDayMonthYear(elem.invoice_date),
+      Phone: phone,
+      id: elem.id,
+    };
+  });
 
   return (
     <>
@@ -90,7 +77,7 @@ const LastDeliverd = ({lastDelivered}) => {
                   ))}
                 </TableRow> */}
               </TableHead>
-              <TableBody>
+              <TableBody style={{ width: "50px" }}>
                 {mapped?.map((row, index) => (
                   <TableRow key={index}>
                     <TableCell>{index + 1}</TableCell>
@@ -107,24 +94,34 @@ const LastDeliverd = ({lastDelivered}) => {
                         }}
                       />
                     </TableCell> */}
-                    <TableCell style={{ fontSize: "12px", color: "gray" }}>
-                      Name: {row.name}
+                    <TableCell
+                      style={{
+                        fontSize: "12px",
+                        color: "gray",
+                        // width: "180px",
+                      }}
+                      align="center"
+                    >
+                      {/* Name:  */}
+                      {row.name}
                       <br />
-                      Phone:{row.Phone}
+                      {/* Phone: */}
+                      {row.Phone}
                       <br />
-                      Date: {row.Date}
+                      {/* Date:  */}
+                      {row.Date}
                     </TableCell>
-                    <TableCell>
+                    <TableCell style={{ width: "180px" }} align="center">
                       <Link
                         to={`/admin/Admin/view-order-details/${row.id}`}
                         style={{
                           background: "#FFFFFF",
                           color: "lightgreen",
                           fontSize: "14px",
-                          padding:"10px 15px",
+                          padding: "10px 15px",
                           textTransform: "capitalize",
                           borderRadius: "5px",
-                        //   width: "80px",
+                          // width: "80px",
                           border: "1px solid lightgreen",
                         }}
                       >

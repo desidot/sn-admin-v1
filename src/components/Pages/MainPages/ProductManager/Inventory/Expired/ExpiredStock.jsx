@@ -280,7 +280,7 @@ const ExpiredStocks = () => {
           {/* Search and Nos */}
           <div className="searchAndNosBlogs">
             <div className="nos"></div>
-            <div className="search-inventory">
+            <div className="search-inventory mb-2 mt-2">
               <div className="search-in-table">
                 <OutlinedInput
                   sx={{

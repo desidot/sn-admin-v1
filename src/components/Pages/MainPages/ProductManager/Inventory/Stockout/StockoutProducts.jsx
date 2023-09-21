@@ -285,7 +285,7 @@ const StockoutProducts = () => {
           <div className="searchAndNosBlogs">
             <div className="nos"></div>
             <div className="search-inventory">
-              <div className="search-in-table">
+              <div className="search-in-table mb-2 mt-2">
                 <OutlinedInput
                   sx={{
                     "& legend": { display: "none" },

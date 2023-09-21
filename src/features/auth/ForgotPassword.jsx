@@ -172,7 +172,7 @@ const ForgotPasswordForm = () => {
                         padding: "20px 0px",
                       }}
                     >
-                      <h1>Reset Your Password</h1>
+                      <h1 className="style-heading">Reset Your Password</h1>
                       <p style={{ fontSize: "18px" }}>
                         we'll send you a message to help you reset your
                         password.

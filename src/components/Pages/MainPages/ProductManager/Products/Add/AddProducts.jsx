@@ -28,7 +28,7 @@ import AddUnit from "../Unit/AddUnit";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { APIBASE, IMAGEURL } from "../../../../../auth/apiConfig";
+import { APIBASE } from "../../../../../auth/apiConfig";
 
 import axios from "axios";
 
@@ -185,6 +185,7 @@ const AddProducts = () => {
   // };
 
   const handleFileUpload = (event) => {
+    // eslint-disable-next-line no-unused-vars
     const file = event.target.files[0];
     // Perform the upload logic here
     //console.log(file);
@@ -675,14 +676,14 @@ const AddProducts = () => {
               </Grid>
 
               <Grid item xs={12} md={4}>
-                <InputLabel htmlFor="">
+                <InputLabel htmlFor="product">
                   Product Name :
                   <span style={{ color: "red", fontWeight: "800" }}>*</span>
                 </InputLabel>
                 <FormControl fullWidth>
                   <TextField
                     placeholder="Enter Product Name"
-                    value={formData.product_name}
+                    value={formData.product_name || ""}
                     onChange={(event) =>
                       setFormData((prevData) => ({
                         ...prevData,
@@ -694,11 +695,11 @@ const AddProducts = () => {
               </Grid>
 
               <Grid item xs={12} md={4}>
-                <InputLabel htmlFor="">Barcode :</InputLabel>
+                <InputLabel htmlFor="barcode">Barcode :</InputLabel>
                 <FormControl fullWidth>
                   <TextField
                     placeholder="Enter Barcode"
-                    value={formData.barcode}
+                    value={formData.barcode || ""}
                     onChange={(event) =>
                       setFormData((prevData) => ({
                         ...prevData,
@@ -709,11 +710,11 @@ const AddProducts = () => {
                 </FormControl>
               </Grid>
               <Grid item xs={12} md={4}>
-                <InputLabel htmlFor="">RFID :</InputLabel>
+                <InputLabel htmlFor="rfid">RFID :</InputLabel>
                 <FormControl fullWidth>
                   <TextField
                     placeholder="RFID"
-                    value={formData.rfid}
+                    value={formData.rfid || ""}
                     onChange={(event) =>
                       setFormData((prevData) => ({
                         ...prevData,
@@ -724,7 +725,7 @@ const AddProducts = () => {
                 </FormControl>
               </Grid>
               <Grid item xs={12} md={4}>
-                <InputLabel htmlFor="">
+                <InputLabel htmlFor="floor">
                   Floor :
                   {/* <span style={{ color: "red", fontWeight: "800" }}>*</span> */}
                 </InputLabel>
@@ -733,7 +734,7 @@ const AddProducts = () => {
                   <TextField
                     type="number"
                     placeholder="Floor"
-                    value={formData.floor}
+                    value={formData.floor || ""}
                     onChange={(event) =>
                       setFormData((prevData) => ({
                         ...prevData,
@@ -744,7 +745,7 @@ const AddProducts = () => {
                 </FormControl>
               </Grid>
               <Grid item xs={12} md={4}>
-                <InputLabel htmlFor="">
+                <InputLabel htmlFor="shelf">
                   Shelf :
                   {/* <span style={{ color: "red", fontWeight: "800" }}>*</span> */}
                 </InputLabel>
@@ -753,7 +754,7 @@ const AddProducts = () => {
                   <TextField
                     type="number"
                     placeholder="Shalf"
-                    value={formData.shelf}
+                    value={formData.shelf || ""}
                     onChange={(event) =>
                       setFormData((prevData) => ({
                         ...prevData,
@@ -770,7 +771,7 @@ const AddProducts = () => {
                   control={
                     <IOSSwitch
                       sx={{ m: 1 }}
-                      checked={formData.refundable}
+                      checked={formData.refundable ? true : false}
                       onChange={(event) =>
                         setFormData((prevData) => ({
                           ...prevData,
@@ -831,7 +832,7 @@ const AddProducts = () => {
                         options={unitOptions}
                         value={selectedUnit}
                         onChange={handleUnitChange}
-                        getOptionLabel={(option) => option.name}
+                        getOptionLabel={(option) => option?.name}
                         renderInput={(params) => <TextField {...params} />}
                       />
                     </FormControl>
@@ -847,7 +848,7 @@ const AddProducts = () => {
                   </div>
                 </Grid>
                 <Grid item xs={12} md={3}>
-                  <InputLabel htmlFor="">Weight :</InputLabel>
+                  <InputLabel htmlFor="weight">Weight :</InputLabel>
                   <FormControl fullWidth>
                     <TextField
                       placeholder="Weight"
@@ -861,7 +862,7 @@ const AddProducts = () => {
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} md={3}>
-                  <InputLabel htmlFor="">Item Code :</InputLabel>
+                  <InputLabel htmlFor="itemcode">Item Code :</InputLabel>
                   <FormControl fullWidth>
                     <TextField
                       placeholder="Item Code"
@@ -875,7 +876,7 @@ const AddProducts = () => {
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} md={3}>
-                  <InputLabel htmlFor="">Lot Number :</InputLabel>
+                  <InputLabel htmlFor="lotno">Lot Number :</InputLabel>
                   <FormControl fullWidth>
                     <TextField
                       placeholder="Lot Number"
@@ -927,7 +928,7 @@ const AddProducts = () => {
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} md={3}>
-                  <InputLabel htmlFor="">
+                  <InputLabel htmlFor="cog">
                     COG Price :
                     {/* <span style={{ color: "red", fontWeight: "800" }}>*</span> */}
                   </InputLabel>
@@ -944,7 +945,7 @@ const AddProducts = () => {
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} md={3}>
-                  <InputLabel htmlFor="">
+                  <InputLabel htmlFor="selling">
                     Selling Price :
                     {/* <span style={{ color: "red", fontWeight: "800" }}>*</span> */}
                   </InputLabel>
@@ -980,7 +981,7 @@ const AddProducts = () => {
                 <input
                   type="file"
                   onChange={(e) => handleThumbnailFileChange(e, "thumbnail")}
-                />{" "}
+                />
               </div>
 
               {/* Gallery */}
@@ -1152,11 +1153,11 @@ const AddProducts = () => {
                     control={
                       <IOSSwitch
                         sx={{ m: 1 }}
-                        checked={formData.low_stock ? true : false}
+                        checked={formData?.low_stock ? true : false}
                         onChange={(event) =>
                           setFormData((prevData) => ({
                             ...prevData,
-                            low_stock: event.target.checked ? 1 : "", // Set 1 if checked
+                            low_stock: event?.target?.checked ? 1 : "", // Set 1 if checked
                           }))
                         }
                       />
@@ -1202,7 +1203,7 @@ const AddProducts = () => {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={formData.not_for_sale}
+                        checked={formData.not_for_sale === 1 ? true : false}
                         onChange={(event) =>
                           setFormData((prevData) => ({
                             ...prevData,
@@ -1281,7 +1282,7 @@ const AddProducts = () => {
                 <input
                   type="file"
                   onChange={(e) => handleFileUpload(e, "meta_image")}
-                />{" "}
+                />
               </div>
             </div>
 

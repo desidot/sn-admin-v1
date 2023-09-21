@@ -121,7 +121,11 @@ const AddEditStockPopup = ({ productId, onSave, onCancel, getData }) => {
         <div className="orders-container3">
           <div className="order-entries">
             {isLoading ? (
-              <TableCell align="center">Loading...</TableCell>
+              <TableRow>
+                <TableCell colSpan={12} align="center">
+                  Loading...
+                </TableCell>
+              </TableRow>
             ) : (
               <TableContainer>
                 <Table>

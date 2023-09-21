@@ -619,11 +619,13 @@ const PickupOrder = () => {
                       )} */}
 
                       {isLoading ? (
-                        <span>Loading...</span>
+                        <TableRow>
+                        <TableCell>Loading...</TableCell>
+                       </TableRow>
                       ) : (
                         listItems?.map((row, index) => (
-                          <>
-                            <TableRow>
+                          <React.Fragment key={index}>
+                            <TableRow key={index}>
                               <TableCell>
                                 <IconButton
                                   onClick={() => handleRowClick(row.id)}
@@ -989,7 +991,7 @@ const PickupOrder = () => {
                                 </Collapse>
                               </TableCell>
                             </TableRow>
-                          </>
+                          </React.Fragment>
                         ))
                       )}
                     </TableBody>

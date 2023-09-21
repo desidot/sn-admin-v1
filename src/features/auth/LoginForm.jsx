@@ -60,7 +60,7 @@ export default function LoginForm() {
                   padding: "20px 0px",
                 }}
               >
-                <h1>Login</h1>
+                <h1 className="style-heading">Login</h1>
               </div>
               <form onSubmit={handleSubmit}>
                 <div className="form-group">

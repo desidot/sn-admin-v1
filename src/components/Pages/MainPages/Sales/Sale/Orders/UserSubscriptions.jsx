@@ -19,19 +19,19 @@ import {
   Button,
   IconButton,
   Menu,
-  OutlinedInput,
-  InputAdornment,
+  // OutlinedInput,
+  // InputAdornment,
   InputLabel,
   TextField,
-  Autocomplete,
+  // Autocomplete,
 } from "@mui/material";
 import "./Allorders.css";
-import { DatePicker } from "antd";
-import moment from "moment";
+// import { DatePicker } from "antd";
+// import moment from "moment";
 import {
-  Link,
+  // Link,
   useLocation,
-  useParams,
+  // useParams,
   useSearchParams,
 } from "react-router-dom";
 import {
@@ -39,24 +39,24 @@ import {
   // EditOutlined,
   DeleteOutlined,
 } from "@mui/icons-material";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+// import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+// import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 // import ReplayIcon from "@mui/icons-material/Replay";
-import EditNoteIcon from "@mui/icons-material/EditNote";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
+// import EditNoteIcon from "@mui/icons-material/EditNote";
+// import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 // import PrintIcon from "@mui/icons-material/Print";
-import ProductImg from "../../../../../../assets/products/spray-product.jpg";
+// import ProductImg from "../../../../../../assets/products/spray-product.jpg";
 import HomeIcon from "@mui/icons-material/Home";
-import SettingsIcon from "@mui/icons-material/Settings";
+// import SettingsIcon from "@mui/icons-material/Settings";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllCustomers,
-  getAllOrders,
+  // getAllOrders,
 } from "../../../../../../redux/cartSlice";
 import axios from "axios";
 import { toast } from "react-toastify";
-import CloseIcon from "@mui/icons-material/Close";
+// import CloseIcon from "@mui/icons-material/Close";
 
 import { APIBASE, IMAGEURL } from "../../../../../auth/apiConfig";
 // const { RangePicker } = DatePicker;
@@ -73,31 +73,41 @@ const UserSubscriptions = () => {
 
   const [shippingValue, setShippingValue] = useState("");
   const [paymentValue, setPaymentValue] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [userValue, setUserValue] = useState("");
   const [sourceValue, setSourceValue] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [subscriptionChecked, setSubscriptionChecked] = useState(false);
   const [selectedDates, setSelectedDates] = useState([]);
 
+  // eslint-disable-next-line no-unused-vars
   const [showStaffNotePopup, setShowStaffNotePopup] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [staffNote, setStaffNote] = useState("");
 
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const params = useLocation();
   const [page, setPage] = useState(1);
   const [anchorEl, setAnchorEl] = useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [openMenuId, setOpenMenuId] = useState(null);
   const [pageCount, setPageCount] = useState(1);
+  // eslint-disable-next-line no-unused-vars
   const [cusName, setCusName] = useState("");
   const [searchOrder, setSearchOrder] = useState("");
   const [totalItems, setTotalItems] = useState(0);
   const [note, setNote] = useState(initialNote);
+  // eslint-disable-next-line no-unused-vars
   const auth = useSelector((state) => state.auth.user.data?.name);
 
   const dispatch = useDispatch();
+  // eslint-disable-next-line no-unused-vars
   const [user_id, setUser_id] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const allCustomers = useSelector((state) => state.cart.allCustomers);
   useEffect(() => {
     dispatch(getAllCustomers());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [userId, setUserId] = useState(0);
@@ -164,6 +174,7 @@ const UserSubscriptions = () => {
 
   useEffect(() => {
     setNote({ ...note, note: staffNote });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [staffNote]);
 
   const addNote = async () => {
@@ -175,6 +186,7 @@ const UserSubscriptions = () => {
       //console.log(error);
     }
   };
+  // eslint-disable-next-line no-unused-vars
   const handleSaveNoteClick = () => {
     addNote();
     setShowStaffNotePopup(false);
@@ -190,14 +202,15 @@ const UserSubscriptions = () => {
       //console.error("Invalid array length. Expected 2 dates.");
       return;
     }
-    const startDate = moment(datesArray[0].$d).format("DD-MM-YYYY");
-    const endDate = moment(datesArray[1].$d).format("DD-MM-YYYY");
+    // const startDate = moment(datesArray[0].$d).format("DD-MM-YYYY");
+    // const endDate = moment(datesArray[1].$d).format("DD-MM-YYYY");
 
     // Perform your desired operations with the start and end dates
     //console.log("Start Date:", startDate);
     //console.log("End Date:", endDate);
   };
 
+  // eslint-disable-next-line no-unused-vars
   const handleDateRangeChange = (selectedDates) => {
     if (!selectedDates) {
       //console.error("Selected dates array is null.");
@@ -230,7 +243,7 @@ const UserSubscriptions = () => {
       [rowId]: true,
     }));
 
-    console.log("clicked");
+    // console.log("clicked");
     // setSelectedMenuItem({});
 
     setOpenMenuId(rowId);
@@ -260,23 +273,12 @@ const UserSubscriptions = () => {
     { value: "Un-Paid", label: "Unpaid" },
   ];
 
-  const userOptions = [
-    { value: "", label: "Select One" },
-    { value: "all", label: "All" },
-    { value: "16", label: "a1 a1" },
-    // Add more options here
-  ];
-
   const sourceOptions = [
     { value: "", label: "Select One" },
     { value: "all", label: "All" },
     { value: "AUTHORIZED.NET", label: "Authorized.net" },
     { value: "OFFLINE", label: "Offline" },
     { value: "CASH", label: "Cash" },
-  ];
-
-  const subscriptionOptions = [
-    { value: "subscription", label: "Subscriptions" },
   ];
 
   const getFilteredOrders = async () => {
@@ -299,6 +301,7 @@ const UserSubscriptions = () => {
     }
   };
 
+  // eslint-disable-next-line no-unused-vars
   const deleteOrder = async (id) => {
     handleMenuClose();
     try {
@@ -357,10 +360,12 @@ const UserSubscriptions = () => {
     selectedDates,
     page,
     userId,
+    setSearchParam,
   ]);
 
   useEffect(() => {
     getFilteredOrders();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParam]);
 
   const getSingleOrder = async () => {
@@ -378,8 +383,10 @@ const UserSubscriptions = () => {
   const handleSearch = () => {
     getSingleOrder();
   };
+  // eslint-disable-next-line no-unused-vars
   const handleAddCustomer = (e, value) => {
     const id = value?.split(". ")[0];
+    // eslint-disable-next-line no-unused-vars
     const name = value?.split(". ")[1];
     setUser_id(id);
     setCusName(value);
@@ -387,7 +394,10 @@ const UserSubscriptions = () => {
   };
   useEffect(() => {
     getFilteredOrders();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
+
+  // eslint-disable-next-line no-unused-vars
   const reviewAlertMail = async (row) => {
     handleMenuClose();
     const payload = {
@@ -404,6 +414,8 @@ const UserSubscriptions = () => {
       toast.error("Error!");
     }
   };
+
+  // eslint-disable-next-line no-unused-vars
   const orderMail = async (row) => {
     handleMenuClose();
     const payload = {
@@ -426,6 +438,7 @@ const UserSubscriptions = () => {
         subscription_id: subscriptionId,
         // , user_id: user_id
       };
+      // eslint-disable-next-line no-unused-vars
       const response = await axios.post(
         `${APIBASE}admin/cancel-user-subscription`,
         payload
@@ -742,10 +755,12 @@ const UserSubscriptions = () => {
                       )}
 
                       {isLoading ? (
-                        <span>Loading...</span>
+                        <TableRow>
+                          <TableCell>Loading...</TableCell>
+                        </TableRow>
                       ) : (
                         listItems?.map((row, index) => (
-                          <>
+                          <React.Fragment key={index}>
                             <TableRow>
                               <TableCell>
                                 <IconButton
@@ -789,7 +804,7 @@ const UserSubscriptions = () => {
                                 {row?.month && (
                                   <>
                                     {row.month ? row.month : "-"}
-                                    {row.month == 1 ? " month" : " months"}
+                                    {row.month === 1 ? " month" : " months"}
                                   </>
                                 )}
                               </TableCell>
@@ -899,13 +914,13 @@ const UserSubscriptions = () => {
                               {/* <TableCell>{row?.subscription_status}</TableCell> */}
                               <TableCell
                                 className={
-                                  row.subscription_status == 1
+                                  row.subscription_status === 1
                                     ? "active-status"
                                     : "inactive-status"
                                 }
                               >
                                 <span>
-                                  {row.subscription_status == 1
+                                  {row.subscription_status === 1
                                     ? "Active"
                                     : "Inactive"}
                                 </span>
@@ -976,7 +991,7 @@ const UserSubscriptions = () => {
                                             <TableCell>
                                               {row.pickup_order
                                                 ? "Pickup Details"
-                                                : row.in_store == 1
+                                                : row.in_store === 1
                                                 ? "In Store Order"
                                                 : "Shipping Details"}
                                             </TableCell>
@@ -1062,7 +1077,7 @@ const UserSubscriptions = () => {
                                 </Collapse>
                               </TableCell>
                             </TableRow>
-                          </>
+                          </React.Fragment>
                         ))
                       )}
                     </TableBody>

@@ -98,7 +98,7 @@ const EditCategories = () => {
       try {
         const response = await axios.get(`${APIBASE}admin/categories/${id}`);
         const dataFromBackend = response.data.data;
-        console.log(dataFromBackend);
+        // console.log(dataFromBackend);
         // Update banner and thumbnail URLs with the base URL
         if (dataFromBackend.meta_image) {
           dataFromBackend.meta_image = `${IMAGEURL}${dataFromBackend.meta_image}`;
@@ -109,9 +109,9 @@ const EditCategories = () => {
           setThumbnailFileDataUrl(`${IMAGEURL}${dataFromBackend.thumbnail}`);
         }
 
-        console.log(dataFromBackend);
-        console.log(dataFromBackend.thumbnail);
-        console.log(dataFromBackend.banner);
+        // console.log(dataFromBackend);
+        // console.log(dataFromBackend.thumbnail);
+        // console.log(dataFromBackend.banner);
 
         setEditedCategory(dataFromBackend);
       } catch (error) {

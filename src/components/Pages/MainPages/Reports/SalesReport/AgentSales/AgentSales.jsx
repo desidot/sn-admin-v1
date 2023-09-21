@@ -265,7 +265,7 @@ const AgentSalesReport = () => {
         );
         setData(res.data.sales);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     } else {
       toast.error("Please check all credentials!");

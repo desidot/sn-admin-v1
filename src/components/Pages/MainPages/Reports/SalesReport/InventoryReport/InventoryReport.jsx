@@ -1,33 +1,34 @@
 import React, { useState, useEffect } from "react";
 
-import { APIBASE, IMAGEURL } from "../../../../../auth/apiConfig";
+import { APIBASE } from "../../../../../auth/apiConfig";
 import {
   Table,
   TableBody,
-  Grid,
-  InputLabel,
-  FormControl,
-  TextField,
+  // Grid,
+  // InputLabel,
+  // FormControl,
+  // TextField,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
   Paper,
-  OutlinedInput,
-  InputAdornment,
+  // OutlinedInput,
+  // InputAdornment,
   Button,
-  Typography,
+  // Typography,
   Pagination,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import "../Reports.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 const XLSX = require("xlsx");
 const InventoryReport = () => {
   const [searchText, setSearchText] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [exporting, setExporting] = useState(false);
 
   const handleSearchChange = (event) => {
     setSearchText(event.target.value);
@@ -64,7 +65,7 @@ const InventoryReport = () => {
         Math.ceil(res.data.products.total / res.data.products.per_page)
       );
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
   useEffect(() => {
@@ -103,21 +104,34 @@ const InventoryReport = () => {
     return `${day} ${month} ${year}`;
   }
 
-  const handleExport = () => {
-    const exportIt = listItems?.map((elem) => ({
+  const getExportInventoryData = async () => {
+    setExporting(true);
+    try {
+      const res = await axios.get(
+        `${APIBASE}admin/reports/export-inventory-report`
+      );
+      handleExport(res?.data?.products);
+      setExporting(false);
+    } catch (error) {
+      setExporting(false);
+    }
+  };
+
+  const handleExport = (data) => {
+    const exportIt = data?.map((elem) => ({
       Product: elem.product_name,
       Category: elem.category_name,
-      Brand: "$" + elem.brand_name,
+      Brand: elem.brand_name,
       "Total quantity": elem.quantity,
       "Sold quantity": elem.total_sold,
       price: elem.selling_price,
     }));
 
-    var wb = XLSX.utils.book_new();
+    let wb = XLSX.utils.book_new();
     if (exportIt.length > 0) {
       let ws = XLSX.utils.json_to_sheet(exportIt);
       XLSX.utils.book_append_sheet(wb, ws, "MySheet");
-      XLSX.writeFile(wb, "MyExcel.xlsx");
+      XLSX.writeFile(wb, "InventoryReport.xlsx");
     } else {
       alert("Please select some items.");
     }
@@ -154,9 +168,12 @@ const InventoryReport = () => {
           {/* Buttons */}
           <div className="tabs-butons">
             {/* <Button variant="contained">All</Button> */}
-
-            <Button variant="contained" onClick={() => handleExport()}>
-              Excel
+            <Button
+              disabled={exporting}
+              variant="contained"
+              onClick={() => getExportInventoryData()}
+            >
+              {exporting ? "Exporting" : "Excel"}
             </Button>
           </div>
         </div>

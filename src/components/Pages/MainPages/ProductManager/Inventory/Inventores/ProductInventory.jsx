@@ -233,9 +233,12 @@ const ProductInventory = () => {
           <div className="main-body2">
             {/* Search and Nos */}
             <div className="searchAndNosBlogs">
-              <div className="nos">Total:-{totalItems}</div>
+              <div>Total:-{totalItems}</div>
               <div className="search-inventory">
-                <div className="search-in-table">
+                <div
+                  className="search-in-table mt-0"
+                  style={{ marginBottom: "20px" }}
+                >
                   <OutlinedInput
                     // value={searchText}
                     onChange={handleInput}

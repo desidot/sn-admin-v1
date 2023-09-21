@@ -191,7 +191,6 @@ const EditProducts = () => {
   };
 
   // console.log(thumbnailFileDataUrl);
-  
 
   useEffect(() => {
     if (id) {
@@ -535,7 +534,10 @@ const EditProducts = () => {
       );
     }
     if (categoryValue?.id) {
-      formDataToSend.append("category_id", categoryValue ? categoryValue.id : "");
+      formDataToSend.append(
+        "category_id",
+        categoryValue ? categoryValue.id : ""
+      );
     }
 
     if (subcategoryValue?.value) {
@@ -624,21 +626,18 @@ const EditProducts = () => {
     if (pdfFile) {
       formDataToSend.append("pdf_specification", pdfFile);
     }
-    if (editedProduct?.low_stock) {
-      formDataToSend.append("low_stock", editedProduct.low_stock ? 1 : 0);
-    }
-    if (editedProduct?.website) {
-      formDataToSend.append("website", editedProduct.website ? 1 : 0);
-    }
-    if (editedProduct?.internal_sell) {
-      formDataToSend.append(
-        "internal_sell",
-        editedProduct.internal_sell ? 1 : 0
-      );
-    }
-    if (editedProduct?.not_for_sale) {
-      formDataToSend.append("not_for_sale", editedProduct.not_for_sale ? 1 : 0);
-    }
+    // if (editedProduct?.low_stock) {
+    formDataToSend.append("low_stock", editedProduct.low_stock ? 1 : 0);
+    // }
+    // if (editedProduct?.website) {
+    formDataToSend.append("website", editedProduct.website ? 1 : 0);
+    // }
+    // if (editedProduct?.internal_sell) {
+    formDataToSend.append("internal_sell", editedProduct.internal_sell ? 1 : 0);
+    // }
+    // if (editedProduct?.not_for_sale) {
+    formDataToSend.append("not_for_sale", editedProduct.not_for_sale ? 1 : 0);
+    // }
     if (editedProduct?.meta_title) {
       formDataToSend.append("meta_title", editedProduct.meta_title);
     }

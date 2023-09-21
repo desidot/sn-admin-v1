@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { APIBASE, IMAGEURL } from "../../../../../auth/apiConfig";
+import { APIBASE } from "../../../../../auth/apiConfig";
 import {
   Table,
   TableBody,
@@ -20,7 +20,7 @@ import {
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import "../Reports.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 const XLSX = require("xlsx");
@@ -58,7 +58,7 @@ const ProductReport = () => {
         );
         setData(res.data.product_sales);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     } else {
       toast.error("Select both dates!");
@@ -77,6 +77,7 @@ const ProductReport = () => {
     );
   }, [searchText, data]);
 
+  // eslint-disable-next-line no-unused-vars
   function formatDateToDayMonthYear(dateString) {
     const dateObject = new Date(dateString);
 

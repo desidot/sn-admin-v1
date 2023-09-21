@@ -30,7 +30,7 @@ const Tasks = () => {
   const auth = useSelector((state) => state.auth.user.data);
   const allAdmins = useSelector((state) => state.cart.allAdmins);
   const [state, setState] = useState(initialState);
-  const [employee, setEmployee] = useState("");
+  // const [employee, setEmployee] = useState("");
   const [allTasks, setAllTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -39,8 +39,11 @@ const Tasks = () => {
   const [reTasks, setReTasks] = useState([]);
   const [comTasks, setComTasks] = useState([]);
 
+  // eslint-disable-next-line no-unused-vars
   const handleTaskToChange = (event) => {
-    console.log("event", event.target.value);
+    // console.log("event", event.target.value);
+    // eslint-disable-next-line no-unused-expressions
+    event.target.value;
   };
 
   useEffect(() => {}, []);
@@ -55,6 +58,7 @@ const Tasks = () => {
   useEffect(() => {
     dispatch(getAllAdmins());
     getAllTasks();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleGoBack = () => {
@@ -157,7 +161,7 @@ const Tasks = () => {
                   >
                     <MenuItem value="">Select Employee</MenuItem>
                     {allAdmins?.map((elem, index) => (
-                      <MenuItem value={elem.id}>{elem.name}</MenuItem>
+                      <MenuItem value={elem.id} key={index}>{elem.name}</MenuItem>
                     ))}
                   </Select>
                 </FormControl>
@@ -230,7 +234,7 @@ const Tasks = () => {
                         }}
                       >
                         {initTasks?.map((row, index) => (
-                          <div className="task-card-container">
+                          <div className="task-card-container" key={index}>
                             <div className="task-card">
                               <div className="create-use">
                                 <h4>{row.task_name}</h4>
@@ -295,7 +299,7 @@ const Tasks = () => {
                         }}
                       >
                         {proTasks?.map((row, index) => (
-                          <div className="task-card-container">
+                          <div className="task-card-container" key={index}>
                             <div className="task-card">
                               <div className="create-use">
                                 <h4>{row.task_name}</h4>
@@ -355,7 +359,7 @@ const Tasks = () => {
                         }}
                       >
                         {reTasks?.map((row, index) => (
-                          <div className="task-card-container">
+                          <div className="task-card-container" key={index}>
                             <div className="task-card">
                               <div className="create-use">
                                 <h4>{row.task_name}</h4>
@@ -419,7 +423,7 @@ const Tasks = () => {
                         }}
                       >
                         {comTasks?.map((row, index) => (
-                          <div className="task-card-container">
+                          <div className="task-card-container" key={index}>
                             <div className="task-card">
                               <div className="create-use">
                                 <h4>{row.task_name}</h4>

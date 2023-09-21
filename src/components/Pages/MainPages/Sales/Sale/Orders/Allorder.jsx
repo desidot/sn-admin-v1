@@ -53,12 +53,12 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllCustomers,
-  getAllOrders,
+  // getAllOrders,
 } from "../../../../../../redux/cartSlice";
 import axios from "axios";
 import { toast } from "react-toastify";
-import CloseIcon from "@mui/icons-material/Close";
-const { RangePicker } = DatePicker;
+// import CloseIcon from "@mui/icons-material/Close";
+// const { RangePicker } = DatePicker;
 const initialNote = {
   order_id: "",
   title: "Staff Notes",
@@ -404,7 +404,7 @@ const AllOrder = () => {
         }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
-          <HomeIcon />{" "}- <h6 className="mb-0">{" "} Sales - All Orders</h6>
+          <HomeIcon /> - <h6 className="mb-0"> Sales - All Orders</h6>
         </div>
 
         <button
@@ -427,14 +427,19 @@ const AllOrder = () => {
                 <Grid item xs={12} md={3}>
                   <label htmlFor="shipping">Shipping Status:</label>
                   <FormControl fullWidth>
-                    <InputLabel htmlFor="shipping" className="input-labels-options">All</InputLabel>
+                    <InputLabel
+                      htmlFor="shipping"
+                      className="input-labels-options"
+                    >
+                      All
+                    </InputLabel>
                     <Select
                       id="shipping"
                       name="shipping"
                       value={shippingValue}
                       onChange={(e) => setShippingValue(e.target.value)}
                     >
-                      {shippingOptions.map((option) => (
+                      {shippingOptions?.map((option) => (
                         <MenuItem
                           key={option.value}
                           value={option.value}
@@ -449,14 +454,19 @@ const AllOrder = () => {
                 <Grid item xs={12} md={3}>
                   <label htmlFor="payment">Payment Status:</label>
                   <FormControl fullWidth>
-                    <InputLabel htmlFor="payment" className="input-labels-options">All</InputLabel>
+                    <InputLabel
+                      htmlFor="payment"
+                      className="input-labels-options"
+                    >
+                      All
+                    </InputLabel>
                     <Select
                       id="payment"
                       name="payment"
                       value={paymentValue}
                       onChange={(e) => setPaymentValue(e.target.value)}
                     >
-                      {paymentOptions.map((option) => (
+                      {paymentOptions?.map((option) => (
                         <MenuItem
                           key={option.value}
                           value={option.value}
@@ -496,7 +506,12 @@ const AllOrder = () => {
                 <Grid item xs={12} md={3}>
                   <label htmlFor="source">Sources:</label>
                   <FormControl fullWidth>
-                    <InputLabel htmlFor="source" className="input-labels-options">All</InputLabel>
+                    <InputLabel
+                      htmlFor="source"
+                      className="input-labels-options"
+                    >
+                      All
+                    </InputLabel>
                     <Select
                       id="source"
                       name="source"
@@ -636,10 +651,14 @@ const AllOrder = () => {
                       )} */}
 
                       {isLoading ? (
-                        <span className="text-center"> Loading... </span>
+                        <TableRow>
+                          <TableCell>
+                            <span className="text-center"> Loading... </span>
+                          </TableCell>
+                        </TableRow>
                       ) : (
                         listItems?.map((row, index) => (
-                          <>
+                          <React.Fragment key={index}>
                             <TableRow>
                               <TableCell>
                                 <IconButton
@@ -669,15 +688,15 @@ const AllOrder = () => {
 
                                   <p className="mb-1">{row.order_type}</p>
 
-                                  {row.back_order == 2 && (
+                                  {row.back_order === 2 && (
                                     <p className="mb-1">Back order</p>
                                   )}
 
-                                  {row.pickup_order == 1 && (
+                                  {row.pickup_order === 1 && (
                                     <p className="mb-1">Pickup order</p>
                                   )}
 
-                                  {row.in_store == 1 && (
+                                  {row.in_store === 1 && (
                                     <p className="mb-1">In Store order</p>
                                   )}
                                 </div>
@@ -991,7 +1010,7 @@ const AllOrder = () => {
                                           </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                          {row.items.map((elem, index) => (
+                                          {row.items?.map((elem, index) => (
                                             <TableRow key={index}>
                                               <TableCell>
                                                 {/* <img
@@ -1108,7 +1127,7 @@ const AllOrder = () => {
                                 </Collapse>
                               </TableCell>
                             </TableRow>
-                          </>
+                          </React.Fragment>
                         ))
                       )}
                     </TableBody>

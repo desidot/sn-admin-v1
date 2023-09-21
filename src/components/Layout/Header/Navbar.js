@@ -87,15 +87,15 @@ const Navbar = () => {
         await axios.post(`${APIBASE}admin/stickynotes`, data);
         toast.success("Todo added successfully.", { autoClose: 300 });
         getAllTodos();
-        setData({...data,notes:""})
+        setData({ ...data, notes: "" })
       } catch (error) {
         toast.error(error.response.data.message);
       }
     } else {
       toast.warn("Type something...", { position: "top-center" });
     }
-  }; 
-   function getNormalDateAndTime(dateString) {
+  };
+  function getNormalDateAndTime(dateString) {
     const dateObject = new Date(dateString);
 
     const year = dateObject.getFullYear();
@@ -272,18 +272,8 @@ const Navbar = () => {
                 </div>
               </div>
             </li>
-            {auth.name && (
-              <li
-                style={{
-                  color: "darkgray",
-                  padding: "0px 10px",
-                  fontWeight: "500",
-                }}
-              >
-                Hello {auth.name.split(" ")[0]}{" "}
-              </li>
-            )}
-            <li className="nav-item dropdown  ">
+
+            <li className="nav-item dropdown pl-3">
               <Link
                 className="nav-link dropdown-toggle text-skyblue user-bg rounded-26"
                 to="#"
@@ -316,6 +306,20 @@ const Navbar = () => {
                 </Link>
               </div>
             </li>
+            {auth.name && (
+              <li
+                style={{
+                  color: "darkgray",
+                  padding: "0px 10px",
+                  fontWeight: "500",
+                  fontFamily: "Poppins, sans-saffaris",
+                  lineHeight: 1.4,
+                }}
+              >
+                Hello, <br />
+                {" "}{" "}{" "}{auth.name.split(" ")[0]}
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -387,7 +391,7 @@ const Navbar = () => {
                   onClick={() => handleSaveNotesClick()}
                 />
               </div>
-              <div style={{ padding: "8px",display:"flex",flexDirection:"column",gap:"8px" }}>
+              <div style={{ padding: "8px", display: "flex", flexDirection: "column", gap: "8px" }}>
                 {" "}
                 {allTodos?.map((row, index) => (
                   <div
@@ -425,7 +429,7 @@ const Navbar = () => {
                       }}
                     >
                       <span>{row.added_by}</span>
-                      <span>{getNormalDateAndTime(row.created_at).normalTime} | { getNormalDateAndTime(row.created_at).normalDate}</span>{" "}
+                      <span>{getNormalDateAndTime(row.created_at).normalTime} | {getNormalDateAndTime(row.created_at).normalDate}</span>{" "}
                     </div>
                   </div>
                 ))}

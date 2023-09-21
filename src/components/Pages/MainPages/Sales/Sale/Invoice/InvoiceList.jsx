@@ -54,7 +54,7 @@ const InvoiceList = () => {
   const [openMenuId, setOpenMenuId] = useState(null);
   const [pageCount, setPageCount] = useState(1);
   const [searchOrder, setSearchOrder] = useState("");
-  const [totalItems,setTotalItems]=useState(0)
+  const [totalItems, setTotalItems] = useState(0);
   const handleGoBack = () => {
     // Go back to the previous page in the history
     window.history.go(-1);
@@ -67,7 +67,7 @@ const InvoiceList = () => {
         `${APIBASE}admin/get-all-orders?page=${page}&search=${searchOrder}`
       );
       setPageCount(Math.ceil(res.data.data.total / res.data.data.per_page));
-      setTotalItems(res.data.data.total)
+      setTotalItems(res.data.data.total);
       setListItems(res.data.data.data);
       setIsLoading(false);
     } catch (error) {
@@ -153,9 +153,7 @@ const InvoiceList = () => {
           <div className="BlogsTable">
             {/* Search and Rows per Page */}
             <div className="searchAndNosInvoice">
-              <div className="inv-nos">
-             Total:-{totalItems}
-              </div>
+              <div className="inv-nos">Total:-{totalItems}</div>
               <div className="search-invoice">
                 <TextField
                   position="start"
@@ -206,7 +204,9 @@ const InvoiceList = () => {
                 </TableHead>
                 <TableBody>
                   {isLoading ? (
-                    <span>Loading...</span>
+                    <TableRow>
+                      <TableCell>Loading...</TableCell>
+                    </TableRow>
                   ) : (
                     listItems?.map((row, index) => (
                       <TableRow

@@ -231,7 +231,7 @@ const BackOrderReport = () => {
       );
       setData(res.data.product_sales);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
