@@ -129,6 +129,7 @@ import AddAgent from "./components/Pages/MainPages/Agents/AddAgent";
 import Agents from "./components/Pages/MainPages/Agents/Agent";
 import UserSubscriptions from "./components/Pages/MainPages/Sales/Sale/Orders/UserSubscriptions";
 import SubscriptionOrders from "./components/Pages/MainPages/Sales/Sale/Orders/SubscriptionOrders";
+import InStoreOrder from "./components/Pages/MainPages/Sales/Sale/Orders/InStoreOrders";
 // import NotFound from "./components/Pages/NotFound";
 
 const MainLayout = ({ children }) => (
