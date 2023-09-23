@@ -11,17 +11,17 @@ import {
 } from "@mui/material";
 import TextArea from "antd/es/input/TextArea";
 import HomeIcon from "@mui/icons-material/Home";
-import countries from "../../Countries/Countries";
+// import countries from "../../Countries/Countries";
 import { useDispatch } from "react-redux";
 import {
-  addCustomer,
+  // addCustomer,
   getAllCustomers,
   updateCustomer,
 } from "../../../../../redux/cartSlice";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-import { APIBASE, IMAGEURL } from "../../../../auth/apiConfig";
+import { APIBASE } from "../../../../auth/apiConfig";
 import { toast } from "react-toastify";
 
 const initialState = {
@@ -60,6 +60,7 @@ const CustomerForm = () => {
     if (search.id) {
       hiFi(+search.id);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   const hiFi = async (id) => {

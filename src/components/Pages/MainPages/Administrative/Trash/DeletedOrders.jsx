@@ -197,7 +197,7 @@ const DeletedOrders = () => {
       <div>
         <div className="card">
           <div className="card-header">
-          <h3 className="card-title">Deleted Order</h3>
+            <h3 className="card-title">Deleted Order</h3>
           </div>
           <div className="main-body2">
             {/* Search and Nos */}
@@ -271,7 +271,9 @@ const DeletedOrders = () => {
                 </TableHead>
                 <TableBody align="left">
                   {isLoading ? (
-                    <span>Loading...</span>
+                    <TableRow>
+                      <TableCell>Loading...</TableCell>
+                    </TableRow>
                   ) : (
                     displayedRows?.map((row, index) => (
                       <TableRow key={index}>

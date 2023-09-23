@@ -31,12 +31,13 @@ const initialState = {
   country: "",
 };
 const Profile = () => {
-  const [supplierValue, setPaymentValue] = useState("");
+  // const [supplierValue, setPaymentValue] = useState("");
   const [currProfile, setCurrProfile] = useState({});
 
   const authId = useSelector((state) => state.auth.user.data.id);
 
   const [state, setState] = useState(initialState);
+  // eslint-disable-next-line no-unused-vars
   const handleFileUploadGallary = (event) => {
     const files = event.target.files;
     const uploadedImages = [];
@@ -165,7 +166,7 @@ const Profile = () => {
                 <FormControl fullWidth>
                   <TextField
                     placeholder="Enter Employee Name"
-                    value={state.name}
+                    value={state.name ?? ""}
                     onChange={(e) =>
                       setState({ ...state, name: e.target.value })
                     }
@@ -181,7 +182,7 @@ const Profile = () => {
                 <FormControl fullWidth>
                   <TextField
                     placeholder="Enter Employee Email"
-                    value={state.email}
+                    value={state.email ?? ""}
                     onChange={(e) =>
                       setState({ ...state, email: e.target.value })
                     }
@@ -194,7 +195,7 @@ const Profile = () => {
                 <FormControl fullWidth>
                   <TextField
                     placeholder="Enter Employee ID"
-                    value={state.employee_code}
+                    value={state.employee_code ?? ""}
                     onChange={(e) =>
                       setState({ ...state, employee_code: e.target.value })
                     }
@@ -211,7 +212,7 @@ const Profile = () => {
                   <TextField
                     placeholder="Enter Phone  Number"
                     type="number"
-                    value={state.phone}
+                    value={state.phone ?? ""}
                     onChange={(e) =>
                       setState({ ...state, phone: e.target.value })
                     }
@@ -225,7 +226,7 @@ const Profile = () => {
                   <Select
                     id="supplier"
                     name="supplier"
-                    value={state.gender}
+                    value={state.gender ?? ""}
                     onChange={(e) =>
                       setState({ ...state, gender: e.target.value })
                     }
@@ -244,7 +245,7 @@ const Profile = () => {
                 <FormControl fullWidth>
                   <TextField
                     placeholder="Select date"
-                    value={state.dob}
+                    value={state.dob ?? ""}
                     onChange={(e) =>
                       setState({ ...state, dob: e.target.value })
                     }
@@ -264,7 +265,7 @@ const Profile = () => {
                 <FormControl fullWidth>
                   <TextArea
                     placeholder="Address"
-                    value={state.address}
+                    value={state.address ?? ""}
                     onChange={(e) =>
                       setState({ ...state, address: e.target.value })
                     }
@@ -277,7 +278,7 @@ const Profile = () => {
                 <InputLabel htmlFor="country">Country :</InputLabel>
                 <FormControl fullWidth>
                   <Select
-                    value={state.country}
+                    value={state.country ?? ""}
                     onChange={(e) =>
                       setState({ ...state, country: e.target.value })
                     }

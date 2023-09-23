@@ -2,6 +2,6 @@
 // const IMAGEURL = 'https://media.shopnmac.com/';
 
 const APIBASE = 'https://snapi.quicsy.com/api/';
-const IMAGEURL = 'https://snapi.quicsy.com/';
+const IMAGEURL = 'https://media.quicsy.com/';
 
 export { APIBASE, IMAGEURL };

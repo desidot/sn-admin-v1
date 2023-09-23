@@ -24,7 +24,7 @@ import { MoreVertOutlined, EditOutlined } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { APIBASE, IMAGEURL } from "../../../../../auth/apiConfig";
 import Pagination from "@mui/material/Pagination";
-
+const XLSX = require("xlsx");
 const LowStock = () => {
   const [searchText, setSearchText] = useState("");
   const [selectedRows, setSelectedRows] = useState([]);
@@ -39,6 +39,7 @@ const LowStock = () => {
   const [openMenuId, setOpenMenuId] = useState(null);
   const [showStockEditPopup, setShowStockEditPopup] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
+  const [exporting, setExporting] = useState(false);
 
   const getData = async () => {
     try {
@@ -114,32 +115,70 @@ const LowStock = () => {
     }
   }, [showPopup]);
 
-  const exportCSV = () => {
-    const csvHeaders = [
-      "Sr. No.",
-      "Stock Update On",
-      "Image URL",
-      "Name",
-      "Expired On",
-      "Supplier",
-    ];
+  // const exportCSV = () => {
+  //   const csvHeaders = [
+  //     "Sr. No.",
+  //     "Stock Update On",
+  //     "Image URL",
+  //     "Name",
+  //     "Expired On",
+  //     "Supplier",
+  //   ];
 
-    const csvRows = filteredRows.map((row, index) => [
-      currPage * rowsPerPage - rowsPerPage + 1 + index,
-      row.updated_at,
-      `${IMAGEURL}${row.thumbnail}`,
-      row.product_name,
-      row.expiry_date,
-      row.supplier,
-    ]);
+  //   const csvRows = filteredRows.map((row, index) => [
+  //     currPage * rowsPerPage - rowsPerPage + 1 + index,
+  //     row.updated_at,
+  //     `${IMAGEURL}${row.thumbnail}`,
+  //     row.product_name,
+  //     row.expiry_date,
+  //     row.supplier,
+  //   ]);
 
-    const csvContent =
-      csvHeaders.join(",") +
-      "\n" +
-      csvRows.map((row) => row.join(",")).join("\n");
+  //   const csvContent =
+  //     csvHeaders.join(",") +
+  //     "\n" +
+  //     csvRows.map((row) => row.join(",")).join("\n");
 
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
-    saveAs(blob, "LowStock.csv");
+  //   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
+  //   saveAs(blob, "LowStock.csv");
+  // };
+
+  const getExportInventoryData = async () => {
+    setExporting(true);
+    try {
+      const res = await axios.get(`${APIBASE}admin/export-lowStock-products`);
+      handleExport(res?.data?.products);
+      setExporting(false);
+    } catch (error) {
+      setExporting(false);
+    }
+  };
+
+  const handleExport = (data) => {
+    const exportIt = data?.map((elem, index) => ({
+      Sr_no: index + 1,
+      // Stock_Update_On: elem.updated_at,
+      Product: elem?.product_name,
+      Stock_Update_On: elem?.updated_at,
+      Qty: elem?.quantity,
+      Supplier: elem?.supplier?.name,
+
+      //     "Sr. No.",
+      //     "Stock Update On",
+      //     "Image URL",
+      //     "Name",
+      //     "Expired On",
+      //     "Supplier",
+    }));
+
+    let wb = XLSX.utils.book_new();
+    if (exportIt.length > 0) {
+      let ws = XLSX.utils.json_to_sheet(exportIt);
+      XLSX.utils.book_append_sheet(wb, ws, "MySheet");
+      XLSX.writeFile(wb, "Inventory.xlsx");
+    } else {
+      alert("Please select some items.");
+    }
   };
 
   const filteredRows = inventoryData.filter((row) => {
@@ -189,8 +228,12 @@ const LowStock = () => {
         <div className="card-header">
           <h3 className="card-title">Low Stocks</h3>
           <div className="copy-button">
-            <Button variant="contained" onClick={exportCSV}>
-              CSV
+          <Button
+              disabled={exporting}
+              variant="contained"
+              onClick={() => getExportInventoryData()}
+            >
+              {exporting ? "Exporting" : "Excel"}
             </Button>
           </div>
           {/* Popup */}

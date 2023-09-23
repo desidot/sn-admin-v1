@@ -484,7 +484,7 @@ const PaymentReport = () => {
             <Grid item xs={12} md={3}>
               <InputLabel htmlFor=""> Payment Type :</InputLabel>
               <FormControl fullWidth>
-                {/* <InputLabel htmlFor="">Select Role</InputLabel> */}
+                <InputLabel htmlFor="" className="custom-inputlabel">Select Role</InputLabel>
                 <Autocomplete
                   disablePortal
                   id="combo-box-demo"
@@ -496,7 +496,9 @@ const PaymentReport = () => {
                     "& fieldset": { top: 0 },
                   }}
                   renderInput={(params) => (
-                    <TextField {...params} label="Payment Type" />
+                    <TextField
+                      {...params}
+                    />
                   )}
                 />
               </FormControl>

@@ -71,7 +71,7 @@ const OrderSummaryPopup = ({ onClose }) => {
 
   useEffect(() => {
     setNote({ ...note, added_by: added_by });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [added_by]);
 
   const handleOpenDialog = () => {
@@ -139,11 +139,11 @@ const OrderSummaryPopup = ({ onClose }) => {
 
   useEffect(() => {
     calculateDiscount();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     calculateDiscount();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [
@@ -178,9 +178,9 @@ const OrderSummaryPopup = ({ onClose }) => {
       if (res.data.data) {
         setIsloading1(false);
         toast.success("Order Placed Successfully.");
-        if (note.note && note.title) {
-          saveNote({ ...note, order_id: res.data.data.id });
-        }
+        // if (note.note && note.title) {
+        //   saveNote({ ...note, order_id: res.data.data.id });
+        // }
         navigate(`/admin/Sales/pos-thankyou/${res.data.data.id}`);
 
         dispatch(makeCartItemsEmpty([]));
@@ -223,7 +223,7 @@ const OrderSummaryPopup = ({ onClose }) => {
     };
 
     getShippingCharge();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
   const confirmOrderWithCard = async (data) => {
@@ -234,9 +234,9 @@ const OrderSummaryPopup = ({ onClose }) => {
       if (res.data.data) {
         setIsloading2(false);
         toast.success("Order Placed Successfully.");
-        if (note.note && note.title) {
-          saveNote({ ...note, order_id: res.data.data.id });
-        }
+        // if (note.note && note.title) {
+        //   saveNote({ ...note, order_id: res.data.data.id });
+        // }
         navigate(`/admin/Sales/pos-thankyou/${res.data.data.id}`);
 
         dispatch(makeCartItemsEmpty([]));
@@ -264,9 +264,9 @@ const OrderSummaryPopup = ({ onClose }) => {
       if (res.data.data) {
         setIsloading3(false);
         toast.success("Order Placed Successfully.");
-        if (note.note && note.title) {
-          saveNote({ ...note, order_id: res.data.data.id });
-        }
+        // if (note.note && note.title) {
+        //   saveNote({ ...note, order_id: res.data.data.id });
+        // }
 
         navigate(`/admin/Sales/pos-thankyou/${res.data.data.id}`);
         dispatch(makeCartItemsEmpty([]));
@@ -353,6 +353,7 @@ const OrderSummaryPopup = ({ onClose }) => {
     obj.user_id = cart.selectedCustomer.id;
     obj.added_by = auth?.user?.data.name;
     obj.agent_id = cart.agent;
+    obj.note = note?.note;
     obj.in_store = cart.inStore;
     obj.back_order = cart.backedOrder ? 1 : 0;
     obj.order_items = cart.cartItems.map((elem) => ({
@@ -445,6 +446,7 @@ const OrderSummaryPopup = ({ onClose }) => {
     obj.user_id = cart.selectedCustomer.id;
     obj.added_by = auth?.user?.data.name;
     obj.agent_id = cart.agent;
+    obj.note = note?.note;
     obj.in_store = cart.inStore;
     obj.back_order = cart.backedOrder ? 1 : 0;
     if (cart.cartType.type !== "Subscribe") {
@@ -584,6 +586,7 @@ const OrderSummaryPopup = ({ onClose }) => {
     obj.added_by = auth?.user?.data.name;
     obj.back_order = cart.backedOrder ? 1 : 0;
     obj.agent_id = cart.agent;
+    obj.note = note?.note;
     obj.in_store = cart.inStore;
     obj.order_items = cart.cartItems.map((elem) => ({
       name: elem.product_name,
@@ -681,7 +684,8 @@ const OrderSummaryPopup = ({ onClose }) => {
   };
 
   const handleNoteSaveClick = () => {
-    if (note.note && note.title) {
+    // if (note.note && note.title) {
+    if (note.note) {
       handleCloseDialog2();
     } else {
       toast.warn("Nothing in note!", { position: "top-center" });
@@ -1192,7 +1196,7 @@ const OrderSummaryPopup = ({ onClose }) => {
                 width: "100%",
                 border: "0.5px solid lightgray",
                 borderRadius: "4px",
-                padding: "5px"
+                padding: "5px",
               }}
               placeholder="Title"
               onChange={(e) => setNote({ ...note, title: e.target.value })}

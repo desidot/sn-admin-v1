@@ -215,7 +215,7 @@ const PickupPoint = () => {
       <br />
       <div className="card">
         <div className="card-header">
-        <h3 className="card-title">All Pick-up Report</h3>
+          <h3 className="card-title">All Pick-up Report</h3>
           {/* Buttons */}
           <div className="tabs-butons">
             <Link to="/admin/Administrative/Setup/add-pick-up-point">
@@ -281,7 +281,9 @@ const PickupPoint = () => {
               </TableHead>
               <TableBody align="left">
                 {isLoading ? (
-                  <span>Loading...</span>
+                  <TableRow>
+                    <TableCell>Loading...</TableCell>
+                  </TableRow>
                 ) : (
                   listItems?.map((row, index) => (
                     <TableRow key={index}>

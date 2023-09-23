@@ -94,6 +94,7 @@ const InventoryReport = () => {
   //     );
   //   }, [searchText, data]);
 
+
   function formatDateToDayMonthYear(dateString) {
     const dateObject = new Date(dateString);
 
@@ -136,6 +137,7 @@ const InventoryReport = () => {
       alert("Please select some items.");
     }
   };
+
 
   return (
     <>

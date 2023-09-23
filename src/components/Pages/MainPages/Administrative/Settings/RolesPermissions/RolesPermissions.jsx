@@ -312,7 +312,7 @@ const RolesPermissions = () => {
         </h5>
         <div className="roles-list" style={{ paddingTop: "10px" }}>
           {allRoles?.map((row, index) => (
-            <div>
+            <div key={index}>
               <div
                 style={{
                   marginBottom: "10px",
@@ -569,6 +569,7 @@ const RolesPermissions = () => {
             {usersPerRole.length > 0 ? (
               usersPerRole?.map((row, index) => (
                 <div
+                key={index}
                   style={{
                     padding: "5px 10px",
                     borderBottom: "0.5px solid lightgray",

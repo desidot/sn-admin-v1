@@ -33,7 +33,7 @@ import { Link } from "react-router-dom";
 import AddEditStockPopup from "../../ProductInventoryPopup/AddEditStockPopup";
 
 import { APIBASE, IMAGEURL } from "../../../../../auth/apiConfig";
-
+const XLSX = require("xlsx");
 const StockoutProducts = () => {
   const [searchText, setSearchText] = useState("");
   const [selectedRows, setSelectedRows] = useState([]);
@@ -168,34 +168,55 @@ const StockoutProducts = () => {
   //   setShowPopup(true);
   // };
 
-  const exportCSV = () => {
-    const csvHeaders = [
-      "Sr. No.",
-      "Stock Update On",
-      "Image URL",
-      "Name",
-      "Expired On",
-      "Supplier",
-    ];
+  // const exportCSV = () => {
+  //   const csvHeaders = [
+  //     "Sr. No.",
+  //     "Stock Update On",
+  //     "Image URL",
+  //     "Name",
+  //     "Expired On",
+  //     "Supplier",
+  //   ];
 
-    const csvRows = displayedRows.map((row, index) => [
-      index + 1,
-      // <Moment format="MM/DD/YYYY">{row.updated_at}</Moment>,
-      row.updated_at,
-      `${IMAGEURL}${row.thumbnail}`,
-      row.product_name,
-      // <Moment format="MM/DD/YYYY">{row.expiry_date}</Moment>,
-      row.expiry_date,
-      row.supplier.name,
-    ]);
+  //   const csvRows = displayedRows.map((row, index) => [
+  //     index + 1,
+  //     // <Moment format="MM/DD/YYYY">{row.updated_at}</Moment>,
+  //     row.updated_at,
+  //     `${IMAGEURL}${row.thumbnail}`,
+  //     row.product_name,
+  //     // <Moment format="MM/DD/YYYY">{row.expiry_date}</Moment>,
+  //     row.expiry_date,
+  //     row.supplier.name,
+  //   ]);
 
-    const csvContent =
-      csvHeaders.join(",") +
-      "\n" +
-      csvRows.map((row) => row.join(",")).join("\n");
+  //   const csvContent =
+  //     csvHeaders.join(",") +
+  //     "\n" +
+  //     csvRows.map((row) => row.join(",")).join("\n");
 
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
-    saveAs(blob, "StockOut.csv");
+  //   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
+  //   saveAs(blob, "StockOut.csv");
+  // };
+
+  const handleExport = () => {
+    const exportIt = rows?.map((elem, index) => ({
+      "Sr. No.": index + 1,
+      "Stock Update On": elem?.updated_at,
+      // "Image URL": ,
+      Name: elem?.product_name,
+      Quantity: elem?.quantity,
+      "Expired On": elem?.expiry_date,
+      Supplier: elem?.supplier?.name,
+    }));
+
+    let wb = XLSX.utils.book_new();
+    if (exportIt.length > 0) {
+      let ws = XLSX.utils.json_to_sheet(exportIt);
+      XLSX.utils.book_append_sheet(wb, ws, "MySheet");
+      XLSX.writeFile(wb, "StockotProducts.xlsx");
+    } else {
+      alert("Please select some items.");
+    }
   };
 
   const getData = async () => {
@@ -262,8 +283,8 @@ const StockoutProducts = () => {
             {/* <Button variant="contained" onClick={exportExcel}>
               Excel
             </Button> */}
-            <Button variant="contained" onClick={exportCSV}>
-              CSV
+            <Button variant="contained" onClick={handleExport}>
+              Excel
             </Button>
             {/* <Button variant="contained" onClick={exportPDF}>
               PDF

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {
   Typography,
-  Grid,
-  FormControl,
-  Select,
+  // Grid,
+  // FormControl,
+  // Select,
   MenuItem,
-  Checkbox,
-  FormGroup,
-  FormControlLabel,
+  // Checkbox,
+  // FormGroup,
+  // FormControlLabel,
   Table,
   TableBody,
   TableCell,
@@ -442,10 +442,12 @@ const FailedOrders = () => {
                       )} */}
 
                       {isLoading ? (
-                        <span>Loading...</span>
+                        <TableRow>
+                          <TableCell>Loading...</TableCell>
+                        </TableRow>
                       ) : (
                         listItems?.map((row, index) => (
-                          <>
+                          <React.Fragment key={index}>
                             <TableRow>
                               <TableCell>
                                 <IconButton
@@ -816,7 +818,7 @@ const FailedOrders = () => {
                                 </Collapse>
                               </TableCell>
                             </TableRow>
-                          </>
+                          </React.Fragment>
                         ))
                       )}
                     </TableBody>
