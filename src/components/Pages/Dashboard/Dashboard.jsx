@@ -548,7 +548,7 @@ const Dashboard = () => {
               title="Instore Orders"
               className="iconsize"
               value={totalInStore}
-              link="/admin/Sales/all-orders"
+              link="/admin/Sales/in-store-orders"
               icon={AiOutlineDollarCircle}
               color="#fff"
               iconColor="#ffffff80"

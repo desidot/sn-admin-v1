@@ -226,7 +226,10 @@ const Sidebar = ({ children }) => {
                     path: "/admin/Sales/pos-orders",
                     name: "POS Orders",
                   },
-
+                  {
+                    path: "/admin/Sales/in-store-orders",
+                    name: "In Store Orders",
+                  },
                   {
                     path: "/admin/Sales/pickup-orders",
                     name: "Pick up Point Orders",
@@ -670,7 +673,10 @@ const Sidebar = ({ children }) => {
                     path: "/admin/Sales/pos-orders",
                     name: "POS Orders",
                   },
-
+                  {
+                    path: "/admin/Sales/in-store-orders",
+                    name: "In Store Orders",
+                  },
                   permissions.includes("View All Pick-Up Orders") && {
                     path: "/admin/Sales/pickup-orders",
                     name: "Pick up Point Orders",

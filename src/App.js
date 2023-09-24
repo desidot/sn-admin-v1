@@ -173,179 +173,179 @@ function App() {
       {/* <Route path="/admin" element={<Dashboard />} /> */}
 
       {/* Main Layout */}
-   
-        <Route path="/admin/*" element={  isLoggedIn ? <MainLayout> {/* Note the <Outlet> component here */}
-          <Outlet />
 
-          {/* Main Pages */}
-          <Routes>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="miscellaneous/tasks" element={<Tasks />} />
-            <Route path="miscellaneous/notifications" element={<Notifications />} />
-            <Route path="miscellaneous/blogs" element={<Blogs />} />
-            <Route path="miscellaneous/addBlogs" element={<AddBlog />} />
-            <Route path="miscellaneous/editBlog/:id" element={<AddBlog />} />
-          </Routes>
+      <Route path="/admin/*" element={isLoggedIn ? <MainLayout> {/* Note the <Outlet> component here */}
+        <Outlet />
 
-          {/* Sales */}
-          <Routes>
-            <Route path="Sales/PoS" element={<PoS />} />
-            <Route path="Sales/all-orders" element={<AllOrder />} />
+        {/* Main Pages */}
+        <Routes>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="miscellaneous/tasks" element={<Tasks />} />
+          <Route path="miscellaneous/notifications" element={<Notifications />} />
+          <Route path="miscellaneous/blogs" element={<Blogs />} />
+          <Route path="miscellaneous/addBlogs" element={<AddBlog />} />
+          <Route path="miscellaneous/editBlog/:id" element={<AddBlog />} />
+        </Routes>
 
-            <Route path="Sales/subscription-orders" element={<SubscriptionOrders />} />
+        {/* Sales */}
+        <Routes>
+          <Route path="Sales/PoS" element={<PoS />} />
+          <Route path="Sales/all-orders" element={<AllOrder />} />
 
-            <Route path="Sales/user-subscriptions" element={<UserSubscriptions />} />
-            <Route path="Sales/pickup-orders" element={<PickupOrder />} />
-            <Route path="Sales/customer-orders/:id" element={<OrdersPerCustomer />} />
+          <Route path="Sales/subscription-orders" element={<SubscriptionOrders />} />
 
-            <Route path="Sales/pos-orders" element={<PosOrder />} />
-            <Route path="Sales/back-orders" element={<BackOrder />} />
-            <Route path="Sales/Invoice-list" element={<InvoiceList />} />
-            <Route path="Sales/pos-thankyou/:id" element={<POSThankyou />} />
-          </Routes>
+          <Route path="Sales/user-subscriptions" element={<UserSubscriptions />} />
+          <Route path="Sales/pickup-orders" element={<PickupOrder />} />
+          <Route path="Sales/customer-orders/:id" element={<OrdersPerCustomer />} />
+          <Route path="Sales/in-store-orders" element={<InStoreOrder />} />
+          <Route path="Sales/pos-orders" element={<PosOrder />} />
+          <Route path="Sales/back-orders" element={<BackOrder />} />
+          <Route path="Sales/Invoice-list" element={<InvoiceList />} />
+          <Route path="Sales/pos-thankyou/:id" element={<POSThankyou />} />
+        </Routes>
 
-          {/* Product Manager */}
-          <Routes>
-            <Route path="ProductManager/Inventory/product-inventory" element={<ProductInventory />} />
-            <Route path="ProductManager/Inventory/expired-stocks" element={<ExpiredStocks />} />
-            <Route path="ProductManager/Inventory/expiring-soon" element={<ExpiringSoon />} />
-            <Route path="ProductManager/Inventory/low-stock" element={<LowStock />} />
-            <Route path="ProductManager/Inventory/stockout-products" element={<StockoutProducts />} />
-            <Route path="ProductManager/Products/add-products" element={<AddProducts />} />
-            <Route path="ProductManager/Products/edit-products/:id" element={<EditProducts />} />
-            <Route path="ProductManager/Products/view-products/:id" element={<ViewProduct />} />
+        {/* Product Manager */}
+        <Routes>
+          <Route path="ProductManager/Inventory/product-inventory" element={<ProductInventory />} />
+          <Route path="ProductManager/Inventory/expired-stocks" element={<ExpiredStocks />} />
+          <Route path="ProductManager/Inventory/expiring-soon" element={<ExpiringSoon />} />
+          <Route path="ProductManager/Inventory/low-stock" element={<LowStock />} />
+          <Route path="ProductManager/Inventory/stockout-products" element={<StockoutProducts />} />
+          <Route path="ProductManager/Products/add-products" element={<AddProducts />} />
+          <Route path="ProductManager/Products/edit-products/:id" element={<EditProducts />} />
+          <Route path="ProductManager/Products/view-products/:id" element={<ViewProduct />} />
 
-            <Route path="ProductManager/Products/list-products" element={<ListOfProducts />} />
-            <Route path="ProductManager/Products/categories" element={<Categories />} />
-            <Route path="ProductManager/Products/add-categories" element={<AddCategories />} />
-            <Route path="ProductManager/Products/edit-categories/:id" element={<EditCategories />} />
-            <Route path="ProductManager/Products/brands" element={<Brands />} />
-            <Route path="ProductManager/Products/add-brands" element={<AddBrand />} />
-            <Route path="ProductManager/Products/edit-brands/:id" element={<EditBrand />} />
-            <Route path="ProductManager/Products/units" element={<Units />} />
-            <Route path="ProductManager/Products/add-unit" element={<AddUnit />} />
-            <Route path="ProductManager/Products/edit-unit/:id" element={<EditUnit />} />
-            <Route path="ProductManager/Products/suppliers-list" element={<Suppliers />} />
-            <Route path="ProductManager/Products/add-supplierslist" element={<AddSuppliers />} />
-            <Route path="ProductManager/Products/edit-supplier/:id" element={<EditSuppliers />} />
+          <Route path="ProductManager/Products/list-products" element={<ListOfProducts />} />
+          <Route path="ProductManager/Products/categories" element={<Categories />} />
+          <Route path="ProductManager/Products/add-categories" element={<AddCategories />} />
+          <Route path="ProductManager/Products/edit-categories/:id" element={<EditCategories />} />
+          <Route path="ProductManager/Products/brands" element={<Brands />} />
+          <Route path="ProductManager/Products/add-brands" element={<AddBrand />} />
+          <Route path="ProductManager/Products/edit-brands/:id" element={<EditBrand />} />
+          <Route path="ProductManager/Products/units" element={<Units />} />
+          <Route path="ProductManager/Products/add-unit" element={<AddUnit />} />
+          <Route path="ProductManager/Products/edit-unit/:id" element={<EditUnit />} />
+          <Route path="ProductManager/Products/suppliers-list" element={<Suppliers />} />
+          <Route path="ProductManager/Products/add-supplierslist" element={<AddSuppliers />} />
+          <Route path="ProductManager/Products/edit-supplier/:id" element={<EditSuppliers />} />
 
-            <Route path="ProductManager/Products/show-reviews" element={<ProductReiews />} />
-            <Route path="ProductManager/Products/set-alerts" element={<SetAlerts />} />
-          </Routes>
+          <Route path="ProductManager/Products/show-reviews" element={<ProductReiews />} />
+          <Route path="ProductManager/Products/set-alerts" element={<SetAlerts />} />
+        </Routes>
 
-          {/* People */}
-          <Routes>
-            <Route path="People/GeneralCustomers/add-customers" element={<CustomerForm />} />
-            <Route path="People/GeneralCustomers/all-customers" element={<AllCustomers />} />
-            <Route path="People/GeneralCustomers/deleted-customers" element={<DeletedCustomers />} />
-            <Route path="People/GeneralCustomers/edit-customers/:id" element={<CustomerForm />} />
-            <Route path="People/add-agent" element={<AddAgent />} />
-            <Route path="People/all-agents" element={<Agents />} />
-            <Route path="People/edit-agent/:id" element={<AddAgent />} />
-          </Routes>
-          {/* People */}
+        {/* People */}
+        <Routes>
+          <Route path="People/GeneralCustomers/add-customers" element={<CustomerForm />} />
+          <Route path="People/GeneralCustomers/all-customers" element={<AllCustomers />} />
+          <Route path="People/GeneralCustomers/deleted-customers" element={<DeletedCustomers />} />
+          <Route path="People/GeneralCustomers/edit-customers/:id" element={<CustomerForm />} />
+          <Route path="People/add-agent" element={<AddAgent />} />
+          <Route path="People/all-agents" element={<Agents />} />
+          <Route path="People/edit-agent/:id" element={<AddAgent />} />
+        </Routes>
+        {/* People */}
 
-          {/* Marketing Promotions */}
-          <Routes>
-            <Route path="Marketing-Promotions/product-wishlist" element={<ProductWishlist />} />
-            <Route path="Marketing-Promotions/product-wishlist/add-to-products" element={<AddtoWislist />} />
-            <Route path="Marketing-Promotions/all-subscribers" element={<AllSubscribers />} />
-            <Route path="Marketing-Promotions/subscription-discount" element={<SubscriptionDiscount />} />
-            <Route path="Marketing-Promotions/add-subscription-discount" element={<AddSubscriptionDiscount />} />
-            <Route path="Marketing-Promotions/edit-subscription-discount/:id" element={<AddSubscriptionDiscount />} />
-            <Route path="Marketing-Promotions/periodic-discounts" element={<Discount />} />
-            <Route path="Marketing-Promotions/add-periodic-discount" element={<AddPeriodicDiscount />} />
-            <Route path="Marketing-Promotions/edit-periodic-discount/:id" element={<AddPeriodicDiscount />} />
-            <Route path="Marketing-Promotions/coupons" element={<Coupons />} />
-            <Route path="Marketing-Promotions/add-coupons" element={<AddCoupons />} />
-            <Route path="Marketing-Promotions/deals" element={<Deals />} />
-            <Route path="Marketing-Promotions/add-deals" element={<AddDeals />} />
-            <Route path="Marketing-Promotions/edit-deals/:id" element={<AddDeals />} />
-            <Route path="Marketing-Promotions/Marketing/user-searches" element={<UserSearches />} />
-            <Route path="Marketing-Promotions/Marketing/fail-orders" element={<FailOrders />} />
-            <Route path="Marketing-Promotions/Marketing/on-cart" element={<OnCart />} />
-            <Route path="Marketing-Promotions/headline-ads" element={<HeadlineAds />} />
-            <Route path="Marketing-Promotions/add-headline-ads/:id" element={<AddHeadlineAds />} />
-            <Route path="Marketing-Promotions/center-ads" element={<CenterAds />} />
-            <Route path="Marketing-Promotions/add-center-ads/:id" element={<AddCenterAds />} />
-            <Route path="Marketing-Promotions/contact-us" element={<ContactUs />} />
-          </Routes>
+        {/* Marketing Promotions */}
+        <Routes>
+          <Route path="Marketing-Promotions/product-wishlist" element={<ProductWishlist />} />
+          <Route path="Marketing-Promotions/product-wishlist/add-to-products" element={<AddtoWislist />} />
+          <Route path="Marketing-Promotions/all-subscribers" element={<AllSubscribers />} />
+          <Route path="Marketing-Promotions/subscription-discount" element={<SubscriptionDiscount />} />
+          <Route path="Marketing-Promotions/add-subscription-discount" element={<AddSubscriptionDiscount />} />
+          <Route path="Marketing-Promotions/edit-subscription-discount/:id" element={<AddSubscriptionDiscount />} />
+          <Route path="Marketing-Promotions/periodic-discounts" element={<Discount />} />
+          <Route path="Marketing-Promotions/add-periodic-discount" element={<AddPeriodicDiscount />} />
+          <Route path="Marketing-Promotions/edit-periodic-discount/:id" element={<AddPeriodicDiscount />} />
+          <Route path="Marketing-Promotions/coupons" element={<Coupons />} />
+          <Route path="Marketing-Promotions/add-coupons" element={<AddCoupons />} />
+          <Route path="Marketing-Promotions/deals" element={<Deals />} />
+          <Route path="Marketing-Promotions/add-deals" element={<AddDeals />} />
+          <Route path="Marketing-Promotions/edit-deals/:id" element={<AddDeals />} />
+          <Route path="Marketing-Promotions/Marketing/user-searches" element={<UserSearches />} />
+          <Route path="Marketing-Promotions/Marketing/fail-orders" element={<FailOrders />} />
+          <Route path="Marketing-Promotions/Marketing/on-cart" element={<OnCart />} />
+          <Route path="Marketing-Promotions/headline-ads" element={<HeadlineAds />} />
+          <Route path="Marketing-Promotions/add-headline-ads/:id" element={<AddHeadlineAds />} />
+          <Route path="Marketing-Promotions/center-ads" element={<CenterAds />} />
+          <Route path="Marketing-Promotions/add-center-ads/:id" element={<AddCenterAds />} />
+          <Route path="Marketing-Promotions/contact-us" element={<ContactUs />} />
+        </Routes>
 
-          {/* Basic HR */}
-          <Routes>
-            <Route path="Basic-HR/Employees/list-employees" element={<ListEmployees />} />
-            <Route path="Basic-HR/Employees/add-employees" element={<AddEmployees />} />
-            <Route path="Basic-HR/Employees/edit-employees/:id" element={<AddEmployees />} />
-          </Routes>
+        {/* Basic HR */}
+        <Routes>
+          <Route path="Basic-HR/Employees/list-employees" element={<ListEmployees />} />
+          <Route path="Basic-HR/Employees/add-employees" element={<AddEmployees />} />
+          <Route path="Basic-HR/Employees/edit-employees/:id" element={<AddEmployees />} />
+        </Routes>
 
-          {/* Administrative */}
-          <Routes>
-            <Route path="Administrative/Setup/pick-up-point" element={<PickupPoint />} />
-            <Route path="Administrative/Setup/add-pick-up-point" element={<AddPickupPoint />} />
-            <Route path="Administrative/Setup/Shipping/shipping-config" element={<ShippingConfiguration />} />
-            <Route path="Administrative/Settings/roles-permission" element={<RolesPermissions />} />
-            <Route path="Administrative/Settings/add-roles" element={<AddRoleAndPremissions />} />
-            <Route path="Administrative/Settings/edit-roles/:id" element={<AddRoleAndPremissions />} />
-            <Route path="Administrative/Settings/prefixes" element={<Prefixes />} />
-            <Route path="Administrative/Settings/account-settings/profile" element={<Profile />} />
-            <Route path="Administrative/Settings/account-settings/profile/change-profile" element={<ChangePassword />} />
-            <Route path="Administrative/Website-Setup/sliders" element={<Sliders />} />
-            <Route path="Administrative/Website-Setup/add-sliders" element={<AddSlider />} />
-            <Route path="Administrative/Website-Setup/sliders/edit-sliders/:id" element={<AddSlider />} />
-            <Route path="Administrative/Website-Setup/meta" element={<Meta />} />
-            <Route path="Administrative/Website-Setup/pages" element={<SetupPages />} />
-            <Route path="Administrative/Website-Setup/add-meta" element={<AddMeta />} />
+        {/* Administrative */}
+        <Routes>
+          <Route path="Administrative/Setup/pick-up-point" element={<PickupPoint />} />
+          <Route path="Administrative/Setup/add-pick-up-point" element={<AddPickupPoint />} />
+          <Route path="Administrative/Setup/Shipping/shipping-config" element={<ShippingConfiguration />} />
+          <Route path="Administrative/Settings/roles-permission" element={<RolesPermissions />} />
+          <Route path="Administrative/Settings/add-roles" element={<AddRoleAndPremissions />} />
+          <Route path="Administrative/Settings/edit-roles/:id" element={<AddRoleAndPremissions />} />
+          <Route path="Administrative/Settings/prefixes" element={<Prefixes />} />
+          <Route path="Administrative/Settings/account-settings/profile" element={<Profile />} />
+          <Route path="Administrative/Settings/account-settings/profile/change-profile" element={<ChangePassword />} />
+          <Route path="Administrative/Website-Setup/sliders" element={<Sliders />} />
+          <Route path="Administrative/Website-Setup/add-sliders" element={<AddSlider />} />
+          <Route path="Administrative/Website-Setup/sliders/edit-sliders/:id" element={<AddSlider />} />
+          <Route path="Administrative/Website-Setup/meta" element={<Meta />} />
+          <Route path="Administrative/Website-Setup/pages" element={<SetupPages />} />
+          <Route path="Administrative/Website-Setup/add-meta" element={<AddMeta />} />
 
-            <Route path="Administrative/Website-Setup/edit-meta/:id" element={<AddMeta />} />
-          </Routes>
+          <Route path="Administrative/Website-Setup/edit-meta/:id" element={<AddMeta />} />
+        </Routes>
 
-          {/* Administrative */}
-          {/* Reports */}
-          <Routes>
-            <Route path="Report/Sales-Report/all-sales" element={<AllSales />} />
-            <Route path="Report/Sales-Report/user-report" element={<UserReport />} />
-            <Route path="Report/Sales-Report/income-report" element={<IncomeReport />} />
-            <Route path="Report/Sales-Report/pos-report" element={<PosReport />} />
-            <Route path="Report/Sales-Report/product-wise-report" element={<ProductWiseReport />} />
-            <Route path="Report/Sales-Report/back-order-report" element={<BackOrderReport />} />
-            <Route path="Report/Sales-Report/subscription-report" element={<SubscriptionReport />} />
-            <Route path="Report/Sales-Report/payment-report" element={<PaymentReport />} />
-            <Route path="Report/Sales-Report/Employee-sales-report" element={<EmployeeSalesReport />} />
-            <Route path="Report/Sales-Report/Agent-sales-report" element={<AgentSalesReport />} />
-            <Route path="Report/Sales-Report/wishlist-report" element={<WishlistReport />} />
-            <Route path="Report/Sales-Report/card-report" element={<CardReport />} />
-            <Route path="Report/Sales-Report/product-report" element={<ProductReport />} />
-            <Route path="Report/Sales-Report/inventory-report" element={<InventoryReport />} />
-          </Routes>
-          {/* Reports */}
+        {/* Administrative */}
+        {/* Reports */}
+        <Routes>
+          <Route path="Report/Sales-Report/all-sales" element={<AllSales />} />
+          <Route path="Report/Sales-Report/user-report" element={<UserReport />} />
+          <Route path="Report/Sales-Report/income-report" element={<IncomeReport />} />
+          <Route path="Report/Sales-Report/pos-report" element={<PosReport />} />
+          <Route path="Report/Sales-Report/product-wise-report" element={<ProductWiseReport />} />
+          <Route path="Report/Sales-Report/back-order-report" element={<BackOrderReport />} />
+          <Route path="Report/Sales-Report/subscription-report" element={<SubscriptionReport />} />
+          <Route path="Report/Sales-Report/payment-report" element={<PaymentReport />} />
+          <Route path="Report/Sales-Report/Employee-sales-report" element={<EmployeeSalesReport />} />
+          <Route path="Report/Sales-Report/Agent-sales-report" element={<AgentSalesReport />} />
+          <Route path="Report/Sales-Report/wishlist-report" element={<WishlistReport />} />
+          <Route path="Report/Sales-Report/card-report" element={<CardReport />} />
+          <Route path="Report/Sales-Report/product-report" element={<ProductReport />} />
+          <Route path="Report/Sales-Report/inventory-report" element={<InventoryReport />} />
+        </Routes>
+        {/* Reports */}
 
-          {/* Trash */}
-          <Routes>
-            <Route path="Administrative/Trash/deleted-orders" element={<DeletedOrders />} />
-            <Route path="Administrative/Trash/deleted-products" element={<DeletedProducts />} />
-            <Route path="Administrative/Trash/deleted-categories" element={<DeletedCategories />} />
-          </Routes>
+        {/* Trash */}
+        <Routes>
+          <Route path="Administrative/Trash/deleted-orders" element={<DeletedOrders />} />
+          <Route path="Administrative/Trash/deleted-products" element={<DeletedProducts />} />
+          <Route path="Administrative/Trash/deleted-categories" element={<DeletedCategories />} />
+        </Routes>
 
-          {/* Admin */}
-          <Routes>
-            <Route path="Admin/view-order-details/:id" element={<ViewOrderDetails />} />
-            <Route path="Admin/view-invoice-details/:id" element={<ViewInvoiceDetails />} />
-            <Route path="Admin/view-and-update-status/:id" element={<ViewAndUpdateStatus />} />
-            <Route path="Admin/view-and-take-notes/:id" element={<ViewNotes />} />
-          </Routes>
+        {/* Admin */}
+        <Routes>
+          <Route path="Admin/view-order-details/:id" element={<ViewOrderDetails />} />
+          <Route path="Admin/view-invoice-details/:id" element={<ViewInvoiceDetails />} />
+          <Route path="Admin/view-and-update-status/:id" element={<ViewAndUpdateStatus />} />
+          <Route path="Admin/view-and-take-notes/:id" element={<ViewNotes />} />
+        </Routes>
 
-          {/* History */}
-          <Routes>
-            <Route path="History/product-history/:id" element={<ProductHistory />} />
-          </Routes>
+        {/* History */}
+        <Routes>
+          <Route path="History/product-history/:id" element={<ProductHistory />} />
+        </Routes>
 
-          {/* Catch-all for 404 routes */}
-          {/* <Route path="*" element={<NotFound />} /> */}
-        </MainLayout>:(
-            <Navigate to="/admin" replace />
-          )} />
+        {/* Catch-all for 404 routes */}
+        {/* <Route path="*" element={<NotFound />} /> */}
+      </MainLayout> : (
+        <Navigate to="/admin" replace />
+      )} />
 
-       
+
 
 
     </Routes>
