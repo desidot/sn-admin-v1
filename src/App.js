@@ -129,6 +129,7 @@ import AddAgent from "./components/Pages/MainPages/Agents/AddAgent";
 import Agents from "./components/Pages/MainPages/Agents/Agent";
 import UserSubscriptions from "./components/Pages/MainPages/Sales/Sale/Orders/UserSubscriptions";
 import SubscriptionOrders from "./components/Pages/MainPages/Sales/Sale/Orders/SubscriptionOrders";
+import InStoreOrder from "./components/Pages/MainPages/Sales/Sale/Orders/InStoreOrders";
 // import NotFound from "./components/Pages/NotFound";
 
 const MainLayout = ({ children }) => (
@@ -195,6 +196,7 @@ function App() {
 
             <Route path="Sales/user-subscriptions" element={<UserSubscriptions />} />
             <Route path="Sales/pickup-orders" element={<PickupOrder />} />
+            <Route path="Sales/in-store-orders" element={<InStoreOrder />} />
             <Route path="Sales/customer-orders/:id" element={<OrdersPerCustomer />} />
 
             <Route path="Sales/pos-orders" element={<PosOrder />} />

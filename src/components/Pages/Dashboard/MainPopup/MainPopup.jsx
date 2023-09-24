@@ -30,72 +30,24 @@ const MainPopup = ({ onSave, onCancel }) => {
   const [stockOutProducts, setStockOutProducts] = useState([]);
   
   useEffect(() => {
-    getReminders();
-    getExpiringSoon();
-    getExpiredStock();
-    getLowStockProducts();
-    getBackOrders();
-    getStockOutProducts();
+ getDashBoardData();
   }, []);
 
-  const getStockOutProducts = async () => {
+  const getDashBoardData = async () => {
     try {
-      const res = await axios.get(`${APIBASE}admin/getStockOutProducts`);
-      setStockOutProducts(res.data.data);
+      const res = await axios.get(`${APIBASE}admin/get-dashboard-data`);
+      const data = res.data;
+      setStockOutProducts(data?.stockOutProduct);
+      setBackOrders(data?.backOrders);
+      setLowStockProducts(data?.lowStockProduct);
+      setExpiredStock(data?.expiredStock);
+      setReminders(data?.reminder);
+      setExpiringSoon(data?.expiringSoon)
     } catch (error) {
       //console.log(error);
     }
   };
 
-  const getBackOrders = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/getBackOrder`);
-      setBackOrders(res.data.product_sales);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  const getLowStockProducts = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-low-stock-product`);
-      setLowStockProducts(res.data.products);
-      //console.log("low stocks",res.data.products);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  const getExpiredStock = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-expired-stock`);
-      setExpiredStock(res.data.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-  // get reminder
-
-  const getReminders = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-reminders`);
-      setReminders(res.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-  // get expiringSoon
-
-  const getExpiringSoon = async () => {
-    try {
-      const res = await axios.get(
-        `${APIBASE}admin/get-expiring-soon-product/5`
-      );
-      setExpiringSoon(res.data.data);
-    } catch (error) {
-      // console.log(error);
-    }
-  };
 
   return (
     <div className="popup">

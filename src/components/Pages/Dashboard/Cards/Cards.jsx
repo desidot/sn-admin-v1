@@ -12,6 +12,11 @@ const Cards = ({
   iconColor,
   link,
 }) => {
+
+  if(title==="Pending Orders"){
+    localStorage.setItem("orderType",JSON.stringify("Pending"));
+  }
+
   const navigate = useNavigate();
   const handleGoToLink = () => {
     if (link) {

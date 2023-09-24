@@ -354,6 +354,7 @@ const OrderSummaryPopup = ({ onClose }) => {
     obj.added_by = auth?.user?.data.name;
     obj.agent_id = cart.agent;
     obj.in_store = cart.inStore;
+    obj.note=note?.note;
     obj.back_order = cart.backedOrder ? 1 : 0;
     obj.order_items = cart.cartItems.map((elem) => ({
       name: elem.product_name,
@@ -445,6 +446,7 @@ const OrderSummaryPopup = ({ onClose }) => {
     obj.user_id = cart.selectedCustomer.id;
     obj.added_by = auth?.user?.data.name;
     obj.agent_id = cart.agent;
+    obj.note=note?.note;
     obj.in_store = cart.inStore;
     obj.back_order = cart.backedOrder ? 1 : 0;
     if (cart.cartType.type !== "Subscribe") {
@@ -584,6 +586,7 @@ const OrderSummaryPopup = ({ onClose }) => {
     obj.added_by = auth?.user?.data.name;
     obj.back_order = cart.backedOrder ? 1 : 0;
     obj.agent_id = cart.agent;
+    obj.note=note?.note;
     obj.in_store = cart.inStore;
     obj.order_items = cart.cartItems.map((elem) => ({
       name: elem.product_name,

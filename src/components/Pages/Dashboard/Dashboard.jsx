@@ -60,306 +60,41 @@ const Dashboard = () => {
   const [totalPickupOrder, setTotalPickupOrder] = useState(0);
 
   useEffect(() => {
-    getTotalSales();
-    getTotalSalesAmount();
-    getAvailableProducts();
-    getLastDelivered();
-    getLastInvoices();
-    getTotalCustomers();
-    getTotalEmployees();
-    getTotalSalesAmountThisMonth();
-    getTotalSalesThisMonth();
-    getTopClients();
-    getReminders();
-    getExpiringSoon();
-    getExpiredStock();
-    getTotalLowStock();
-    getTotalDelivered();
-    getTotalPendingOrders();
-    getTotalExpired();
-    getTotalOutOfStock();
-    getLowStockProducts();
-    getNewOrders();
-    getTotalSubscriptions();
-    getAllShippedOrders();
-    getAllLowStockNotif();
-    getAllStockOutNotif();
-    getAllExpiredNotif();
-    getAllTotalBackOrders();
-    getAllTotalPickupOrders();
-    getAllTotalInStore();
+    getDashBoardData();
   }, []);
 
-  const getAllTotalBackOrders = async () => {
+  const getDashBoardData = async () => {
     try {
-      const res = await axios.get(`${APIBASE}admin/get-total-back-order`);
-      setTotalBackOrders(res.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  const getAllTotalPickupOrders = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-total-pickup-order`);
-      setTotalPickupOrder(res.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-  const getAllTotalInStore = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-total-instore-order`);
-      setTotalInStore(res.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  const getAllExpiredNotif = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/expired-notify`);
-      setExpiredNotif(res.data.expired);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  const getAllStockOutNotif = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/out-of-stock-notify`);
-      setStockOutNotif(res.data.stock_out);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  const getAllLowStockNotif = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/low-stock-notify`);
-      setLowStockNotif(res.data.low_stock);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  const getAllShippedOrders = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-expected-shipped`);
-      setAllShippedOrders(res.data.expected_shipped);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  const getTotalSubscriptions = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-total-subscriptions`);
-      setTotalSubs(res.data.total_subsriptions);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  //get total sales
-  const getNewOrders = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-new-order`);
-      setNewOrders(res.data.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-  //get total sales
-  const getLowStockProducts = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-low-stock-product`);
-      setLowStockProducts(res.data.products);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-  //get total sales
-  const getTotalOutOfStock = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-total-out-of-stock`);
-      setTotalOutOfStock(res.data.total_stock_out);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-  //get total sales
-  const getTotalExpired = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-total-expired-stock`);
-      setTotalExpired(res.data.total_expired);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-  //get total sales
-  const getTotalPendingOrders = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-pending-status-order`);
-      setTotalPendingOrders(res.data.pending_orders);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  //get total sales
-  const getTotalDelivered = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-delivered-status-order`);
-      setTotalDelivered(res.data.delivered_orders);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  //get total sales
-  const getTotalLowStock = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-total-low-stock`);
-      setTotalLowStock(res.data.total_low_stock);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  //get total sales
-  const getExpiredStock = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-expired-stock`);
-      setExpiredStock(res.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  //get total sales
-  const getTotalSales = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/total-sales`);
-      setTotalSales(res.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  // get total sale amount
-  const getTotalSalesAmount = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/total-sales-amount`);
-      setTotalSalesAmount(res.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  // get total sales this month
-  const getTotalSalesThisMonth = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/this-month-sales`);
-      setTotalSalesThisMonth(res.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  //get total Customers
-
-  const getTotalCustomers = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/total-customers`);
-      setTotalCustomers(res.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-  //get total Customers
-
-  const getTotalEmployees = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/total-employees`);
-      setTotalEmployees(res.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  //get total products
-
-  const getAvailableProducts = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/total-products`);
-      setAvailableProducts(res.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  // get last invoices
-
-  const getLastInvoices = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-invoices`);
-      setRecentInvoice(res.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-  //get last delivered
-
-  const getLastDelivered = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/last-delivered-order`);
-      setLastDelivered(res.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  //get total sales amount this month
-
-  const getTotalSalesAmountThisMonth = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/total-earn-this-month`);
-      setTotalSalesAmountThisMonth(res.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  //get top clients
-
-  const getTopClients = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-top-customers`);
-      setTopClients(res.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-
-  // get reminder
-
-  const getReminders = async () => {
-    try {
-      const res = await axios.get(`${APIBASE}admin/get-reminders`);
-      setReminders(res.data);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-  // get expiringSoon
-
-  const getExpiringSoon = async () => {
-    try {
-      const res = await axios.get(
-        `${APIBASE}admin/get-expiring-soon-product/5`
-      );
-      setExpiringSoon(res.data);
+      const res = await axios.get(`${APIBASE}admin/get-dashboard-data`);
+      const data = res.data;
+      setTotalBackOrders(data?.totalBackOrder);
+      setTotalPickupOrder(data?.totalPickUpOrder);
+      setTotalInStore(data?.totalInstoreOrder);
+      setExpiredNotif(data?.expired_notify);
+      setStockOutNotif(data?.stock_out_notify);
+      setLowStockNotif(data?.low_stock_notify);
+      setAllShippedOrders(data?.expectedShipped);
+      setTotalSubs(data?.total_subsriptions);
+      setNewOrders(data?.newOrders);
+      setLowStockProducts(data?.lowStockProduct);
+      setTotalOutOfStock(data?.totalStockOut);
+      setTotalExpired(data?.totalExpiredStock);
+      setTotalPendingOrders(data?.totalPendingOrder);
+      setTotalDelivered(data?.totalDeliveredOrder);
+      setTotalLowStock(data?.totalLowStock);
+      setExpiredStock(data?.expiredStock);
+      setTotalSales(data?.totalOrders);
+      setTotalSalesAmount(data?.totalSalesAmount);
+      setTotalSalesThisMonth(data?.totalSaleThisMonth);
+      setTotalCustomers(data?.totalCustomer);
+      setTotalEmployees(data?.totalEmployee);
+      setAvailableProducts(data?.totalProduct);
+      setRecentInvoice(data?.invoices);
+      setLastDelivered(data?.lastDeliveredOrder);
+      setTotalSalesAmountThisMonth(data?.totalEarnThisMonth);
+      setTopClients(data?.topClients);
+      setReminders(data?.reminder);
+      setExpiringSoon(data?.expiringSoon);
     } catch (error) {
       //console.log(error);
     }
@@ -548,7 +283,7 @@ const Dashboard = () => {
               title="Instore Orders"
               className="iconsize"
               value={totalInStore}
-              link="/admin/Sales/all-orders"
+              link="/admin/Sales/in-store-orders"
               icon={AiOutlineDollarCircle}
               color="#fff"
               iconColor="#ffffff80"
@@ -557,7 +292,7 @@ const Dashboard = () => {
               backgroundColor="#00E5E5"
               title="Pickup Orders"
               className="iconsize"
-              link= "/admin/Sales/pickup-orders"
+              link="/admin/Sales/pickup-orders"
               value={totalPickupOrder}
               icon={AiOutlineDollarCircle}
               color="#fff"

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+
 import { APIBASE, IMAGEURL } from "../../../../../auth/apiConfig";
 import {
-  div,
+  Typography,
   Grid,
   FormControl,
   Select,
@@ -53,19 +54,14 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllCustomers,
-  // getAllOrders,
+  getAllOrders,
 } from "../../../../../../redux/cartSlice";
 import axios from "axios";
 import { toast } from "react-toastify";
-// import CloseIcon from "@mui/icons-material/Close";
-// const { RangePicker } = DatePicker;
-const initialNote = {
-  order_id: "",
-  title: "Staff Notes",
-  note: "",
-  added_by: "",
-};
-const AllOrder = () => {
+import CloseIcon from "@mui/icons-material/Close";
+const { RangePicker } = DatePicker;
+
+const InStoreOrder = () => {
   const [listItems, setListItems] = useState([]);
   const [searchParam, setSearchParam] = useSearchParams();
   const [isLoading, SetIsLoading] = useState(false);
@@ -76,22 +72,18 @@ const AllOrder = () => {
   const [sourceValue, setSourceValue] = useState("");
   const [subscriptionChecked, setSubscriptionChecked] = useState(false);
   const [selectedDates, setSelectedDates] = useState([]);
-
+  const [searchOrder, setSearchOrder] = useState("");
   const [showStaffNotePopup, setShowStaffNotePopup] = useState(false);
   const [staffNote, setStaffNote] = useState("");
   const [cusName, setCusName] = useState("");
+
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const params = useLocation();
   const [page, setPage] = useState(1);
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenuId, setOpenMenuId] = useState(null);
   const [pageCount, setPageCount] = useState(1);
-  const [isMounted, setIsMounted] = useState(true);
-  const [searchOrder, setSearchOrder] = useState("");
-  const [note, setNote] = useState(initialNote);
-  const auth = useSelector((state) => state.auth.user.data?.name);
   const [totalItems, setTotalItems] = useState(0);
-
   const dispatch = useDispatch();
   const [user_id, setUser_id] = useState("");
   const allCustomers = useSelector((state) => state.cart.allCustomers);
@@ -147,24 +139,6 @@ const AllOrder = () => {
       elem.first_name + " " + elem.last_name;
     setUserId(elem.id);
     setFlag(false);
-  };
-
-  useEffect(() => {
-    setNote({ ...note, note: staffNote });
-  }, [staffNote]);
-
-  const addNote = async () => {
-    try {
-      await axios.post(`${APIBASE}admin/ordernotes`, note);
-      toast.success("Note added.");
-      setNote(initialNote);
-    } catch (error) {
-      //console.log(error);
-    }
-  };
-  const handleSaveNoteClick = () => {
-    addNote();
-    setShowStaffNotePopup(false);
   };
 
   const handleGoBack = () => {
@@ -258,30 +232,23 @@ const AllOrder = () => {
   ];
 
   const getFilteredOrders = async () => {
+    setListItems([]);
+    SetIsLoading(true);
     try {
-     
-        SetIsLoading(true);
-        const res = await axios.get(
-          `${APIBASE}admin/get-all-orders?page=${page}${params.search.replace(
-            /\?/g,
-            "&"
-          )}`
-        );
-        setPageCount(Math.ceil(res.data.data.total / res.data.data.per_page));
-        setTotalItems(res.data.data.total);
-        setListItems(res.data.data.data);
-        SetIsLoading(false);
-      
+      const res = await axios.get(
+        `${APIBASE}admin/get-instore-orders?page=${page}${params.search.replace(
+          /\?/g,
+          "&"
+        )}`
+      );
+      setPageCount(Math.ceil(res.data.data.total / res.data.data.per_page));
+      setTotalItems(res.data.data.total);
+      SetIsLoading(false);
+      setListItems(res.data.data.data);
     } catch (error) {
       SetIsLoading(false);
     }
   };
-
-
-
-  // useEffect(() => {
-  //   getFilteredOrders();
-  // }, [page]);
   const deleteOrder = async (id) => {
     handleMenuClose();
     try {
@@ -292,7 +259,7 @@ const AllOrder = () => {
       //console.log(error);
     }
   };
-  console.log(params);
+
   function getNormalDateAndTime(dateString) {
     const dateObject = new Date(dateString);
 
@@ -312,12 +279,15 @@ const AllOrder = () => {
     };
   }
 
+  // useEffect(() => {
+  //   getOrders();
+  // }, [page]);
+
   useEffect(() => {
     const obj = {};
     if (shippingValue) {
       obj.shipping = shippingValue;
     }
-
     if (paymentValue) {
       obj.payment = paymentValue;
     }
@@ -327,20 +297,24 @@ const AllOrder = () => {
     if (userId) {
       obj.user = userId;
     }
-    if (shippingValue || paymentValue || sourceValue || userId) {
-      setPage(1);
-      setSearchParam(obj);
-    }
-  }, [shippingValue, paymentValue, userValue, sourceValue, userId]);
+    setSearchParam(obj);
+  }, [
+    shippingValue,
+    paymentValue,
+    userValue,
+    sourceValue,
+    subscriptionChecked,
+    selectedDates,
+    userId,
+  ]);
 
   useEffect(() => {
     getFilteredOrders();
-  }, [searchParam, page]);
-
+  }, [searchParam]);
   const getSingleOrder = async () => {
     try {
       const res = await axios.get(
-        `${APIBASE}admin/get-all-orders?search=${searchOrder}`
+        `${APIBASE}admin/get-pickedup-order?search=${searchOrder}`
       );
       setListItems(res.data.data.data);
       //console.log(res.data.data);
@@ -349,17 +323,16 @@ const AllOrder = () => {
     }
   };
 
-
   const handleSearch = () => {
     getSingleOrder();
   };
   const handleAddCustomer = (e, value) => {
-    const id = value?.split(". ")[0];
-    setUser_id(id);
+    setUser_id(value?.split(". ")[0]);
     setCusName(value);
-    //
   };
-
+  useEffect(() => {
+    getFilteredOrders();
+  }, [page]);
   const reviewAlertMail = async (row) => {
     handleMenuClose();
     const payload = {
@@ -391,16 +364,12 @@ const AllOrder = () => {
   };
   return (
     <>
-      <div
-        className="mb-3"
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <HomeIcon /> - <h6 className="mb-0"> Sales - All Orders</h6>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div style={{ display: "flex" }}>
+          <i>
+            <HomeIcon /> {"-"}{" "}
+          </i>
+          <h6 style={{ margin: "5px" }}>Sales - In Store Orders</h6>
         </div>
 
         <button
@@ -410,14 +379,18 @@ const AllOrder = () => {
         >
           <span className="back-arrow" style={{ fontWeight: "500" }}>
             &larr;
-          </span>
+          </span>{" "}
           Back
         </button>
       </div>
 
+      <br />
       <div>
         <div className="all-orders">
           <section className="filter-section">
+            {/* <div className="filter-head">
+              <Typography variant="h1">Filter</Typography>
+            </div> */}
             <div className="filter-container">
               <Grid container spacing={2}>
                 <Grid item xs={12} md={3}>
@@ -433,12 +406,9 @@ const AllOrder = () => {
                       id="shipping"
                       name="shipping"
                       value={shippingValue}
-                      onChange={(e) => {
-                        setShippingValue(e.target.value);
-                        localStorage.removeItem("orderType");
-                      }}
+                      onChange={(e) => setShippingValue(e.target.value)}
                     >
-                      {shippingOptions?.map((option) => (
+                      {shippingOptions.map((option) => (
                         <MenuItem
                           key={option.value}
                           value={option.value}
@@ -465,7 +435,7 @@ const AllOrder = () => {
                       value={paymentValue}
                       onChange={(e) => setPaymentValue(e.target.value)}
                     >
-                      {paymentOptions?.map((option) => (
+                      {paymentOptions.map((option) => (
                         <MenuItem
                           key={option.value}
                           value={option.value}
@@ -502,15 +472,25 @@ const AllOrder = () => {
                     )}
                   </FormControl>
                 </Grid>
+                {/* <Grid item xs={12} md={3}>
+                  <FormControl fullWidth>
+                    <Typography htmlFor="daterange">Date Range:</Typography>
+                    <RangePicker
+                      className="date-picker"
+                      name="daterange"
+                      onChange={handleDateRangeChange}
+                    />
+                    {selectedDates.length > 0 && (
+                      <span className="show-dates">
+                        Selected Dates: {selectedDates.join(" -to- ")}
+                      </span>
+                    )}
+                  </FormControl>
+                </Grid> */}
                 <Grid item xs={12} md={3}>
                   <label htmlFor="source">Sources:</label>
                   <FormControl fullWidth>
-                    <InputLabel
-                      htmlFor="source"
-                      className="input-labels-options"
-                    >
-                      All
-                    </InputLabel>
+                  <InputLabel htmlFor="source" className="input-labels-options">All</InputLabel>
                     <Select
                       id="source"
                       name="source"
@@ -529,22 +509,6 @@ const AllOrder = () => {
                     </Select>
                   </FormControl>
                 </Grid>
-
-                {/* <Grid item xs={12} md={3}>
-                  <FormControl fullWidth>
-                    <div htmlFor="daterange">Date Range:</div>
-                    <RangePicker
-                      className="date-picker"
-                      name="daterange"
-                      onChange={handleDateRangeChange}
-                    />
-                    {selectedDates.length > 0 && (
-                      <span className="show-dates">
-                        Selected Dates: {selectedDates.join(" -to- ")}
-                      </span>
-                    )}
-                  </FormControl>
-                </Grid> */}
               </Grid>
               {/* <Grid container spacing={2}>
                 <Grid item xs={12} md={3}>
@@ -572,11 +536,13 @@ const AllOrder = () => {
             </div>
           </section>
           {/* End Filter */}
-
-          <div className="orders-section mt-3">
+          <br />
+          <div className="orders-section">
             {/* Orders Start*/}
             <div className="order-head">
-              <h3 className="card-title"> All Orders (Total:- {totalItems})</h3>
+              <Typography variant="h1">
+                All  In Store Orders (Total:-{totalItems})
+              </Typography>
 
               <div className="search-orders">
                 <div className="search-in-table">
@@ -585,7 +551,6 @@ const AllOrder = () => {
                     value={searchOrder}
                     onChange={(e) => setSearchOrder(e.target.value)}
                   />
-                  {/* Search... */}
                 </div>
                 <Button
                   variant="contained"
@@ -596,7 +561,6 @@ const AllOrder = () => {
                 </Button>
               </div>
             </div>
-
             <div className="orders-container">
               <div className="order-entries" style={{ textAlign: "center" }}>
                 <TableContainer>
@@ -608,6 +572,7 @@ const AllOrder = () => {
                         <TableCell>Date</TableCell>
                         <TableCell>Order Details</TableCell>
                         <TableCell>Total Items</TableCell>
+
                         <TableCell>Customer Details</TableCell>
                         <TableCell>Amount</TableCell>
                         <TableCell>Discount</TableCell>
@@ -651,18 +616,17 @@ const AllOrder = () => {
 
                       {isLoading ? (
                         <TableRow>
-                          <TableCell>
-                            <span className="text-center"> Loading... </span>
-                          </TableCell>
-                        </TableRow>
+                        <TableCell>Loading...</TableCell>
+                       </TableRow>
                       ) : (
                         listItems?.map((row, index) => (
                           <React.Fragment key={index}>
-                            <TableRow>
+                            <TableRow key={index}>
                               <TableCell>
                                 <IconButton
                                   onClick={() => handleRowClick(row.id)}
                                   variant="outlined"
+                                  // size="small"
                                 >
                                   {expandedRow === row.id ? (
                                     <i>
@@ -684,31 +648,17 @@ const AllOrder = () => {
                                   >
                                     {row?.invoice_no}
                                   </a>
-
-                                  <p className="mb-1">{row.order_type}</p>
-
-                                  {row.back_order === 2 && (
-                                    <p className="mb-1">Back order</p>
-                                  )}
-
-                                  {row.pickup_order === 1 && (
-                                    <p className="mb-1">Pickup order</p>
-                                  )}
-
-                                  {row.in_store === 1 && (
-                                    <p className="mb-1">In Store order</p>
-                                  )}
                                 </div>
                               </TableCell>
                               <TableCell>
                                 <div style={{ width: "100px" }}>
                                   {
-                                    getNormalDateAndTime(row?.created_at)
+                                    getNormalDateAndTime(row.created_at)
                                       .normalDate
                                   }
                                   <br />
                                   {
-                                    getNormalDateAndTime(row?.created_at)
+                                    getNormalDateAndTime(row.created_at)
                                       .normalTime
                                   }
                                 </div>
@@ -717,15 +667,6 @@ const AllOrder = () => {
                                 <div style={{ width: "100px" }}>
                                   <p className="mb-1"> {row.order_no}</p>
                                 </div>
-
-                                {row?.subscription_no && (
-                                  <>
-                                    Subs No.
-                                    {row.subscription_no
-                                      ? row.subscription_no
-                                      : "-"}
-                                  </>
-                                )}
                               </TableCell>
                               <TableCell>
                                 <div>{row.items.length}</div>
@@ -793,11 +734,11 @@ const AllOrder = () => {
                                   >
                                     {row?.order_status}
                                   </span>
-                                  <br></br>
+                                  {/* <br></br>
                                   <p className="mb-1 mt-1">
                                     <b>Shipping Charge:</b> $
                                     {row?.shipping_charge}
-                                  </p>
+                                  </p> */}
                                 </div>
                               </TableCell>
                               <TableCell>
@@ -897,11 +838,6 @@ const AllOrder = () => {
                                     onClick={() => {
                                       handleMenuClose();
                                       setShowStaffNotePopup(true);
-                                      setNote({
-                                        ...note,
-                                        order_id: row.id,
-                                        added_by: auth,
-                                      });
                                     }}
                                   >
                                     <small>
@@ -942,9 +878,10 @@ const AllOrder = () => {
                                           className="popup-button"
                                           onClick={() => {
                                             // Perform any necessary action with the staff note value
+                                            //console.log(staffNote);
 
-                                            handleSaveNoteClick();
                                             // Hide the popup
+                                            setShowStaffNotePopup(false);
                                           }}
                                         >
                                           Save
@@ -977,14 +914,16 @@ const AllOrder = () => {
                                   unmountOnExit
                                 >
                                   <div className="accordian-body" id="order">
-                                    <div>
+                                    <Typography
+                                      variant="h4"
+                                      className="sub-table-heading"
+                                    >
                                       <p
                                         style={{ padding: "1rem", margin: "0" }}
                                       >
-                                        {" "}
-                                        Sales Order Items{" "}
+                                        Sales Order Items
                                       </p>
-                                    </div>
+                                    </Typography>
                                     {/* <hr /> */}
                                     <TableContainer>
                                       <Table>
@@ -998,21 +937,17 @@ const AllOrder = () => {
                                             <TableCell>Price</TableCell>
 
                                             <TableCell>
-                                              {row.pickup_order
-                                                ? "Pickup Details"
-                                                : row.in_store == 1
-                                                ? "In Store Order"
-                                                : "Shipping Details"}
+                                              Shipping Details
                                             </TableCell>
 
                                             <TableCell>Supplier</TableCell>
                                           </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                          {row.items?.map((elem, index) => (
+                                          {row.items.map((elem, index) => (
                                             <TableRow key={index}>
                                               <TableCell>
-                                                {/* <img
+                                                <img
                                                   alt="user"
                                                   src={`${IMAGEURL}${elem?.product?.thumbnail}`}
                                                   style={{
@@ -1021,98 +956,24 @@ const AllOrder = () => {
 
                                                     marginRight: "15px",
                                                   }}
-                                                /> */}
-                                                {row?.items
-                                                  ?.thumbnail_compress ? (
-                                                  <img
-                                                    src={
-                                                      JSON.parse(
-                                                        row?.items
-                                                          ?.thumbnail_compress
-                                                      ).image_urls["100px"]
-                                                    }
-                                                    alt="User"
-                                                  />
-                                                ) : (
-                                                  <div className="default-user-image">
-                                                    <img
-                                                      src={`${IMAGEURL}${elem?.product?.thumbnail}`}
-                                                      alt="Default User"
-                                                      style={{
-                                                        width: "40px",
-                                                        height: "auto",
-                                                        marginRight: "15px",
-                                                      }}
-                                                    />
-                                                    <p className="mb-0">
-                                                      {" "}
-                                                      {
-                                                        elem?.product
-                                                          ?.product_name
-                                                      }
-                                                    </p>
-                                                  </div>
-                                                )}
+                                                />
+                                                {elem?.product?.product_name}
                                               </TableCell>
                                               <TableCell>
                                                 {elem.unit ? elem.unit : "-"}
                                               </TableCell>
                                               <TableCell>
-                                                {elem.quantity}
+                                                {elem?.quantity}
                                               </TableCell>
 
                                               <TableCell>
-                                                <span
-                                                  style={{
-                                                    textDecorationLine:
-                                                      elem?.price &&
-                                                      "line-through",
-                                                    marginRight: "15px",
-                                                  }}
-                                                >
-                                                  $
-                                                  {elem?.product?.selling_price}
-                                                </span>
-                                                {elem?.price && (
-                                                  <span> ${elem?.price}</span>
-                                                )}
+                                                ${elem.product?.selling_price}
                                               </TableCell>
                                               <TableCell>
-                                                {!row.pickup_order ? (
-                                                  !row.in_store ? (
-                                                    <div>
-                                                      {
-                                                        JSON.parse(
-                                                          row?.shipping_address
-                                                        )?.address
-                                                      }
-                                                      ,
-                                                      {
-                                                        JSON.parse(
-                                                          row?.shipping_address
-                                                        )?.city
-                                                      }
-                                                      ,
-                                                      {
-                                                        JSON.parse(
-                                                          row?.shipping_address
-                                                        )?.country
-                                                      }
-                                                      ,
-                                                      {
-                                                        JSON.parse(
-                                                          row?.shipping_address
-                                                        )?.zip
-                                                      }
-                                                    </div>
-                                                  ) : (
-                                                    "In store"
-                                                  )
-                                                ) : (
-                                                  <div>
-                                                    {row.pickup_address ?? "-"}
-                                                  </div>
-                                                )}
+                                                <p style={{ lineWrap: "wrap" }}>
+                                                  {" "}
+                                                 In Store
+                                                </p>
                                               </TableCell>
                                               <TableCell>
                                                 {elem?.product?.supplier?.name}
@@ -1134,7 +995,7 @@ const AllOrder = () => {
                 </TableContainer>
               </div>
             </div>
-            {/* */}
+            {/* <br /> */}
             {/* Orders End */}
             <Pagination
               count={pageCount}
@@ -1150,9 +1011,10 @@ const AllOrder = () => {
             />
           </div>
         </div>
+        <br />
       </div>
     </>
   );
 };
 
-export default AllOrder;
+export default InStoreOrder;
