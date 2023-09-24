@@ -65,7 +65,7 @@ const DeletedCategories = () => {
     setIsLoading(true);
     try {
       const res = await axios.get(`${APIBASE}admin/get-deleted-category`);
-      setListItems(res.data["Deleted PrCategories"]);
+      setListItems(res.data["Deleted Categories"]);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -236,7 +236,9 @@ const DeletedCategories = () => {
               </TableHead>
               <TableBody align="left">
                 {isLoading ? (
-                  <span>Loading...</span>
+                  <TableRow>
+                    <TableCell>Loading...</TableCell>
+                  </TableRow>
                 ) : (
                   displayedRows?.map((row) => (
                     <TableRow key={row.id}>

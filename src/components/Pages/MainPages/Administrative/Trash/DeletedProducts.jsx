@@ -213,7 +213,9 @@ const ProductReiews = () => {
                   </TableHead>
                   <TableBody>
                     {isLoading ? (
-                      <span>Loading...</span>
+                      <TableRow>
+                        <TableCell>Loading...</TableCell>
+                      </TableRow>
                     ) : (
                       displayedRows?.map((row, index) => (
                         <TableRow

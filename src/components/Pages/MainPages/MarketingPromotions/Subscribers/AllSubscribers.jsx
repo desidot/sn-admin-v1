@@ -334,7 +334,9 @@ const AllSubscribers = () => {
                 </TableHead>
                 <TableBody align="left">
                   {isLoading ? (
-                    <span>Loading...</span>
+                    <TableRow>
+                      <TableCell>Loading...</TableCell>
+                    </TableRow>
                   ) : (
                     listItems?.map((row, index) => (
                       <TableRow key={index}>

@@ -348,7 +348,7 @@ const EditProducts = () => {
 
         // Find the previously selected supplier in the options array
         const selectedSupplier = response.data.data.find(
-          (supplier) => supplier.id === editedProduct.supplier_id
+          (supplier) => supplier.id === editedProduct.supplier_id || null
         );
 
         // Set the supplierValue to display the previously selected supplier
@@ -810,7 +810,7 @@ const EditProducts = () => {
                 <FormControl fullWidth>
                   <TextField
                     placeholder="Enter Product Name"
-                    value={editedProduct.product_name}
+                    value={editedProduct.product_name || ""}
                     onChange={(event) =>
                       setEditedProduct((prevData) => ({
                         ...prevData,
@@ -826,7 +826,7 @@ const EditProducts = () => {
                 <FormControl fullWidth>
                   <TextField
                     placeholder="Enter Barcode"
-                    value={editedProduct.barcode}
+                    value={editedProduct.barcode || ""}
                     onChange={(event) =>
                       setEditedProduct((prevData) => ({
                         ...prevData,
@@ -841,7 +841,7 @@ const EditProducts = () => {
                 <FormControl fullWidth>
                   <TextField
                     placeholder="RFID"
-                    value={editedProduct.rfid}
+                    value={editedProduct.rfid || ""}
                     onChange={(event) =>
                       setEditedProduct((prevData) => ({
                         ...prevData,
@@ -856,7 +856,7 @@ const EditProducts = () => {
                 <FormControl fullWidth>
                   <TextField
                     placeholder="Floor"
-                    value={editedProduct.floor}
+                    value={editedProduct.floor || ""}
                     onChange={(event) =>
                       setEditedProduct((prevData) => ({
                         ...prevData,
@@ -871,7 +871,7 @@ const EditProducts = () => {
                 <FormControl fullWidth>
                   <TextField
                     placeholder="Shalf"
-                    value={editedProduct.shelf}
+                    value={editedProduct.shelf || ""}
                     onChange={(event) =>
                       setEditedProduct((prevData) => ({
                         ...prevData,
@@ -888,7 +888,7 @@ const EditProducts = () => {
                   control={
                     <IOSSwitch
                       sx={{ m: 1 }}
-                      checked={editedProduct.refundable}
+                      checked={editedProduct.refundable === 1 ? true : false}
                       onChange={(event) =>
                         setEditedProduct((prevData) => ({
                           ...prevData,
@@ -1364,7 +1364,7 @@ const EditProducts = () => {
                     control={
                       <IOSSwitch
                         sx={{ m: 1 }}
-                        checked={editedProduct.low_stock}
+                        checked={editedProduct.low_stock === 1 ? true : false}
                         onChange={(event) =>
                           setEditedProduct((prevData) => ({
                             ...prevData,
@@ -1381,7 +1381,7 @@ const EditProducts = () => {
                       <Checkbox
                         // onChange={handleCheckboxWebChange}
                         // value={editedProduct.website}
-                        checked={editedProduct.website}
+                        checked={editedProduct.website === 1 ? true : false}
                         onChange={(event) =>
                           setEditedProduct((prevData) => ({
                             ...prevData,
@@ -1399,7 +1399,9 @@ const EditProducts = () => {
                     control={
                       <Checkbox
                         // checked={editedProduct.internal_sell ? true : false}
-                        checked={editedProduct.internal_sell}
+                        checked={
+                          editedProduct.internal_sell === 1 ? true : false
+                        }
                         onChange={(event) =>
                           setEditedProduct((prevData) => ({
                             ...prevData,

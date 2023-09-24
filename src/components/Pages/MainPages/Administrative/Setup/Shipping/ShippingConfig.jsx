@@ -391,13 +391,13 @@ const ShippingConfiguration = () => {
       <br />
       <div className="card">
         <div className="card-header">
-        <h3 className="card-title">Shipping Detail</h3>
+          <h3 className="card-title">Shipping Detail</h3>
         </div>
         <div className="main-body2">
           {/* Search and Nos */}
           {/* <div className="searchAndNosBlogs"> */}
-            {/* <div className="nos"></div> */}
-            {/* <div className="search-inventory">
+          {/* <div className="nos"></div> */}
+          {/* <div className="search-inventory">
               <div className="search-in-table">
                 <OutlinedInput
                   sx={{
@@ -445,7 +445,9 @@ const ShippingConfiguration = () => {
               </TableHead>
               <TableBody align="left">
                 {isLoading ? (
-                  <span>Loading...</span>
+                  <TableRow>
+                    <TableCell>Loading...</TableCell>
+                  </TableRow>
                 ) : (
                   listItems?.map((row, index) => (
                     <TableRow key={index}>

@@ -16,25 +16,25 @@ import "./ContactUs.css";
 import {
   MoreVertOutlined,
   // EditOutlined,
-  DeleteOutlined,
+  // DeleteOutlined,
 } from "@mui/icons-material";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+// import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+// import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 // import ReplayIcon from "@mui/icons-material/Replay";
-import EditNoteIcon from "@mui/icons-material/EditNote";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+// import EditNoteIcon from "@mui/icons-material/EditNote";
+// import MailOutlineIcon from "@mui/icons-material/MailOutline";
+// import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 // import PrintIcon from "@mui/icons-material/Print";
 // import ProductImg from "../../../../../../assets/products/spray-product.jpg";
 import HomeIcon from "@mui/icons-material/Home";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllCustomers, getAllOrders } from "../../../../../redux/cartSlice";
+// import { useDispatch, useSelector } from "react-redux";
+// import { getAllCustomers, getAllOrders } from "../../../../../redux/cartSlice";
 import axios from "axios";
 import { toast } from "react-toastify";
-import CloseIcon from "@mui/icons-material/Close";
+// import CloseIcon from "@mui/icons-material/Close";
 
-import { APIBASE, IMAGEURL } from "../../../../auth/apiConfig";
+import { APIBASE } from "../../../../auth/apiConfig";
 
 const ContactUs = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -178,7 +178,9 @@ const ContactUs = () => {
                     </TableHead>
                     <TableBody>
                       {isLoading ? (
-                        <span>Loading...</span>
+                        <TableRow>
+                          <TableCell>Loading...</TableCell>
+                        </TableRow>
                       ) : (
                         <>
                           {listItems?.map((row, index) => (

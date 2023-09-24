@@ -241,7 +241,7 @@ const ListEmployees = () => {
         <div className="main-body2">
           {/* Search and Nos */}
           <div className="searchAndNosBlogs">
-            <div className="nos">Total:- {totalItems}</div>
+            <div className="nos pt-2">Total:- {totalItems}</div>
             <div className="search-inventory">
               <div className="search-in-table mt-2 mb-2">
                 <OutlinedInput
@@ -322,7 +322,7 @@ const ListEmployees = () => {
                       <TableCell align="left">{row.email}</TableCell>
                       <TableCell align="left" style={{ width: "150px" }}>
                         <span className="user-role">{row.roles[0].name}</span>
-                      </TableCell>{" "}
+                      </TableCell>
                       <TableCell align="left">
                         <FormControlLabel
                           control={

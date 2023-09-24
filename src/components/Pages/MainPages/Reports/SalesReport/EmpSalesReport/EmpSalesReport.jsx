@@ -517,7 +517,7 @@ const EmployeeSalesReport = () => {
                   >
                     <MenuItem value="">Select Employee</MenuItem>
                     {allEmployees?.map((elem, index) => (
-                      <MenuItem value={elem.name}>{elem.name}</MenuItem>
+                      <MenuItem value={elem.name} key={index}>{elem.name}</MenuItem>
                     ))}
                   </Select>
                 </FormControl>

@@ -770,6 +770,7 @@ const PoS = () => {
       setShowCustomerForm(false);
     }
   };
+
   const handleSubscribeSaveClick = () => {
     if (subsDuration) {
       dispatch(
@@ -1028,7 +1029,7 @@ const PoS = () => {
 
                   {/* dummy image cards End*/}
                 </section>
-               
+
                 {/* Load more */}
                 {/* <div className="load-more">
                   <Button className="load-btn" variant="contained">
@@ -1083,7 +1084,8 @@ const PoS = () => {
                                 key={index}
                                 onClick={() => handleCustomeClick(elem)}
                               >
-                                {elem?.first_name} {elem?.last_name} {"-"} {elem?.phone}
+                                {elem?.first_name} {elem?.last_name} {"-"}{" "}
+                                {elem?.phone}
                               </div>
                             ))}
                           </div>
@@ -1145,7 +1147,7 @@ const PoS = () => {
                             <div className="pro-name">
                               {product.product_name}
                             </div>
-                          
+
                             {product.subscriptions?.length > 0 ? (
                               <span
                                 style={{
@@ -1312,6 +1314,7 @@ const PoS = () => {
                       value={cart?.cartType?.type}
                       onChange={handleSubscribeChange}
                     >
+                      {selectedValue !== "in_store" && (
                       <FormControlLabel
                         value="Subscribe"
                         control={<Radio />}
@@ -1319,9 +1322,11 @@ const PoS = () => {
                         disabled={
                           cart?.cartItems.filter(
                             (elem) => elem.subscriptions?.length > 0
-                          )?.length < cart?.cartItems?.length
+                          )?.length < cart?.cartItems?.length &&
+                          cart.inStore === 1 ? true : false
                         }
                       />
+                      )} 
                     </RadioGroup>
                     <RadioGroup
                       value={cart?.cartType?.type}
@@ -1409,7 +1414,7 @@ const PoS = () => {
                         cart.cartItems?.length == 0 ||
                         (pickup == false &&
                           !cart.shippingAddress?.first_name &&
-                          cart.inStore == 0) ||
+                          cart.inStore == 1) ||
                         !cart.cartType.type ||
                         (cart?.cartType?.type === "Subscribe" &&
                           cart?.cartItems.filter(

@@ -421,161 +421,156 @@ const Deals = () => {
                 </TableHead>
                 <TableBody align="left">
                   {listItems?.map((row, index) => (
-                    <>
-                      <>
-                        <TableRow>
-                          <TableCell>
-                            <IconButton
-                              onClick={() => handleRowClick(row.id)}
-                              variant="outlined"
-                              // size="small"
-                            >
-                              {expandedRow === row.id ? (
-                                <i>
-                                  <FaAngleUp />
-                                </i>
-                              ) : (
-                                <span className="fa fa-chevron-down">
-                                  <FaAngleDown />
-                                </span>
-                              )}
-                            </IconButton>
-                          </TableCell>
-
-                          <TableCell>{row.name}</TableCell>
-                          <TableCell>{row.mode} </TableCell>
-                          <TableCell>{row.amount} </TableCell>
-                          <TableCell>{getNormalDate(row.valid_from)}</TableCell>
-                          <TableCell>{getNormalDate(row.valid_to)}</TableCell>
-
-                          <TableCell>
-                            <label className="switch">
-                              <input
-                                type="checkbox"
-                                onChange={(e) => handleStatusChange(e, row.id)}
-                                checked={row.status == 1}
-                              />
-                              <span className="slider"></span>
-                            </label>
-                          </TableCell>
-
-                          <TableCell>
-                            <IconButton
-                              onClick={(event) => handleMenuOpen(event, row.id)}
-                              size="small"
-                            >
-                              <MoreVertOutlined />
-                            </IconButton>
-                            <Menu
-                              anchorEl={anchorEl}
-                              open={openMenuId === row.id}
-                              onClose={handleMenuClose}
-                            >
-                              <MenuItem>
-                                <Link
-                                  to={`/admin/marketing-promotions/edit-deals/${row.id}`}
-                                  onClick={handleMenuClose}
-                                  style={{ color: "black" }}
-                                >
-                                  <small>
-                                    {" "}
-                                    <EditOutlined sx={{ marginRight: 1 }} />
-                                    Edit
-                                  </small>
-                                </Link>
-                              </MenuItem>
-
-                              <MenuItem onClick={() => deleteDeal(row.id)}>
-                                <small>
-                                  <DeleteOutlined sx={{ marginRight: 1 }} />
-                                  Delete
-                                </small>
-                              </MenuItem>
-                            </Menu>
-                          </TableCell>
-                        </TableRow>
-
-                        <TableRow>
-                          <TableCell
-                            colSpan={12}
-                            className="hiddenRow pc-padding"
-                            style={{ padding: "0px" }}
+                    <React.Fragment key={index}>
+                      <TableRow>
+                        <TableCell>
+                          <IconButton
+                            onClick={() => handleRowClick(row.id)}
+                            variant="outlined"
+                            // size="small"
                           >
-                            <Collapse
-                              in={expandedRow === row.id}
-                              timeout="auto"
-                              unmountOnExit
-                            >
-                              <div className="accordian-body" id="order">
-                                <Typography
-                                  variant="h4"
-                                  className="sub-table-heading"
-                                >
-                                  <p style={{ padding: "1rem", margin: "0" }}>
-                                    Products in Deal
-                                  </p>
-                                </Typography>
-                                {/* <hr /> */}
-                                <TableContainer>
-                                  <Table>
-                                    <TableHead className="orders-table-head-row">
-                                      <TableRow className="info">
-                                        <TableCell>Product Name</TableCell>
-                                        <TableCell>Unit</TableCell>
-                                        <TableCell>Category</TableCell>
-                                        <TableCell>Qty</TableCell>
-                                        <TableCell>Brand</TableCell>
-                                        <TableCell>Price</TableCell>
-                                        <TableCell>Deal Price</TableCell>
+                            {expandedRow === row.id ? (
+                              <i>
+                                <FaAngleUp />
+                              </i>
+                            ) : (
+                              <span className="fa fa-chevron-down">
+                                <FaAngleDown />
+                              </span>
+                            )}
+                          </IconButton>
+                        </TableCell>
+
+                        <TableCell>{row.name}</TableCell>
+                        <TableCell>{row.mode} </TableCell>
+                        <TableCell>{row.amount} </TableCell>
+                        <TableCell>{getNormalDate(row.valid_from)}</TableCell>
+                        <TableCell>{getNormalDate(row.valid_to)}</TableCell>
+
+                        <TableCell>
+                          <label className="switch">
+                            <input
+                              type="checkbox"
+                              onChange={(e) => handleStatusChange(e, row.id)}
+                              checked={row.status == 1}
+                            />
+                            <span className="slider"></span>
+                          </label>
+                        </TableCell>
+
+                        <TableCell>
+                          <IconButton
+                            onClick={(event) => handleMenuOpen(event, row.id)}
+                            size="small"
+                          >
+                            <MoreVertOutlined />
+                          </IconButton>
+                          <Menu
+                            anchorEl={anchorEl}
+                            open={openMenuId === row.id}
+                            onClose={handleMenuClose}
+                          >
+                            <MenuItem>
+                              <Link
+                                to={`/admin/marketing-promotions/edit-deals/${row.id}`}
+                                onClick={handleMenuClose}
+                                style={{ color: "black" }}
+                              >
+                                <small>
+                                  {" "}
+                                  <EditOutlined sx={{ marginRight: 1 }} />
+                                  Edit
+                                </small>
+                              </Link>
+                            </MenuItem>
+
+                            <MenuItem onClick={() => deleteDeal(row.id)}>
+                              <small>
+                                <DeleteOutlined sx={{ marginRight: 1 }} />
+                                Delete
+                              </small>
+                            </MenuItem>
+                          </Menu>
+                        </TableCell>
+                      </TableRow>
+
+                      <TableRow>
+                        <TableCell
+                          colSpan={12}
+                          className="hiddenRow pc-padding"
+                          style={{ padding: "0px" }}
+                        >
+                          <Collapse
+                            in={expandedRow === row.id}
+                            timeout="auto"
+                            unmountOnExit
+                          >
+                            <div className="accordian-body" id="order">
+                              <Typography
+                                variant="h4"
+                                className="sub-table-heading"
+                              >
+                                <p style={{ padding: "1rem", margin: "0" }}>
+                                  Products in Deal
+                                </p>
+                              </Typography>
+                              {/* <hr /> */}
+                              <TableContainer>
+                                <Table>
+                                  <TableHead className="orders-table-head-row">
+                                    <TableRow className="info">
+                                      <TableCell>Product Name</TableCell>
+                                      <TableCell>Unit</TableCell>
+                                      <TableCell>Category</TableCell>
+                                      <TableCell>Qty</TableCell>
+                                      <TableCell>Brand</TableCell>
+                                      <TableCell>Price</TableCell>
+                                      <TableCell>Deal Price</TableCell>
+                                    </TableRow>
+                                  </TableHead>
+                                  <TableBody>
+                                    {row?.products?.map((elem, index2) => (
+                                      <TableRow className="info" key={index2}>
+                                        <TableCell>
+                                          <img
+                                            src={`${IMAGEURL}${elem?.thumbnail}`}
+                                            style={{
+                                              marginRight: "15px",
+                                              height: "50px",
+                                              width: "auto",
+                                            }}
+                                          />{" "}
+                                          {elem.product_name}
+                                        </TableCell>
+                                        <TableCell>{elem.unit}</TableCell>
+                                        <TableCell>
+                                          {elem.category ? elem.category : "-"}
+                                        </TableCell>
+                                        <TableCell>{elem.stock}</TableCell>
+                                        <TableCell>{elem.brand}</TableCell>
+
+                                        <TableCell>${elem.price}</TableCell>
+
+                                        <TableCell>
+                                          $
+                                          {(
+                                            +elem?.price -
+                                            (row?.mode === "Percent"
+                                              ? (+elem?.price * +row?.amount) /
+                                                100
+                                              : +row?.amount)
+                                          ).toFixed(2)}
+                                        </TableCell>
                                       </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                      {row?.products?.map((elem) => (
-                                        <TableRow className="info">
-                                          <TableCell>
-                                            <img
-                                              src={`${IMAGEURL}${elem?.thumbnail}`}
-                                              style={{
-                                                marginRight: "15px",
-                                                height: "50px",
-                                                width: "auto",
-                                              }}
-                                            />{" "}
-                                            {elem.product_name}
-                                          </TableCell>
-                                          <TableCell>{elem.unit}</TableCell>
-                                          <TableCell>
-                                            {elem.category
-                                              ? elem.category
-                                              : "-"}
-                                          </TableCell>
-                                          <TableCell>{elem.stock}</TableCell>
-                                          <TableCell>{elem.brand}</TableCell>
-
-                                          <TableCell>${elem.price}</TableCell>
-
-                                          <TableCell>
-                                            $
-                                            {(
-                                              +elem?.price -
-                                              (row?.mode === "Percent"
-                                                ? (+elem?.price *
-                                                    +row?.amount) /
-                                                  100
-                                                : +row?.amount)
-                                            ).toFixed(2)}
-                                          </TableCell>
-                                        </TableRow>
-                                      ))}
-                                    </TableBody>
-                                  </Table>
-                                </TableContainer>
-                              </div>
-                            </Collapse>
-                          </TableCell>
-                        </TableRow>
-                      </>
-                    </>
+                                    ))}
+                                  </TableBody>
+                                </Table>
+                              </TableContainer>
+                            </div>
+                          </Collapse>
+                        </TableCell>
+                      </TableRow>
+                    </React.Fragment>
                   ))}
                 </TableBody>
               </Table>
