@@ -31,7 +31,7 @@ const initialState = {
   allEmployees: [],
   pickupAddress: {},
   agent: "",
-  inStore:0
+  inStore: 0
 };
 
 //GET APIS  ---->
@@ -559,13 +559,13 @@ export const updateSlider = createAsyncThunk(
   "admin/updateSlider",
   async ({ data, id }, thunkAPI) => {
     try {
-      await axios.put(`${APIBASE}admin/sliders/${id}`, data, {
+      await axios.post(`${APIBASE}admin/sliders/${id}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
           Accept: "application/json",
         },
       });
-
+      toast.success("Slider Updated");
       thunkAPI.dispatch(getAllSliders());
       ////console.log("resonse in post", response);
     } catch (error) {
@@ -626,10 +626,10 @@ const cartSlice = createSlice({
         state.cartItems = state.cartItems?.map((item) =>
           item.id === existingProduct.id
             ? {
-                ...item,
-                itemCount: +item.itemCount + 1,
-                totalPrice: item.selling_price * (+item.itemCount + 1),
-              }
+              ...item,
+              itemCount: +item.itemCount + 1,
+              totalPrice: item.selling_price * (+item.itemCount + 1),
+            }
             : item
         );
       } else {
@@ -653,10 +653,10 @@ const cartSlice = createSlice({
         state.cartItems = state.cartItems.map((item) =>
           item.id === existingProduct.id
             ? {
-                ...item,
-                itemCount: value,
-                totalPrice: item.selling_price * value,
-              }
+              ...item,
+              itemCount: value,
+              totalPrice: item.selling_price * value,
+            }
             : item
         );
       }
@@ -673,7 +673,7 @@ const cartSlice = createSlice({
     addAddress: (state, action) => {
       state.shippingAddress = action.payload.address;
     },
-    addAddressInStore: (state, action) => { 
+    addAddressInStore: (state, action) => {
       state.shippingAddress = action.payload.address;
     },
     addPickupAddress: (state, action) => {

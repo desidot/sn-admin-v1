@@ -472,7 +472,7 @@ const RolesPermissions = () => {
                     <TableCell align="left">{row.email}</TableCell>
                     <TableCell align="left">
                       <span className="user-role">{row.roles[0].name}</span>
-                    </TableCell>{" "}
+                    </TableCell>
                     <TableCell align="left">
                       <FormControlLabel
                         control={

@@ -41,9 +41,15 @@ const Meta = () => {
       //console.log(error);
     }
   };
+
   useEffect(() => {
     getAllMeta();
+    setIsLoading(false);
   }, []);
+
+  useEffect(() => {
+    setIsLoading(false);
+  });
 
   function createData(
     srNo,
@@ -69,50 +75,13 @@ const Meta = () => {
     };
   }
 
-  const rows = [
-    createData(
-      1,
-      "Jul 13 2023",
-      "Sample ProcutDesc description 180 caps",
-      "Health & Wellness",
-      "Test Blog Tes",
-      "Protocol For Life Balance",
-      "emerson ecologics (Bermuda)",
-      "44.29",
-      "Total Stock: 1"
-    ),
-    createData(
-      2,
-      "Jul 13 2023",
-      "Sample ProcutDesc description 180 caps",
-      "Health & Wellness",
-      "Test Blog Tes",
-      "Protocol For Life Balance",
-      "emerson ecologics (Bermuda)",
-      "44.29",
-      "Total Stock: 1"
-    ),
-    createData(
-      3,
-      "Jul 13 2023",
-      "Sample ProcutDesc description 180 caps",
-      "Health & Wellness",
-      "Test Blog Tes",
-      "Protocol For Life Balance",
-      "emerson ecologics (Bermuda)",
-      "44.29",
-      "Total Stock: 1"
-    ),
-
-    // Add more dummy data as needed
-  ];
-
   const [searchText, setSearchText] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(1);
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenuId, setOpenMenuId] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleSearchChange = (event) => {
     setSearchText(event.target.value);
@@ -196,7 +165,7 @@ const Meta = () => {
       <div>
         <div className="card">
           <div className="card-header">
-          <h3 className="card-title">All Meta</h3>
+            <h3 className="card-title">All Meta</h3>
             {/* Buttons */}
             <div className="tabs-butons">
               <Button variant="contained">All</Button>
@@ -209,7 +178,7 @@ const Meta = () => {
           {/* Buttons End*/}
           <div className="main-body2">
             {/* Search and Nos */}
-            <div className="searchAndNosBlogs mt-2 mb-2">
+            <div className="searchAndNosBlogs mt-3 mb-2">
               <div className="nos">
                 Show <span className="spaces"></span>
                 <Select
@@ -267,46 +236,54 @@ const Meta = () => {
                     <TableCell style={{ fontWeight: "bold" }}>Action</TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody align="left">
-                  {displayedRows?.map((row, index) => (
-                    <TableRow key={index}>
-                      <TableCell component="th" scope="row" align="left">
-                        {index + 1}
-                      </TableCell>
-                      <TableCell>{row.page_name}</TableCell>
-                      <TableCell>{row.meta_title}</TableCell>
-                      <TableCell>{row.meta_keyword}</TableCell>
-
-                      <TableCell>{row.meta_description} </TableCell>
-
-                      <TableCell>
-                        <IconButton
-                          onClick={(event) => handleMenuOpen(event, row.id)}
-                          size="small"
-                        >
-                          <MoreVertOutlined />
-                        </IconButton>
-                        <Menu
-                          anchorEl={anchorEl}
-                          open={openMenuId === row.id}
-                          onClose={handleMenuClose}
-                          PaperProps={{
-                            style: {
-                              maxHeight: 120,
-                            },
-                          }}
-                        >
-                          <MenuItem onClick={() => handleEditClick(row.id)}>
-                            <EditOutlined fontSize="small" /> Edit
-                          </MenuItem>
-                          <MenuItem onClick={() => handleDeleteClick(row.id)}>
-                            <DeleteOutlined fontSize="small" /> Delete
-                          </MenuItem>
-                        </Menu>
-                      </TableCell>
+                {isLoading ? (
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>Loading...</TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
+                  </TableBody>
+                ) : (
+                  <TableBody align="left">
+                    {displayedRows?.map((row, index) => (
+                      <TableRow key={index}>
+                        <TableCell component="th" scope="row" align="left">
+                          {index + 1}
+                        </TableCell>
+                        <TableCell>{row.page_name}</TableCell>
+                        <TableCell>{row.meta_title}</TableCell>
+                        <TableCell>{row.meta_keyword}</TableCell>
+
+                        <TableCell>{row.meta_description} </TableCell>
+
+                        <TableCell>
+                          <IconButton
+                            onClick={(event) => handleMenuOpen(event, row.id)}
+                            size="small"
+                          >
+                            <MoreVertOutlined />
+                          </IconButton>
+                          <Menu
+                            anchorEl={anchorEl}
+                            open={openMenuId === row.id}
+                            onClose={handleMenuClose}
+                            PaperProps={{
+                              style: {
+                                maxHeight: 120,
+                              },
+                            }}
+                          >
+                            <MenuItem onClick={() => handleEditClick(row.id)}>
+                              <EditOutlined fontSize="small" /> Edit
+                            </MenuItem>
+                            <MenuItem onClick={() => handleDeleteClick(row.id)}>
+                              <DeleteOutlined fontSize="small" /> Delete
+                            </MenuItem>
+                          </Menu>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                )}
               </Table>
             </TableContainer>
             {/* Table End */}

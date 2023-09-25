@@ -119,7 +119,9 @@ const AddMeta = () => {
               <Grid item xs={12} md={6}>
                 <InputLabel>Page :</InputLabel>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor="shipping">Select Page</InputLabel>
+                  <InputLabel htmlFor="shipping" className="custom-inputlabel">
+                    Select Page
+                  </InputLabel>
                   <Select
                     id="shipping"
                     name="shipping"
@@ -142,7 +144,7 @@ const AddMeta = () => {
                   <TextField
                     id="fromDate"
                     type="text"
-                    placeholder="meta title"
+                    placeholder="Meta title"
                     className="task-date-input"
                     value={state.meta_title}
                     onChange={(e) =>
@@ -169,7 +171,8 @@ const AddMeta = () => {
                 <InputLabel htmlFor="">Meta Description :</InputLabel>
                 <FormControl fullWidth>
                   <textarea
-                    placeholder=""
+                    style={{ height: "2.5rem", paddingLeft: "0.5rem" }}
+                    placeholder="Meta Description"
                     value={state.meta_description}
                     onChange={(e) =>
                       setState({ ...state, meta_description: e.target.value })
@@ -182,7 +185,8 @@ const AddMeta = () => {
                 <InputLabel htmlFor="">Meta Pixels :</InputLabel>
                 <FormControl fullWidth>
                   <textarea
-                    placeholder=""
+                    style={{ height: "2.5rem", paddingLeft: "0.5rem" }}
+                    placeholder="Meta Pixels"
                     value={state.meta_pixels}
                     onChange={(e) =>
                       setState({ ...state, meta_pixels: e.target.value })

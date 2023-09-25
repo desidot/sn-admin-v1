@@ -162,7 +162,7 @@ const ProductReiews = () => {
                   </Select>
                   <span className="spaces"></span> entries
                 </div>
-                <div className="search-in-table-del-products mt-2 mb-2 pt-0">
+                <div className="search-in-table-del-products mt-1 mb-2 pt-0">
                   <OutlinedInput
                     sx={{
                       "& legend": { display: "none" },

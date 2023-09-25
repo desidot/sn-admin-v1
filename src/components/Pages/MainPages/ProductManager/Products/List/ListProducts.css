@@ -17,6 +17,10 @@
   color: gray;
 }
 
+.css-18nc3u2 .MuiOutlinedInput-root .MuiAutocomplete-input {
+  padding: 0.5px 4px 7.5px 5px !important;
+}
+
 /* .list-pro-stock-add {
   padding-top: 100px;
 } */

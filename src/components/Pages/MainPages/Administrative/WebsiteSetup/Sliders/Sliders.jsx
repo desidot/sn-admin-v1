@@ -37,10 +37,22 @@ const Sliders = () => {
   const allSliders = useSelector((state) => state.cart.allSliders);
 
   const [listItems, setListItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // useEffect(() => {
+  //   dispatch(getAllSliders());
+  // }, []);
 
   useEffect(() => {
-    dispatch(getAllSliders());
+    dispatch(getAllSliders())
+      .then(() => setIsLoading(false))
+      .catch((error) => {
+        setIsLoading(false);
+        console.error(error);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   useEffect(() => {
     setListItems(allSliders);
   }, [allSliders]);
@@ -113,7 +125,7 @@ const Sliders = () => {
   const [page, setPage] = useState(1);
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenuId, setOpenMenuId] = useState(null);
-  const [selectedRows, setSelectedRows] = useState([]);
+  // const [selectedRows, setSelectedRows] = useState([]);
   const navigate = useNavigate();
 
   const handleSearchChange = (event) => {
@@ -143,9 +155,10 @@ const Sliders = () => {
     setOpenMenuId(null);
     setAnchorEl(null);
     dispatch(deleteSlider(row.id));
+    getAllSliders();
   };
 
-  const handleCheckboxChange = (event, id) => {};
+  // const handleCheckboxChange = (event, id) => {};
 
   const filteredRows = rows.filter((row) => {
     const titleMatch = row.stockUpdateOn
@@ -234,7 +247,7 @@ const Sliders = () => {
           {/* Buttons End*/}
           <div className="main-body2">
             {/* Search and Nos */}
-            <div className="searchAndNosBlogs mt-2 mb-2">
+            <div className="searchAndNosBlogs mt-3 mb-2">
               <div className="nos">
                 Show <span className="spaces"></span>
                 <Select
@@ -293,60 +306,71 @@ const Sliders = () => {
                     <TableCell style={{ fontWeight: "bold" }}>Action</TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody align="left">
-                  {listItems?.map((row, index) => (
-                    <TableRow key={index}>
-                      <TableCell component="th" scope="row" align="left">
-                        {index + 1}
-                      </TableCell>
-                      <TableCell>{row.page_name}</TableCell>
-                      <TableCell>{row.title}</TableCell>
-                      <TableCell>
-                        {row.link === "undefined" ? "-" : row.link}
-                      </TableCell>
-
-                      <TableCell>
-                        <div className="blog-img" onClick={() => alert(row.id)}>
-                          <img src={`${IMAGEURL}${row.banner}`} alt="Blog" />
-                        </div>
-                      </TableCell>
-                      <TableCell align="left">
-                        <Checkbox
-                          checked={row.status}
-                          onChange={(event) => handleStatusChange(event, row)}
-                        />
-                      </TableCell>
-
-                      <TableCell>
-                        <IconButton
-                          onClick={(event) => handleMenuOpen(event, row)}
-                          size="small"
-                        >
-                          <MoreVertOutlined />
-                        </IconButton>
-                        <Menu
-                          anchorEl={anchorEl}
-                          open={openMenuId === row.id}
-                          onClose={handleMenuClose}
-                          PaperProps={{
-                            style: {
-                              maxHeight: 120,
-                            },
-                          }}
-                        >
-                          <MenuItem
-                            onClick={() => handleMenuClose(row.id, "edit")}
-                          >
-                            <EditOutlined fontSize="small" /> Edit
-                          </MenuItem>
-                          <MenuItem onClick={() => handleDeleteClick(row)}>
-                            <DeleteOutlined fontSize="small" /> Delete
-                          </MenuItem>
-                        </Menu>
-                      </TableCell>
+                {isLoading ? (
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>Loading...</TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
+                  </TableBody>
+                ) : (
+                  <TableBody align="left">
+                    {listItems?.map((row, index) => (
+                      <TableRow key={index}>
+                        <TableCell component="th" scope="row" align="left">
+                          {index + 1}
+                        </TableCell>
+                        <TableCell>{row.page_name}</TableCell>
+                        <TableCell>{row.title}</TableCell>
+                        <TableCell>
+                          {row.link === "undefined" ? "-" : row.link}
+                        </TableCell>
+
+                        <TableCell>
+                          <div
+                            className="blog-img"
+                            onClick={() => alert(row.id)}
+                          >
+                            <img src={`${IMAGEURL}${row.banner}`} alt="Blog" />
+                          </div>
+                        </TableCell>
+                        <TableCell align="left">
+                          <Checkbox
+                            checked={row.status}
+                            onChange={(event) => handleStatusChange(event, row)}
+                          />
+                        </TableCell>
+
+                        <TableCell>
+                          <IconButton
+                            onClick={(event) => handleMenuOpen(event, row)}
+                            size="small"
+                          >
+                            <MoreVertOutlined />
+                          </IconButton>
+                          <Menu
+                            anchorEl={anchorEl}
+                            open={openMenuId === row.id}
+                            onClose={handleMenuClose}
+                            PaperProps={{
+                              style: {
+                                maxHeight: 120,
+                              },
+                            }}
+                          >
+                            <MenuItem
+                              onClick={() => handleMenuClose(row.id, "edit")}
+                            >
+                              <EditOutlined fontSize="small" /> Edit
+                            </MenuItem>
+                            <MenuItem onClick={() => handleDeleteClick(row)}>
+                              <DeleteOutlined fontSize="small" /> Delete
+                            </MenuItem>
+                          </Menu>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                )}
               </Table>
             </TableContainer>
             {/* Table End */}

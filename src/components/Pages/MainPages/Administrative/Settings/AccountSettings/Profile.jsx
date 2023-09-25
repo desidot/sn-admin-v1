@@ -222,7 +222,9 @@ const Profile = () => {
               <Grid item xs={12} md={6}>
                 <InputLabel htmlFor="">Select Gender :</InputLabel>
                 <FormControl fullWidth>
-                  <InputLabel htmlFor="">Select Gender</InputLabel>
+                  {/* <InputLabel htmlFor="" className="custom-inputlable">
+                    Select Gender
+                  </InputLabel> */}
                   <Select
                     id="supplier"
                     name="supplier"
@@ -271,11 +273,14 @@ const Profile = () => {
                     }
                     id="date"
                     type="date"
+                    style={{ height: "2.5rem" }}
                   />
                 </FormControl>
               </Grid>
               <Grid item xs={12} md={6}>
-                <InputLabel htmlFor="country">Country :</InputLabel>
+                <InputLabel htmlFor="country" className="custom-inputlable">
+                  Country :
+                </InputLabel>
                 <FormControl fullWidth>
                   <Select
                     value={state.country ?? ""}

@@ -27,7 +27,7 @@ import {
   makeCartItemsEmpty,
   selectCustomer,
   setInStoreInCart,
-  // setLazyNote,
+  setLazyNote,
 } from "../../../../../redux/cartSlice";
 import { useTheme } from "@mui/material/styles";
 import { APIBASE, IMAGEURL } from "../../../../auth/apiConfig";
@@ -355,7 +355,7 @@ const OrderSummaryPopup = ({ onClose }) => {
     obj.agent_id = cart.agent;
     obj.note = note?.note;
     obj.in_store = cart.inStore;
-    obj.note=note?.note;
+    obj.note = note?.note;
     obj.back_order = cart.backedOrder ? 1 : 0;
     obj.order_items = cart.cartItems.map((elem) => ({
       name: elem.product_name,
@@ -1183,7 +1183,7 @@ const OrderSummaryPopup = ({ onClose }) => {
       >
         <DialogTitle id="order-summ-head">Add Note</DialogTitle>
         <DialogContent>
-          <div
+          {/* <div
             style={{
               display: "flex",
               justifyContent: "space-between",
@@ -1200,7 +1200,7 @@ const OrderSummaryPopup = ({ onClose }) => {
               placeholder="Title"
               onChange={(e) => setNote({ ...note, title: e.target.value })}
             />
-          </div>
+          </div> */}
           <div
             style={{
               display: "flex",
@@ -1209,7 +1209,12 @@ const OrderSummaryPopup = ({ onClose }) => {
             }}
           >
             <textarea
-              style={{ width: "400px", height: "250px", padding: "5px" }}
+              style={{
+                width: "400px",
+                height: "250px",
+                padding: "5px",
+                marginTop: "1rem",
+              }}
               placeholder="Make note..."
               onChange={(e) => setNote({ ...note, note: e.target.value })}
             />

@@ -476,27 +476,27 @@ const PoS = () => {
     calculateDiscount();
   };
 
-  const handleSubscribeChange = (event) => {
-    if (event.target.value === "Subscribe") {
-      setShowPopup(true);
-    } else if (event.target.value === "in_store") {
-      setShowPopup(false); // Close the subscription popup if "In Store" is selected
-      dispatch(changeCartType({ cartType: { type: "One Time Order" } }));
-    } else {
-      dispatch(changeCartType({ cartType: { type: event.target.value } }));
-      setShowPopup(false);
-    }
-  };
-
   // const handleSubscribeChange = (event) => {
   //   if (event.target.value === "Subscribe") {
   //     setShowPopup(true);
+  //   } else if (event.target.value === "in_store") {
+  //     setShowPopup(false); // Close the subscription popup if "In Store" is selected
+  //     dispatch(changeCartType({ cartType: { type: "One Time Order" } }));
   //   } else {
   //     dispatch(changeCartType({ cartType: { type: event.target.value } }));
-
   //     setShowPopup(false);
   //   }
   // };
+
+  const handleSubscribeChange = (event) => {
+    if (event.target.value === "Subscribe") {
+      setShowPopup(true);
+    } else {
+      dispatch(changeCartType({ cartType: { type: event.target.value } }));
+
+      setShowPopup(false);
+    }
+  };
 
   const handleCustomerInputChange = (event) => {
     const val = event.target.value;
@@ -1342,9 +1342,10 @@ const PoS = () => {
                         disabled={
                           (cart?.cartItems.filter(
                             (elem) => elem.subscriptions?.length > 0
-                          )?.length < cart?.cartItems?.length &&
-                            cart.inStore === 1) ||
-                          selectedValue === "in_store"
+                          )?.length < cart?.cartItems?.length 
+                          // && cart.inStore === 1) 
+                          )
+                          || selectedValue === "in_store"
                         }
                       />
                       {/* )} */}
@@ -1441,8 +1442,8 @@ const PoS = () => {
                           cart?.cartItems.filter(
                             (elem) => elem.subscriptions?.length > 0
                           )?.length < cart?.cartItems?.length) ||
-                          (cart?.cartType?.type === "Subscribe" && selectedValue === "in_store")
-                        // || (cart?.cartType?.type === "Subscribe" && cart?.inStore === 1)
+                        (cart?.cartType?.type === "Subscribe" &&
+                          selectedValue === "in_store")
                       }
                     >
                       Place Order

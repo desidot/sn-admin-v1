@@ -64,14 +64,27 @@ const AddSlider = () => {
 
   const handleSaveClick = () => {
     const formData = new FormData();
+    formData.append("_method", search.id ? "PUT" : "POST");
+    // if (formData?.title) {
     formData.append("title", state?.title);
+    // }
+    // if (formData?.page_name) {
     formData.append("page_name", state?.page_name);
-    formData.append("banner", state?.banner);
+    // }
+    if (state.banner instanceof File) {
+      formData.append("banner", state?.banner);
+    }
+    // if (formData?.title) {
     formData.append("slug", state?.title);
+    // }
+    // if (formData?.link) {
     formData.append("link", state?.link);
-    formData.append("sort_order", state.sort_order?state.sort_order:1);
+    // }
+    // if (formData.sort_order) {
+    formData.append("sort_order", state.sort_order ? state.sort_order : 1);
+    // }
 
-    if (state?.title && state.banner && !search.id) {
+    if (!search.id) {
       dispatch(createSlider(formData));
       setState(initialState);
       window.history.go(-1);

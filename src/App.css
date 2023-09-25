@@ -97,8 +97,13 @@ body {
 } */
 
 .MuiInputBase-root .MuiAutocomplete-input .MuiAutocomplete-inputFocused{
-  padding: 1px 4px 7.5px 5px;
+  padding: 0px 4px 7.5px 5px !important;
 }
+
+.css-18nc3u2 .MuiOutlinedInput-root .MuiAutocomplete-input {
+  padding: 0px 4px 7.5px 5px !important;
+}
+
 
 @media only screen and (max-width: 500px) {
   .main-container {

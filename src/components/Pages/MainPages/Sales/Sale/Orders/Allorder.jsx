@@ -177,8 +177,8 @@ const AllOrder = () => {
       //console.error("Invalid array length. Expected 2 dates.");
       return;
     }
-    const startDate = moment(datesArray[0].$d).format("DD-MM-YYYY");
-    const endDate = moment(datesArray[1].$d).format("DD-MM-YYYY");
+    // const startDate = moment(datesArray[0].$d).format("DD-MM-YYYY");
+    // const endDate = moment(datesArray[1].$d).format("DD-MM-YYYY");
 
     // Perform your desired operations with the start and end dates
     //console.log("Start Date:", startDate);
@@ -292,7 +292,7 @@ const AllOrder = () => {
       //console.log(error);
     }
   };
-  console.log(params);
+  // console.log(params);
   function getNormalDateAndTime(dateString) {
     const dateObject = new Date(dateString);
 

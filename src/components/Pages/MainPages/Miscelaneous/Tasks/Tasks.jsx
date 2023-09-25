@@ -116,7 +116,7 @@ const Tasks = () => {
   return (
     <>
       
-      <div className="mb-3" style={{ display: "flex", justifyContent: "space-between",alignItems:"center" }}>
+      <div className="mb-3" style={{ display: "flex", justifyContent: "space-between", alignItems:"center" }}>
          
         <div style={{ display: "flex",alignItems:"center" }}>
             <HomeIcon /> - <h6 className="mb-0"> Miscellaneous - Task</h6>
