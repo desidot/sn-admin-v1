@@ -11,6 +11,7 @@ import { APIBASE, IMAGEURL } from "../../../auth/apiConfig";
 import { Link } from "react-router-dom";
 
 const TopLowStocks = ({ lowStockProducts }) => {
+  
   const columns = ["Product", "Current Stock Qty"];
 
   return (

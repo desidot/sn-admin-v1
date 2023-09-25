@@ -103,6 +103,14 @@ const PoS = () => {
     dispatch(getAllSubscriptionProducts());
   }, []);
 
+  // const handleAutoRadioChange = (event) => {
+  //    setSelectedValue(event.target.value);
+
+  //    if(event.target.value === 'in_store'){
+  //     setSelectedValue('One Time Order')
+  //    }
+  // };
+
   // useEffect(() => {
   //   if (cusAddress.length === 0  ) {
   //     handleCloseCustomerForm();
@@ -471,12 +479,24 @@ const PoS = () => {
   const handleSubscribeChange = (event) => {
     if (event.target.value === "Subscribe") {
       setShowPopup(true);
+    } else if (event.target.value === "in_store") {
+      setShowPopup(false); // Close the subscription popup if "In Store" is selected
+      dispatch(changeCartType({ cartType: { type: "One Time Order" } }));
     } else {
       dispatch(changeCartType({ cartType: { type: event.target.value } }));
-
       setShowPopup(false);
     }
   };
+
+  // const handleSubscribeChange = (event) => {
+  //   if (event.target.value === "Subscribe") {
+  //     setShowPopup(true);
+  //   } else {
+  //     dispatch(changeCartType({ cartType: { type: event.target.value } }));
+
+  //     setShowPopup(false);
+  //   }
+  // };
 
   const handleCustomerInputChange = (event) => {
     const val = event.target.value;
@@ -1314,19 +1334,20 @@ const PoS = () => {
                       value={cart?.cartType?.type}
                       onChange={handleSubscribeChange}
                     >
-                      {selectedValue !== "in_store" && (
+                      {/* {selectedValue !== "in_store" && ( */}
                       <FormControlLabel
                         value="Subscribe"
                         control={<Radio />}
                         label="Subscribe"
                         disabled={
-                          cart?.cartItems.filter(
+                          (cart?.cartItems.filter(
                             (elem) => elem.subscriptions?.length > 0
                           )?.length < cart?.cartItems?.length &&
-                          cart.inStore === 1 ? true : false
+                            cart.inStore === 1) ||
+                          selectedValue === "in_store"
                         }
                       />
-                      )} 
+                      {/* )} */}
                     </RadioGroup>
                     <RadioGroup
                       value={cart?.cartType?.type}
@@ -1411,15 +1432,17 @@ const PoS = () => {
                       onClick={handleButtonClick}
                       className="place-order-btn"
                       disabled={
-                        cart.cartItems?.length == 0 ||
-                        (pickup == false &&
+                        cart.cartItems?.length === 0 ||
+                        (pickup === false &&
                           !cart.shippingAddress?.first_name &&
-                          cart.inStore == 1) ||
+                          cart.inStore === 0) ||
                         !cart.cartType.type ||
                         (cart?.cartType?.type === "Subscribe" &&
                           cart?.cartItems.filter(
                             (elem) => elem.subscriptions?.length > 0
-                          )?.length < cart?.cartItems?.length)
+                          )?.length < cart?.cartItems?.length) ||
+                          (cart?.cartType?.type === "Subscribe" && selectedValue === "in_store")
+                        // || (cart?.cartType?.type === "Subscribe" && cart?.inStore === 1)
                       }
                     >
                       Place Order

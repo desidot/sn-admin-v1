@@ -86,7 +86,7 @@ const AllOrder = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenuId, setOpenMenuId] = useState(null);
   const [pageCount, setPageCount] = useState(1);
-
+  const [isMounted, setIsMounted] = useState(true);
   const [searchOrder, setSearchOrder] = useState("");
   const [note, setNote] = useState(initialNote);
   const auth = useSelector((state) => state.auth.user.data?.name);
@@ -258,26 +258,30 @@ const AllOrder = () => {
   ];
 
   const getFilteredOrders = async () => {
-    setListItems([]);
-    SetIsLoading(true);
     try {
-      const res = await axios.get(
-        `${APIBASE}admin/get-all-orders?page=${page}${params.search.replace(
-          /\?/g,
-          "&"
-        )}`
-      );
-      setPageCount(Math.ceil(res.data.data.total / res.data.data.per_page));
-      setTotalItems(res.data.data.total);
-      SetIsLoading(false);
-      setListItems(res.data.data.data);
+     
+        SetIsLoading(true);
+        const res = await axios.get(
+          `${APIBASE}admin/get-all-orders?page=${page}${params.search.replace(
+            /\?/g,
+            "&"
+          )}`
+        );
+        setPageCount(Math.ceil(res.data.data.total / res.data.data.per_page));
+        setTotalItems(res.data.data.total);
+        setListItems(res.data.data.data);
+        SetIsLoading(false);
+      
     } catch (error) {
       SetIsLoading(false);
     }
   };
-  useEffect(() => {
-    getFilteredOrders();
-  }, [page]);
+
+
+
+  // useEffect(() => {
+  //   getFilteredOrders();
+  // }, [page]);
   const deleteOrder = async (id) => {
     handleMenuClose();
     try {
@@ -288,7 +292,7 @@ const AllOrder = () => {
       //console.log(error);
     }
   };
-
+  console.log(params);
   function getNormalDateAndTime(dateString) {
     const dateObject = new Date(dateString);
 
@@ -308,15 +312,12 @@ const AllOrder = () => {
     };
   }
 
-  // useEffect(() => {
-  //   getOrders();
-  // }, [page]);
-
   useEffect(() => {
     const obj = {};
     if (shippingValue) {
       obj.shipping = shippingValue;
     }
+
     if (paymentValue) {
       obj.payment = paymentValue;
     }
@@ -326,21 +327,15 @@ const AllOrder = () => {
     if (userId) {
       obj.user = userId;
     }
-    setSearchParam(obj);
-  }, [
-    shippingValue,
-    paymentValue,
-    userValue,
-    sourceValue,
-    subscriptionChecked,
-    selectedDates,
-    page,
-    userId,
-  ]);
+    if (shippingValue || paymentValue || sourceValue || userId) {
+      setPage(1);
+      setSearchParam(obj);
+    }
+  }, [shippingValue, paymentValue, userValue, sourceValue, userId]);
 
   useEffect(() => {
     getFilteredOrders();
-  }, [searchParam]);
+  }, [searchParam, page]);
 
   const getSingleOrder = async () => {
     try {
@@ -353,6 +348,7 @@ const AllOrder = () => {
       //console.log(error);
     }
   };
+
 
   const handleSearch = () => {
     getSingleOrder();
@@ -437,7 +433,10 @@ const AllOrder = () => {
                       id="shipping"
                       name="shipping"
                       value={shippingValue}
-                      onChange={(e) => setShippingValue(e.target.value)}
+                      onChange={(e) => {
+                        setShippingValue(e.target.value);
+                        localStorage.removeItem("orderType");
+                      }}
                     >
                       {shippingOptions?.map((option) => (
                         <MenuItem

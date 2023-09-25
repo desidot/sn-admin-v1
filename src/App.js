@@ -193,6 +193,10 @@ function App() {
           <Route path="Sales/all-orders" element={<AllOrder />} />
 
           <Route path="Sales/subscription-orders" element={<SubscriptionOrders />} />
+            <Route path="Sales/user-subscriptions" element={<UserSubscriptions />} />
+            <Route path="Sales/pickup-orders" element={<PickupOrder />} />
+            <Route path="Sales/in-store-orders" element={<InStoreOrder />} />
+            <Route path="Sales/customer-orders/:id" element={<OrdersPerCustomer />} />
 
           <Route path="Sales/user-subscriptions" element={<UserSubscriptions />} />
           <Route path="Sales/pickup-orders" element={<PickupOrder />} />
