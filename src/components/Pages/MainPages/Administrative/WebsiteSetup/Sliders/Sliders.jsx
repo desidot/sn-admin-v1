@@ -48,7 +48,7 @@ const Sliders = () => {
       .then(() => setIsLoading(false))
       .catch((error) => {
         setIsLoading(false);
-        console.error(error);
+        // console.error(error);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

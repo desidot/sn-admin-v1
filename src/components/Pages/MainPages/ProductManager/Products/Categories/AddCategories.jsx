@@ -91,7 +91,7 @@ const AddCategories = () => {
 
       // navigate("/admin/ProductManager/Products/categories");
     } catch (error) {
-      console.error("Error adding category:", error);
+      // console.error("Error adding category:", error);
       toast.error("Make sure category name is not empty and unique.", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,

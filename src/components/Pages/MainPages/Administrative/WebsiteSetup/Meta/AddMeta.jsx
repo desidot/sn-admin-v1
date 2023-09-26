@@ -22,10 +22,13 @@ const initialState = {
   meta_title: "",
   meta_keyword: "",
   meta_description: "",
+  image: "",
 };
 const AddMeta = () => {
   const search = useParams();
   const [state, setState] = useState(initialState);
+  const [filePreview, setFilePreview] = useState(null);
+
   const shippingOptions = [
     { value: "", label: "Select One" },
     { value: "all", label: "About Us" },
@@ -44,11 +47,12 @@ const AddMeta = () => {
       const res = await axios.get(`${APIBASE}admin/metas/${id}`);
       setState({
         ...state,
-        page_name: res.data.data.page_name,
-        meta_title: res.data.data.meta_title,
-        meta_description: res.data.data.meta_description,
-        meta_pixels: res.data.data.meta_pixels,
-        meta_keyword: res.data.data.meta_keyword,
+        page_name: res?.data?.data?.page_name,
+        meta_title: res?.data?.data?.meta_title,
+        meta_description: res?.data?.data?.meta_description,
+        meta_pixels: res?.data?.data?.meta_pixels,
+        meta_keyword: res?.data?.data?.meta_keyword,
+        image: res?.data?.data?.image,
       });
     } catch (error) {
       //console.log(error);
@@ -59,6 +63,16 @@ const AddMeta = () => {
       getCurrMeta(search.id);
     }
   }, [search]);
+
+  useEffect(() => {
+    // Update filePreview when state.image changes
+    if (state.image) {
+      setFilePreview(`${IMAGEURL}${state.image}`);
+    } else {
+      setFilePreview(null);
+    }
+  }, [state.image]);
+
   const handleGoBack = () => {
     // Go back to the previous page in the history
     window.history.go(-1);
@@ -66,7 +80,21 @@ const AddMeta = () => {
   const handleSaveClick = async () => {
     if (search.id) {
       try {
-        await axios.put(`${APIBASE}admin/metas/${search.id}`, state);
+        const formData = new FormData();
+        console.log(formData);
+        formData.append("_method", "PUT");
+        // Append each field to the FormData object
+        formData.append("page_name", state.page_name);
+        formData.append("meta_title", state.meta_title);
+        formData.append("meta_description", state.meta_description);
+        formData.append("meta_pixels", state.meta_pixels);
+        formData.append("meta_keyword", state.meta_keyword);
+
+        if (state.image) {
+          formData.append("image", state.image);
+        }
+
+        await axios.post(`${APIBASE}admin/metas/${search.id}`, formData);
         toast.success("Meta updated successfully.");
         window.history.go(-1);
       } catch (error) {
@@ -74,12 +102,46 @@ const AddMeta = () => {
       }
     } else {
       try {
-        await axios.post(`${APIBASE}admin/metas`, state);
+        const formData = new FormData();
+        formData.append("_method", "PUT");
+        console.log(formData);
+        // Append each field to the FormData object
+        formData.append("page_name", state.page_name);
+        formData.append("meta_title", state.meta_title);
+        formData.append("meta_description", state.meta_description);
+        formData.append("meta_pixels", state.meta_pixels);
+        formData.append("meta_keyword", state.meta_keyword);
+
+        if (state.image) {
+          formData.append("image", state.image);
+        }
+
+        await axios.post(`${APIBASE}admin/metas`, formData);
         toast.success("Meta added successfully.");
         window.history.go(-1);
       } catch (error) {
         toast.error("Error!");
       }
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        setFilePreview(e.target.result);
+      };
+
+      reader.readAsDataURL(file);
+
+      // Set the selected file itself in the state
+      setState((prevState) => ({
+        ...prevState,
+        image: file, // Update 'image' to be the file itself
+      }));
     }
   };
 
@@ -180,8 +242,31 @@ const AddMeta = () => {
                   />
                 </FormControl>
               </Grid>
-
               <Grid item xs={12} md={6}>
+                <InputLabel htmlFor="">Meta Image (Max 2MB size) :</InputLabel>
+                <FormControl fullWidth>
+                  <div className="input-field">
+                    <input
+                      style={{ height: "2.5rem", paddingLeft: "0.5rem" }}
+                      type="file"
+                      onChange={handleFileChange}
+                    />
+                  </div>
+                </FormControl>
+                {/* Display the file preview */}
+                {/* {filePreview && ( */}
+                <img
+                  src={filePreview ? filePreview : `${IMAGEURL}${state?.image}`}
+                  alt="Preview"
+                  style={{
+                    maxWidth: "60px",
+                    marginTop: "10px",
+                    padding: "5px",
+                  }}
+                />
+                {/* )} */}
+              </Grid>
+              {/* <Grid item xs={12} md={6}>
                 <InputLabel htmlFor="">Meta Pixels :</InputLabel>
                 <FormControl fullWidth>
                   <textarea
@@ -193,8 +278,10 @@ const AddMeta = () => {
                     }
                   />
                 </FormControl>
-              </Grid>
-              <Grid item xs={12} md={2}>
+              </Grid> */}
+            </Grid>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
                 <div
                   className="add-wishlist-submit-btn"
                   style={{ display: "flex", justifyContent: "flex-end" }}

@@ -71,7 +71,7 @@ const AddUnit = () => {
       // Redirect back to the Units component after saving
       // navigate("/admin/ProductManager/Products/units");
     } catch (error) {
-      console.error("Error adding unit:", error);
+      // console.error("Error adding unit:", error);
       // Show toast notification for error (optional)
       toast.error("Error adding unit. Please try again later.", {
         position: toast.POSITION.TOP_RIGHT,

@@ -42,7 +42,7 @@ const Units = () => {
         Math.ceil(response.data.meta.total / response.data.meta.per_page)
       );
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
     }
   };
 
@@ -79,7 +79,7 @@ const Units = () => {
         autoClose: 3000, // Close the toast after 3 seconds
       });
     } catch (error) {
-      console.error("Error deleting unit:", error);
+      // console.error("Error deleting unit:", error);
       // Show toast notification for error (optional)
       toast.error("Error deleting unit. Please try again later.", {
         position: toast.POSITION.TOP_RIGHT,

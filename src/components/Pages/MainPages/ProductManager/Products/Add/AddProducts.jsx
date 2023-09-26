@@ -184,11 +184,14 @@ const AddProducts = () => {
   //   //console.log(data);
   // };
 
-  const handleFileUpload = (event) => {
-    // eslint-disable-next-line no-unused-vars
-    const file = event.target.files[0];
+  const handleFileUploadMeta = (event) => {
+    const metaFile = event.target.files[0];
     // Perform the upload logic here
     //console.log(file);
+    setFileData((prevState) => ({
+      ...prevState,
+      meta_image: metaFile,
+    }));
   };
 
   // const handleFileUploadGallary = (event) => {
@@ -1281,7 +1284,7 @@ const AddProducts = () => {
                 {/* <input type="file" onChange={handleFileUpload} /> */}
                 <input
                   type="file"
-                  onChange={(e) => handleFileUpload(e, "meta_image")}
+                  onChange={(e) => handleFileUploadMeta(e, "meta_image")}
                 />
               </div>
             </div>

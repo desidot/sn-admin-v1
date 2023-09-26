@@ -152,7 +152,7 @@ const EditProducts = () => {
 
         if (dataFromBackend.meta_image) {
           dataFromBackend.meta_image = `${IMAGEURL}${dataFromBackend.meta_image}`;
-          setGalleryFileDataUrl(dataFromBackend.meta_image);
+          setMetaImageFileDataUrl(dataFromBackend.meta_image);
         }
 
         if (dataFromBackend.product_desc) {

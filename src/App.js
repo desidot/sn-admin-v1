@@ -4,7 +4,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import Header from "./components/Layout/Header/Header";
 import Sidebar from "./components/Layout/Sidebar/Sidebar";
 import { Route, Routes, Outlet, Navigate } from "react-router-dom";
-
+// import { useEffect } from "react";
 import Dashboard from "./components/Pages/Dashboard/Dashboard";
 import Tasks from "./components/Pages/MainPages/Miscelaneous/Tasks/Tasks";
 import Notifications from "./components/Pages/MainPages/Miscelaneous/Notifications/Notifications.jsx";
@@ -99,6 +99,7 @@ import Sliders from "./components/Pages/MainPages/Administrative/WebsiteSetup/Sl
 import AddSlider from "./components/Pages/MainPages/Administrative/WebsiteSetup/Sliders/AddSlider";
 import Meta from "./components/Pages/MainPages/Administrative/WebsiteSetup/Meta/Meta";
 import AddMeta from "./components/Pages/MainPages/Administrative/WebsiteSetup/Meta/AddMeta";
+import DefaultMeta from "./components/Pages/MainPages/Administrative/WebsiteSetup/DefaultMeta/DefaultMeta";
 
 import DeletedOrders from "./components/Pages/MainPages/Administrative/Trash/DeletedOrders";
 import DeletedProducts from "./components/Pages/MainPages/Administrative/Trash/DeletedProducts";
@@ -141,6 +142,20 @@ const MainLayout = ({ children }) => (
 
 function App() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+  // const disableRightClick = (e) => {
+  //   e.preventDefault();
+  // };
+
+  // useEffect(() => {
+  //   // Add the event listener when the component mounts
+  //   window.addEventListener('contextmenu', disableRightClick);
+
+  //   // Remove the event listener when the component unmounts
+  //   return () => {
+  //     window.removeEventListener('contextmenu', disableRightClick);
+  //   };
+  // }, []);
   // ProtectedRoute component to handle conditional rendering based on authentication
   // eslint-disable-next-line no-unused-vars
   const ProtectedRoute = ({ element, ...rest }) => {
@@ -301,6 +316,7 @@ function App() {
           <Route path="Administrative/Website-Setup/add-meta" element={<AddMeta />} />
 
           <Route path="Administrative/Website-Setup/edit-meta/:id" element={<AddMeta />} />
+          <Route path="Administrative/Website-Setup/default-meta" element={<DefaultMeta />} />
         </Routes>
 
         {/* Administrative */}

@@ -170,8 +170,9 @@ const EditProducts = () => {
 
       if (dataFromBackend.meta_image) {
         dataFromBackend.meta_image = `${IMAGEURL}${dataFromBackend.meta_image}`;
-        setGalleryFileDataUrl(dataFromBackend.meta_image);
+        setMetaImageFileDataUrl(dataFromBackend.meta_image);
       }
+      // console.log(metaImageFileDataUrl);
 
       if (dataFromBackend.product_desc) {
         setProductDescription(dataFromBackend.product_desc);
@@ -412,10 +413,14 @@ const EditProducts = () => {
   //   //console.log(data);
   // };
 
-  const handleFileUpload = (event) => {
-    const file = event.target.files[0];
+  const handleFileUploadMeta = (event) => {
+    const metaFile = event.target.files[0];
     // Perform the upload logic here
     //console.log(file);
+    setFileData((prevState) => ({
+      ...prevState,
+      meta_image: metaFile,
+    }));
   };
 
   const IOSSwitch = styled((props) => (
@@ -1499,7 +1504,7 @@ const EditProducts = () => {
                 {/* <input type="file" onChange={handleFileUpload} /> */}
                 <input
                   type="file"
-                  onChange={(e) => handleFileUpload(e, "meta_image")}
+                  onChange={(e) => handleFileUploadMeta(e, "meta_image")}
                 />
                 {metaImageFileDataUrl ? (
                   <div className="uploaded-image-container">
@@ -1507,8 +1512,8 @@ const EditProducts = () => {
                       className="uploaded-image"
                       src={metaImageFileDataUrl}
                       alt="Banner"
-                      height="80px"
-                      width="80px"
+                      height="60px"
+                      width="60px"
                       margin="10px"
                     />
                     <IconButton

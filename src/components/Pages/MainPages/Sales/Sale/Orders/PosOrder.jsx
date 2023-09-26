@@ -675,7 +675,7 @@ const PosOrder = () => {
                               <TableCell>
                                 <div
                                   style={{
-                                    width: "180px",
+                                    width: "auto",
                                     paddingTop: "10px",
                                     paddingBottom: "10px",
                                   }}

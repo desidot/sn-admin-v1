@@ -596,6 +596,10 @@ const Sidebar = ({ children }) => {
                     name: "Meta",
                   },
                   {
+                    path: "/admin/Administrative/Website-Setup/default-meta",
+                    name: "Default Meta",
+                  },
+                  {
                     path: "/admin/Administrative/Website-Setup/pages",
                     name: "Pages",
                   },
@@ -1042,6 +1046,10 @@ const Sidebar = ({ children }) => {
                   permissions.includes("View All Website Meta") && {
                     path: "/admin/Administrative/Website-Setup/meta",
                     name: "Meta",
+                  },
+                  permissions.includes("View All Website Meta") && {
+                    path: "/admin/Administrative/Website-Setup/default-meta",
+                    name: "Default Meta",
                   },
                   permissions.includes("View All Website Pages") && {
                     path: "/admin/Administrative/Website-Setup/pages",

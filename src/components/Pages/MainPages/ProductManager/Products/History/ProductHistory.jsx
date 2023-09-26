@@ -164,7 +164,7 @@ const ProductHistory = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        // console.error("Error fetching data:", error);
       });
   }, [id]);
 

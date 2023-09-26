@@ -82,7 +82,7 @@ const Suppliers = () => {
         autoClose: 2000,
       });
     } catch (error) {
-      console.error("Error updating supplier status:", error);
+      // console.error("Error updating supplier status:", error);
       toast.error("Error updating supplier status. Please try again later.", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
@@ -110,7 +110,7 @@ const Suppliers = () => {
         Math.ceil(response.data.meta.total / response.data.meta.per_page)
       );
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
     }
   };
 
@@ -144,7 +144,7 @@ const Suppliers = () => {
         autoClose: 2000,
       });
     } catch (error) {
-      console.error("Error deleting supplier:", error);
+      // console.error("Error deleting supplier:", error);
       toast.error("Error deleting supplier. Please try again later.", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,

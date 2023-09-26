@@ -91,7 +91,7 @@ const EditBrand = () => {
 
         setEditedBrand(dataFromBackend);
       } catch (error) {
-        console.error("Error fetching Brand data:", error);
+        // console.error("Error fetching Brand data:", error);
       }
     };
 
@@ -135,7 +135,7 @@ const EditBrand = () => {
 
       navigate("/admin/ProductManager/Products/brands");
     } catch (error) {
-      console.error("Error updating brand:", error);
+      // console.error("Error updating brand:", error);
       toast.error("Error updating brand. Please try later.", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,

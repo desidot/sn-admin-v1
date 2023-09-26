@@ -76,7 +76,7 @@ const AddSuppliers = () => {
           },
         });
       } catch (error) {
-        console.error("Error creating supplier:", error);
+        // console.error("Error creating supplier:", error);
 
         // Show error toast
         toast.error("Failed to add supplier. Please try again later.", {

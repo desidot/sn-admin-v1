@@ -66,7 +66,7 @@ const Categories = () => {
         Math.ceil(response.data.meta.total / response.data.meta.per_page)
       );
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
     }
   };
 
@@ -168,7 +168,7 @@ const Categories = () => {
       });
       setOpenFunctionPopup(false);
     } catch (error) {
-      console.error("Error updating category:", error);
+      // console.error("Error updating category:", error);
       toast.error("Error updating category. Please try again later.", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
@@ -199,7 +199,7 @@ const Categories = () => {
             autoClose: 2000,
           });
         } catch (error) {
-          console.error("Error deleting category:", error);
+          // console.error("Error deleting category:", error);
           // Show the error toast message
           toast.error("Error deleting category. Please try again.", {
             position: toast.POSITION.TOP_RIGHT,
@@ -233,7 +233,7 @@ const Categories = () => {
     try {
       const categoryToUpdate = categoriesData.find((brand) => brand.id === id);
       if (!categoryToUpdate) {
-        console.error("Brand not found for the given ID:", id);
+        // console.error("Brand not found for the given ID:", id);
         return;
       }
       // Make the API call to update the status
@@ -258,7 +258,7 @@ const Categories = () => {
         autoClose: 2000,
       });
     } catch (error) {
-      console.error("Error updating status:", error);
+      // console.error("Error updating status:", error);
 
       // Show an error toast
       toast.error("Error updating status. Please try again.", {

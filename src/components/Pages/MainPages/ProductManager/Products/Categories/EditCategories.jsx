@@ -115,7 +115,7 @@ const EditCategories = () => {
 
         setEditedCategory(dataFromBackend);
       } catch (error) {
-        console.error("Error fetching category data:", error);
+        // console.error("Error fetching category data:", error);
       }
     };
 
@@ -161,7 +161,7 @@ const EditCategories = () => {
 
         navigate("/admin/ProductManager/Products/categories");
       } catch (error) {
-        console.error("Error updating category:", error);
+        // console.error("Error updating category:", error);
         toast.error("Error updating category. Please try later.", {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 2000,

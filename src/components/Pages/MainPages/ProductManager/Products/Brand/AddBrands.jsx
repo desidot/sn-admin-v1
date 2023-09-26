@@ -66,7 +66,7 @@ const AddBrand = () => {
           autoClose: 2000,
         });
       } catch (error) {
-        console.error("Error adding brand:", error);
+        // console.error("Error adding brand:", error);
         toast.warn("Please Check the brand name is unique and not empty.", {
           position: "top-center",
           autoClose: 2000,

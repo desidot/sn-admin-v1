@@ -44,7 +44,7 @@ const EditUnit = () => {
 
         setEditedUnit(dataFromBackend); // Set the fetched data to the state
       } catch (error) {
-        console.error("Error fetching unit data:", error);
+        // console.error("Error fetching unit data:", error);
       }
     };
 
@@ -102,7 +102,7 @@ const EditUnit = () => {
       // Navigate back to the Units component after saving
       navigate("/admin/ProductManager/Products/units");
     } catch (error) {
-      console.error("Error updating unit data:", error);
+      // console.error("Error updating unit data:", error);
     } }else{
       toast.warn("Make sure Unit name should not be duplicate or Empty.", {
         position:"top-center",

@@ -57,7 +57,7 @@ const LowStock = () => {
       setCurrPage(response.data.products.current_page);
     } catch (error) {
       // Handle error here
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
       setLoading(false);
     }
   };

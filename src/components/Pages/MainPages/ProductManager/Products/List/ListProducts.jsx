@@ -434,7 +434,7 @@ const ListOfProducts = () => {
         autoClose: 2000,
       });
     } catch (error) {
-      console.error("Error deleting product:", error);
+      // console.error("Error deleting product:", error);
       // Show the error toast message
       toast.error("Error deleting product. Please try again.", {
         position: toast.POSITION.TOP_RIGHT,

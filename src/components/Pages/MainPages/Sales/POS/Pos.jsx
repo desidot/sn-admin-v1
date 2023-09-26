@@ -243,7 +243,7 @@ const PoS = () => {
 
     cart?.cartItems?.forEach((product) => {
       const subsDisInfo = product.subscriptions?.filter(
-        (elem) => elem.months == cart?.cartType?.duration?.split(" ")[0]
+        (elem) => +elem.months === +cart?.cartType?.duration?.split(" ")[0]
       )[0];
 
       let fPrice = 0;
@@ -826,7 +826,7 @@ const PoS = () => {
 
   const getOriginalPrice = (product) => {
     const subsDisInfo = product.subscriptions?.filter(
-      (elem) => elem.months == cart?.cartType?.duration?.split(" ")[0]
+      (elem) => +elem.months === +cart?.cartType?.duration?.split(" ")[0]
     )[0];
 
     let fPrice = 0;

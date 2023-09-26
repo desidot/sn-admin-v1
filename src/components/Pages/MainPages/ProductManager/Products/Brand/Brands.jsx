@@ -56,7 +56,7 @@ const Brands = () => {
     try {
       const brandToUpdate = brandsData.find((brand) => brand.id === id);
       if (!brandToUpdate) {
-        console.error("Brand not found for the given ID:", id);
+        // console.error("Brand not found for the given ID:", id);
         return;
       }
       await axios.put(
@@ -73,7 +73,7 @@ const Brands = () => {
         autoClose: 2000,
       });
     } catch (error) {
-      console.error("Error updating brand:", error);
+      // console.error("Error updating brand:", error);
       toast.error("Error updating brand. Please try again later.", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
@@ -108,7 +108,7 @@ const Brands = () => {
       setBrandsData(data);
       // console.log(response);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
     }
   };
 
@@ -128,7 +128,7 @@ const Brands = () => {
         autoClose: 2000,
       });
     } catch (error) {
-      console.error("Error deleting brand:", error);
+      // console.error("Error deleting brand:", error);
       toast.error("Error deleting brand. Please try again later.", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,

@@ -144,7 +144,7 @@ const ProductReiews = () => {
       // console.log(response.data.data);
       // const initialToggleState = response.data.data.status;
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
     }
   };
   // console.log(reviewsData);
@@ -175,7 +175,7 @@ const ProductReiews = () => {
       const response = await axios.get(`${APIBASE}admin/reviews`);
       setReviewsData(response.data);
     } catch (error) {
-      console.error("Error deleting review:", error);
+      // console.error("Error deleting review:", error);
       // Show toast notification for error (optional)
       toast.error("Error deleting review. Please try again later.", {
         position: toast.POSITION.TOP_RIGHT,
@@ -223,7 +223,7 @@ const ProductReiews = () => {
         }),
       }));
     } catch (error) {
-      console.error("Error updating review status:", error);
+      // console.error("Error updating review status:", error);
       // Show toast notification for error (optional)
       toast.error("Error updating review status. Please try again later.", {
         position: toast.POSITION.TOP_RIGHT,

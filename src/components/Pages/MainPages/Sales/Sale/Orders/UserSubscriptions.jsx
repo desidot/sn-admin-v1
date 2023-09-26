@@ -451,7 +451,7 @@ const UserSubscriptions = () => {
       toast.success("Subscription canceled successfully");
     } catch (error) {
       toast.error("Failed to cancel subscription");
-      console.error("Error canceling subscription:", error);
+      // console.error("Error canceling subscription:", error);
       setShowShowSubsCancel();
       // handleMenuClose();
     }
@@ -815,7 +815,7 @@ const UserSubscriptions = () => {
                               <TableCell>
                                 <div
                                   style={{
-                                    width: "180px",
+                                    width: "auto",
                                     paddingTop: "10px",
                                     paddingBottom: "10px",
                                   }}
@@ -890,6 +890,7 @@ const UserSubscriptions = () => {
                                 </span>
                               </TableCell> */}
                               <TableCell>
+                                <p>{row?.order_type}</p>
                                 <div style={{ width: "150px" }}>
                                   <p className="mb-1"> {row?.payment_method}</p>
                                   <p className="mb-1">
@@ -914,13 +915,13 @@ const UserSubscriptions = () => {
                               {/* <TableCell>{row?.subscription_status}</TableCell> */}
                               <TableCell
                                 className={
-                                  row.subscription_status === 1
+                                  +row.subscription_status === 1
                                     ? "active-status"
                                     : "inactive-status"
                                 }
                               >
                                 <span>
-                                  {row.subscription_status === 1
+                                  {+row.subscription_status === 1
                                     ? "Active"
                                     : "Inactive"}
                                 </span>

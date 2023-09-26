@@ -46,7 +46,7 @@ const EditSuppliers = () => {
 
         setSupplierData(dataFromBackend);
       } catch (error) {
-        console.error("Error fetching Brand data:", error);
+        // console.error("Error fetching Brand data:", error);
       }
     };
 
@@ -92,7 +92,7 @@ const EditSuppliers = () => {
 
       navigate("/admin/ProductManager/Products/suppliers-list");
     } catch (error) {
-      console.error("Error updating supplier:", error);
+      // console.error("Error updating supplier:", error);
       toast.error("Error updating suppliers. Please try later.", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
