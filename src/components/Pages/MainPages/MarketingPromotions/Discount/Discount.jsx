@@ -546,7 +546,7 @@ const Discount = () => {
                               {/* <hr /> */}
                               <TableContainer>
                                 <Table>
-                                  <TableHead className="orders-table-head-row">
+                                  <TableHead className="orders-table-head-row font-weight-bold">
                                     <TableRow className="info">
                                       <TableCell>Product Name</TableCell>
                                       <TableCell>Unit</TableCell>

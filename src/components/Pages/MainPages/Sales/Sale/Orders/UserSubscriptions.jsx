@@ -647,20 +647,38 @@ const UserSubscriptions = () => {
                     <TableHead>
                       <TableRow>
                         <TableCell></TableCell>
-                        <TableCell>Subs. No.</TableCell>
-                        <TableCell>Date</TableCell>
-                        <TableCell>Order Details</TableCell>
-                        <TableCell>Total Items</TableCell>
+                        <TableCell className="font-weight-bold">
+                          Subs. No.
+                        </TableCell>
+                        <TableCell className="font-weight-bold">Date</TableCell>
+                        <TableCell className="font-weight-bold">
+                          Order Details
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Total Items
+                        </TableCell>
 
-                        <TableCell>Customer Details</TableCell>
-                        <TableCell>Amount</TableCell>
-                        <TableCell>Discount</TableCell>
+                        <TableCell className="font-weight-bold">
+                          Customer Details
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Amount
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Discount
+                        </TableCell>
                         {/* <TableCell>Shipping Status</TableCell> */}
                         {/* <TableCell>Pay Status</TableCell> */}
-                        <TableCell>Source</TableCell>
-                        <TableCell>Agent/Sales Person</TableCell>
-                        <TableCell>Status</TableCell>
-                        <TableCell>Action</TableCell>
+                        {/* <TableCell>Source</TableCell> */}
+                        <TableCell className="font-weight-bold">
+                          Agent / Sales Person
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Status
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Action
+                        </TableCell>
                         {/* <TableCell>
                           <SettingsIcon />
                         </TableCell> */}
@@ -780,9 +798,11 @@ const UserSubscriptions = () => {
                                 </IconButton>
                               </TableCell>
                               <TableCell>
-                                <div style={{ width: "130px" }}>
+                                <div style={{ width: "auto" }}>
                                   {row?.subscription_no}
                                 </div>
+                                <br />
+                                <p>{row?.order_type}</p>
                               </TableCell>
                               <TableCell>
                                 <div style={{ width: "100px" }}>
@@ -798,7 +818,7 @@ const UserSubscriptions = () => {
                                 </div>
                               </TableCell>
                               <TableCell>
-                                <div style={{ width: "100px" }}>
+                                <div style={{ width: "auto" }}>
                                   <p className="mb-1"> {row.order_no}</p>
                                 </div>
                                 {row?.month && (
@@ -848,6 +868,24 @@ const UserSubscriptions = () => {
                                 </div>
                               </TableCell>
                               <TableCell>
+                                {/* <div style={{ width: "100px" }}>
+                                  <span
+                                    className={
+                                      row?.payment_status == "Un-Paid"
+                                        ? "pending"
+                                        : "success"
+                                    }
+                                  >
+                                    {row?.payment_status}
+                                  </span>
+                                </div>
+                                <br /> */}
+                                <div style={{ width: "auto" }}>
+                                  <p className="mb-1"> {row?.payment_method}</p>
+                                  <p className="mb-1">
+                                    {row?.transaction_id ?? ""}
+                                  </p>
+                                </div>
                                 <div style={{ width: "150px" }}>
                                   <b>Paid Amount:</b> ${row.grand_total}
                                 </div>
@@ -889,7 +927,7 @@ const UserSubscriptions = () => {
                                   {row.payment_status}
                                 </span>
                               </TableCell> */}
-                              <TableCell>
+                              {/* <TableCell>
                                 <p>{row?.order_type}</p>
                                 <div style={{ width: "150px" }}>
                                   <p className="mb-1"> {row?.payment_method}</p>
@@ -897,7 +935,7 @@ const UserSubscriptions = () => {
                                     {row?.transaction_id ?? ""}
                                   </p>
                                 </div>
-                              </TableCell>
+                              </TableCell> */}
                               <TableCell>
                                 <div style={{ width: "150px" }}>
                                   <p className="mb-1">
@@ -980,7 +1018,7 @@ const UserSubscriptions = () => {
                                     {/* <hr /> */}
                                     <TableContainer>
                                       <Table>
-                                        <TableHead className="orders-table-head-row">
+                                        <TableHead className="orders-table-head-row font-weight-bold">
                                           <TableRow className="info">
                                             <TableCell>Product Name</TableCell>
                                             <TableCell>Unit</TableCell>

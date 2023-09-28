@@ -1160,7 +1160,7 @@ const ListOfProducts = () => {
                                       </div>
                                       <TableContainer>
                                         <Table>
-                                          <TableHead className="orders-table-head-row">
+                                          <TableHead className="orders-table-head-row font-weight-bold">
                                             <TableRow className="info">
                                               <TableCell>
                                                 Stock History

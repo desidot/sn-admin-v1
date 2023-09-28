@@ -494,7 +494,12 @@ const PickupOrder = () => {
                 <Grid item xs={12} md={3}>
                   <label htmlFor="source">Sources:</label>
                   <FormControl fullWidth>
-                  <InputLabel htmlFor="source" className="input-labels-options">All</InputLabel>
+                    <InputLabel
+                      htmlFor="source"
+                      className="input-labels-options"
+                    >
+                      All
+                    </InputLabel>
                     <Select
                       id="source"
                       name="source"
@@ -572,19 +577,33 @@ const PickupOrder = () => {
                     <TableHead>
                       <TableRow>
                         <TableCell></TableCell>
-                        <TableCell>Inv. No.</TableCell>
-                        <TableCell>Date</TableCell>
-                        <TableCell>Order Details</TableCell>
-                        <TableCell>Total Items</TableCell>
+                        <TableCell className="font-weight-bold">
+                          Order Details / Inv. No.{" "}
+                        </TableCell>
+                        <TableCell className="font-weight-bold">Date</TableCell>
+                        {/* <TableCell>Order Details</TableCell> */}
+                        <TableCell className="font-weight-bold">
+                          Total Items
+                        </TableCell>
 
-                        <TableCell>Customer Details</TableCell>
-                        <TableCell>Amount</TableCell>
-                        <TableCell>Discount</TableCell>
-                        <TableCell>Shipping Status</TableCell>
-                        <TableCell>Pay Status</TableCell>
-                        <TableCell>Source</TableCell>
-                        <TableCell>Agent/Sales Person</TableCell>
-                        <TableCell>
+                        <TableCell className="font-weight-bold">
+                          Customer Details
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Amount
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Discount
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Shipping Charge / Shipping Status
+                        </TableCell>
+                        {/* <TableCell>Pay Status</TableCell> */}
+                        {/* <TableCell>Source</TableCell> */}
+                        <TableCell className="font-weight-bold">
+                          Agent / Sales Person
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
                           <SettingsIcon />
                         </TableCell>
                       </TableRow>
@@ -620,8 +639,8 @@ const PickupOrder = () => {
 
                       {isLoading ? (
                         <TableRow>
-                        <TableCell>Loading...</TableCell>
-                       </TableRow>
+                          <TableCell>Loading...</TableCell>
+                        </TableRow>
                       ) : (
                         listItems?.map((row, index) => (
                           <React.Fragment key={index}>
@@ -644,6 +663,12 @@ const PickupOrder = () => {
                                 </IconButton>
                               </TableCell>
                               <TableCell>
+                                <div
+                                  style={{ width: "130px" }}
+                                  className="font-weight-bold"
+                                >
+                                  <p className="mb-1"> {row.order_no}</p>
+                                </div>
                                 <div style={{ width: "130px" }}>
                                   <a
                                     className="text-info font-weight-bold"
@@ -653,6 +678,15 @@ const PickupOrder = () => {
                                     {row?.invoice_no}
                                   </a>
                                 </div>
+
+                                {row?.subscription_no && (
+                                  <>
+                                    Subs No.
+                                    {row.subscription_no
+                                      ? row.subscription_no
+                                      : "-"}
+                                  </>
+                                )}
                               </TableCell>
                               <TableCell>
                                 <div style={{ width: "100px" }}>
@@ -667,11 +701,11 @@ const PickupOrder = () => {
                                   }
                                 </div>
                               </TableCell>
-                              <TableCell>
+                              {/* <TableCell>
                                 <div style={{ width: "100px" }}>
                                   <p className="mb-1"> {row.order_no}</p>
                                 </div>
-                              </TableCell>
+                              </TableCell> */}
                               <TableCell>
                                 <div>{row.items.length}</div>
                               </TableCell>
@@ -712,6 +746,25 @@ const PickupOrder = () => {
                                 </div>
                               </TableCell>
                               <TableCell>
+                                <div style={{ width: "100px" }}>
+                                  <span
+                                    className={
+                                      row?.payment_status == "Un-Paid"
+                                        ? "pending"
+                                        : "success"
+                                    }
+                                  >
+                                    {row?.payment_status}
+                                  </span>
+                                </div>
+                                <br />
+                                <div style={{ width: "auto" }}>
+                                  <p className="mb-1"> {row?.payment_method}</p>
+                                  <p className="mb-1">
+                                    {row?.transaction_id ?? ""}
+                                  </p>
+                                </div>
+                                <br />
                                 <div style={{ width: "150px" }}>
                                   <b>Paid Amount:</b> ${row.grand_total}
                                 </div>
@@ -738,14 +791,14 @@ const PickupOrder = () => {
                                   >
                                     {row?.order_status}
                                   </span>
-                                  <br></br>
-                                  <p className="mb-1 mt-1">
-                                    <b>Shipping Charge:</b> $
-                                    {row?.shipping_charge}
-                                  </p>
                                 </div>
+                                <br></br>
+                                <p className="mb-1 mt-1">
+                                  <b>Shipping Charge:</b> $
+                                  {row?.shipping_charge}
+                                </p>
                               </TableCell>
-                              <TableCell>
+                              {/* <TableCell>
                                 <div style={{ width: "100px" }}>
                                   <span
                                     className={
@@ -757,15 +810,15 @@ const PickupOrder = () => {
                                     {row?.payment_status}
                                   </span>
                                 </div>
-                              </TableCell>
-                              <TableCell>
+                              </TableCell> */}
+                              {/* <TableCell>
                                 <div style={{ width: "150px" }}>
                                   <p className="mb-1"> {row?.payment_method}</p>
                                   <p className="mb-1">
                                     {row?.transaction_id ?? ""}
                                   </p>
                                 </div>
-                              </TableCell>
+                              </TableCell> */}
                               <TableCell>
                                 <div style={{ width: "150px" }}>
                                   <p className="mb-1">
@@ -931,7 +984,7 @@ const PickupOrder = () => {
                                     {/* <hr /> */}
                                     <TableContainer>
                                       <Table>
-                                        <TableHead className="orders-table-head-row">
+                                        <TableHead className="orders-table-head-row font-weight-bold">
                                           <TableRow className="info">
                                             <TableCell>Product Name</TableCell>
                                             <TableCell>Unit</TableCell>

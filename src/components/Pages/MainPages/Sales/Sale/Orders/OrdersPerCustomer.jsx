@@ -399,19 +399,39 @@ const OrdersPerCustomer = () => {
                     <TableHead>
                       <TableRow>
                         <TableCell></TableCell>
-                        <TableCell>Inv. No.</TableCell>
-                        <TableCell>Date</TableCell>
-                        <TableCell>Order Details</TableCell>
-                        <TableCell>Total Items</TableCell>
+                        <TableCell className="font-weight-bold">
+                          Inv. No.
+                        </TableCell>
+                        <TableCell className="font-weight-bold">Date</TableCell>
+                        <TableCell className="font-weight-bold">
+                          Order Details
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Total Items
+                        </TableCell>
 
-                        <TableCell>Customer Details</TableCell>
-                        <TableCell>Amount</TableCell>
-                        <TableCell>Discount</TableCell>
-                        <TableCell>Shipping Status</TableCell>
-                        <TableCell>Pay Status</TableCell>
-                        <TableCell>Source</TableCell>
-                        <TableCell>Agent/Sales Person</TableCell>
-                        <TableCell>
+                        <TableCell className="font-weight-bold">
+                          Customer Details
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Amount
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Discount
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Shipping Status
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Pay Status
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Source
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Agent/Sales Person
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
                           <SettingsIcon />
                         </TableCell>
                       </TableRow>
@@ -717,7 +737,7 @@ const OrdersPerCustomer = () => {
                                   {/* <hr /> */}
                                   <TableContainer>
                                     <Table>
-                                      <TableHead className="orders-table-head-row">
+                                      <TableHead className="orders-table-head-row font-weight-bold">
                                         <TableRow className="info">
                                           <TableCell>Product Name</TableCell>
                                           <TableCell>Unit</TableCell>
@@ -727,12 +747,12 @@ const OrdersPerCustomer = () => {
                                           <TableCell>Price</TableCell>
 
                                           <TableCell>
-                                              {row.pickup_order
-                                                ? "Pickup Details"
-                                                : row.in_store == 1
-                                                ? "In Store Order"
-                                                : "Shipping Details"}
-                                            </TableCell>
+                                            {row.pickup_order
+                                              ? "Pickup Details"
+                                              : row.in_store == 1
+                                              ? "In Store Order"
+                                              : "Shipping Details"}
+                                          </TableCell>
 
                                           <TableCell>Seller</TableCell>
                                         </TableRow>
@@ -759,41 +779,41 @@ const OrdersPerCustomer = () => {
                                               ${elem?.product?.selling_price}
                                             </TableCell>
                                             <TableCell>
-                                            {!row.pickup_order ? (
-                                                  !row.in_store ? (
-                                                    <Typography>
-                                                      {
-                                                        JSON.parse(
-                                                          row?.shipping_address
-                                                        )?.address
-                                                      }
-                                                      ,
-                                                      {
-                                                        JSON.parse(
-                                                          row?.shipping_address
-                                                        )?.city
-                                                      }
-                                                      ,
-                                                      {
-                                                        JSON.parse(
-                                                          row?.shipping_address
-                                                        )?.country
-                                                      }
-                                                      ,
-                                                      {
-                                                        JSON.parse(
-                                                          row?.shipping_address
-                                                        )?.zip
-                                                      }
-                                                    </Typography>
-                                                  ) : (
-                                                    "In store"
-                                                  )
-                                                ) : (
+                                              {!row.pickup_order ? (
+                                                !row.in_store ? (
                                                   <Typography>
-                                                    {row.pickup_address ?? "-"}{" "}
+                                                    {
+                                                      JSON.parse(
+                                                        row?.shipping_address
+                                                      )?.address
+                                                    }
+                                                    ,
+                                                    {
+                                                      JSON.parse(
+                                                        row?.shipping_address
+                                                      )?.city
+                                                    }
+                                                    ,
+                                                    {
+                                                      JSON.parse(
+                                                        row?.shipping_address
+                                                      )?.country
+                                                    }
+                                                    ,
+                                                    {
+                                                      JSON.parse(
+                                                        row?.shipping_address
+                                                      )?.zip
+                                                    }
                                                   </Typography>
-                                                )}
+                                                ) : (
+                                                  "In store"
+                                                )
+                                              ) : (
+                                                <Typography>
+                                                  {row.pickup_address ?? "-"}{" "}
+                                                </Typography>
+                                              )}
                                             </TableCell>
                                             <TableCell>
                                               {elem?.product?.supplier?.name}

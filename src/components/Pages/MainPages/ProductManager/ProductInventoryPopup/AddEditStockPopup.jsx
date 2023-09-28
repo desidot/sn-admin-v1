@@ -129,7 +129,7 @@ const AddEditStockPopup = ({ productId, onSave, onCancel, getData }) => {
             ) : (
               <TableContainer>
                 <Table>
-                  <TableHead className="orders-table-head-row">
+                  <TableHead className="orders-table-head-row font-weight-bold">
                     <TableRow className="info">
                       <TableCell>Product Name</TableCell>
                       <TableCell>Stock</TableCell>

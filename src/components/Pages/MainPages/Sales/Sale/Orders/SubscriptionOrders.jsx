@@ -603,18 +603,31 @@ const SubscriptionOrders = () => {
                     <TableHead>
                       <TableRow>
                         <TableCell></TableCell>
-                        <TableCell>Inv. No.</TableCell>
-                        <TableCell>Date</TableCell>
-                        <TableCell>Order Details</TableCell>
-                        <TableCell>Total Items</TableCell>
-
-                        <TableCell>Customer Details</TableCell>
-                        <TableCell>Amount</TableCell>
-                        <TableCell>Discount</TableCell>
-                        <TableCell>Shipping Status</TableCell>
-                        <TableCell>Pay Status</TableCell>
-                        <TableCell>Source</TableCell>
-                        <TableCell>Agent/Sales Person</TableCell>
+                        <TableCell className="font-weight-bold">
+                          Order Details / Inv. No.{" "}
+                        </TableCell>
+                        <TableCell className="font-weight-bold">Date</TableCell>
+                        {/* <TableCell>Order Details</TableCell> */}
+                        <TableCell className="font-weight-bold">
+                          Total Items
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Customer Details
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Amount / Pay Status
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Discount
+                        </TableCell>
+                        <TableCell className="font-weight-bold">
+                          Shipping Charge / Shipping Status
+                        </TableCell>
+                        {/* <TableCell>Pay Status</TableCell>
+                        <TableCell>Source</TableCell> */}
+                        <TableCell className="font-weight-bold">
+                          Agent / Sales Person
+                        </TableCell>
                         <TableCell>
                           <SettingsIcon />
                         </TableCell>
@@ -675,6 +688,12 @@ const SubscriptionOrders = () => {
                                 </IconButton>
                               </TableCell>
                               <TableCell>
+                                <div
+                                  style={{ width: "130px" }}
+                                  className="font-weight-bold"
+                                >
+                                  <p className="mb-1"> {row.order_no}</p>
+                                </div>
                                 <div style={{ width: "130px" }}>
                                   <a
                                     className="text-info font-weight-bold"
@@ -700,7 +719,7 @@ const SubscriptionOrders = () => {
                                 </div>
                               </TableCell>
                               <TableCell>
-                                <div style={{ width: "100px" }}>
+                                <div style={{ width: "70px" }}>
                                   {
                                     getNormalDateAndTime(row.created_at)
                                       .normalDate
@@ -712,20 +731,19 @@ const SubscriptionOrders = () => {
                                   }
                                 </div>
                               </TableCell>
-                              <TableCell>
+                              {/* <TableCell>
                                 <div style={{ width: "100px" }}>
                                   <p className="mb-1"> {row.order_no}</p>
                                 </div>
                                 {row?.subscription_no && (
-                                  <>
-                                    {" "}
+                                  <>4
                                     Subs No.{" "}
                                     {row.subscription_no
                                       ? row.subscription_no
                                       : "-"}
                                   </>
                                 )}
-                              </TableCell>
+                              </TableCell> */}
                               <TableCell>
                                 <div>{row.items.length}</div>
                               </TableCell>
@@ -766,6 +784,25 @@ const SubscriptionOrders = () => {
                                 </div>
                               </TableCell>
                               <TableCell>
+                                <div style={{ width: "100px" }}>
+                                  <span
+                                    className={
+                                      row?.payment_status == "Un-Paid"
+                                        ? "pending"
+                                        : "success"
+                                    }
+                                  >
+                                    {row?.payment_status}
+                                  </span>
+                                </div>
+                                <br />
+                                <div style={{ width: "auto" }}>
+                                  <p className="mb-1"> {row?.payment_method}</p>
+                                  <p className="mb-1">
+                                    {row?.transaction_id ?? ""}
+                                  </p>
+                                </div>
+                                <br />
                                 <div style={{ width: "150px" }}>
                                   <b>Paid Amount:</b> ${row.grand_total}
                                 </div>
@@ -782,24 +819,23 @@ const SubscriptionOrders = () => {
                                 </div>
                               </TableCell>
                               <TableCell>
-                                <div style={{ width: "150px" }}>
-                                  <span
-                                    className={
-                                      row.order_status === "Pending"
-                                        ? "pending"
-                                        : "success"
-                                    }
-                                  >
-                                    {row?.order_status}
-                                  </span>
-                                  <br></br>
-                                  <p className="mb-1 mt-1">
-                                    <b>Shipping Charge:</b> $
-                                    {row?.shipping_charge}
-                                  </p>
-                                </div>
+                                <span
+                                  className={
+                                    row.order_status === "Pending"
+                                      ? "pending"
+                                      : "success"
+                                  }
+                                >
+                                  {row?.order_status}
+                                </span>
+                                <br />
+                                <br />
+                                <p className="mb-1 mt-1">
+                                  <b>Shipping Charge:</b> $
+                                  {row?.shipping_charge}
+                                </p>
                               </TableCell>
-                              <TableCell>
+                              {/* <TableCell>
                                 <div style={{ width: "100px" }}>
                                   <span
                                     className={
@@ -811,17 +847,17 @@ const SubscriptionOrders = () => {
                                     {row?.payment_status}
                                   </span>
                                 </div>
-                              </TableCell>
-                              <TableCell>
+                              </TableCell> */}
+                              {/* <TableCell>
                                 <div style={{ width: "150px" }}>
                                   <p className="mb-1"> {row?.payment_method}</p>
                                   <p className="mb-1">
                                     {row?.transaction_id ?? ""}
                                   </p>
                                 </div>
-                              </TableCell>
+                              </TableCell> */}
                               <TableCell>
-                                <div style={{ width: "150px" }}>
+                                <div style={{ width: "auto" }}>
                                   <p className="mb-1">
                                     <b> Agent: </b> {row?.agent?.name ?? "-"}
                                   </p>
@@ -989,7 +1025,7 @@ const SubscriptionOrders = () => {
                                     {/* <hr /> */}
                                     <TableContainer>
                                       <Table>
-                                        <TableHead className="orders-table-head-row">
+                                        <TableHead className="orders-table-head-row font-weight-bold">
                                           <TableRow className="info">
                                             <TableCell>Product Name</TableCell>
                                             <TableCell>Unit</TableCell>
