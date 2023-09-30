@@ -50,7 +50,7 @@ const AddMeta = () => {
         page_name: res?.data?.data?.page_name,
         meta_title: res?.data?.data?.meta_title,
         meta_description: res?.data?.data?.meta_description,
-        meta_pixels: res?.data?.data?.meta_pixels,
+        // meta_pixels: res?.data?.data?.meta_pixels,
         meta_keyword: res?.data?.data?.meta_keyword,
         image: res?.data?.data?.image,
       });
@@ -87,7 +87,7 @@ const AddMeta = () => {
         formData.append("page_name", state.page_name);
         formData.append("meta_title", state.meta_title);
         formData.append("meta_description", state.meta_description);
-        formData.append("meta_pixels", state.meta_pixels);
+        // formData.append("meta_pixels", state.meta_pixels);
         formData.append("meta_keyword", state.meta_keyword);
 
         if (state.image) {
@@ -103,13 +103,15 @@ const AddMeta = () => {
     } else {
       try {
         const formData = new FormData();
-        formData.append("_method", "PUT");
+        if (search.id) {
+          formData.append("_method", "PUT");
+        }
         console.log(formData);
         // Append each field to the FormData object
         formData.append("page_name", state.page_name);
         formData.append("meta_title", state.meta_title);
         formData.append("meta_description", state.meta_description);
-        formData.append("meta_pixels", state.meta_pixels);
+        // formData.append("meta_pixels", state.meta_pixels);
         formData.append("meta_keyword", state.meta_keyword);
 
         if (state.image) {
