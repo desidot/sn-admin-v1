@@ -496,15 +496,15 @@ const OrderSummaryPopup = ({ onClose }) => {
         );
 
         if (filteredSubscriptions[0]) {
-          newObj.price = (
-            elem?.selling_price -
-            (filteredSubscriptions[0]?.discount / 100) * elem?.selling_price
-          ).toFixed(2);
+          // newObj.price = (
+          //   elem?.selling_price -
+          //   (filteredSubscriptions[0]?.discount / 100) * elem?.selling_price
+          // ).toFixed(2);
 
           newObj.discount = filteredSubscriptions[0]?.discount || 0;
           newObj.discount_type = filteredSubscriptions[0]?.discount_type;
         } else {
-          newObj.price = elem?.selling_price.toFixed(2);
+          // newObj.price = elem?.selling_price.toFixed(2);
           newObj.discount = 0;
           newObj.discount_type = "Percent";
         }
@@ -940,7 +940,7 @@ const OrderSummaryPopup = ({ onClose }) => {
               <div className="total-discount">
                 <div className="total-discount-head">
                   <h5>Total</h5>
-                  <h5>${+discountedAmount + +shipCharge}</h5>
+                  <h5>${(+discountedAmount + +shipCharge).toFixed(2)}</h5>
                 </div>
               </div>
             </div>
